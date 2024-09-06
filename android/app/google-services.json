@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "462436298694",
+    "project_id": "west-elbalad",
+    "storage_bucket": "west-elbalad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462436298694:android:a477def5b044efcdb1ccc7",
+        "android_client_info": {
+          "package_name": "com.example.west_elbalad"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2r3OLbshKPjY7c1iTry1A3IPM44T85OA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
