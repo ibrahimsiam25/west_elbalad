@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../bottom_nav_bar.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:west_elbalad/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/custom_button.dart';
-
-
-
 
 class PageViewItem extends StatelessWidget {
   final PageController pageController;
@@ -54,7 +50,8 @@ class PageViewItem extends StatelessWidget {
         CustomButton(
           onTap: () {
             if (isLastPage) {
-             Navigator.pushReplacementNamed(context, BottomNavBarController.routeName);
+              Navigator.pushReplacementNamed(
+                  context, BottomNavBarController.routeName);
             } else {
               // Move to the next page
               pageController.nextPage(
