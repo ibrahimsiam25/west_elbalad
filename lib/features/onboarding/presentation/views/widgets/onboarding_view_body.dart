@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/features/onboarding/data/onboarding_static_data.dart';
 import 'package:west_elbalad/features/onboarding/presentation/manager/onboarding_controller.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/page_view_item.dart';
 
@@ -12,14 +13,15 @@ class OnBoardingViewBody extends StatelessWidget {
 
     return PageView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: controller.images.length,
+      itemCount: 3,
       controller: controller.pageController,
       itemBuilder: (context, index) {
         return PageViewItem(
-          image: controller.images[index],
-          text: controller.texts[index],
+          image: onboardingList[index].lottie,
+          title: onboardingList[index].title,
+          subtitle: onboardingList[index].subtitle,
           pageController: controller.pageController,
-          isLastPage: index == controller.images.length - 1,
+          isLastPage: index == 2,
         );
       },
     );

@@ -6,37 +6,40 @@ import '../../../../../../core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PageViewItem extends StatelessWidget {
-  const PageViewItem({
-    super.key,
-    required this.image,
-    required this.text,
-    required this.pageController,
-    required this.isLastPage,
-  });
   final PageController pageController;
   final bool isLastPage;
   final String image;
-  final String text;
+  final String title;
+  final String subtitle;
+  const PageViewItem({
+    super.key,
+    required this.image,
+    required this.pageController,
+    required this.isLastPage,
+    required this.title,
+    required this.subtitle,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        // SvgPicture.asset(image),
         Lottie.asset(
+          width: 300.w,
+          height: 300.h,
           image,
         ),
-        SizedBox(height: 121.0.h),
-        SizedBox(
-          width: 343.0.w,
-          height: 95.0.h,
-          child: Center(
-            child: Text(
-              text,
-              style: AppStyles.header1,
-              textAlign: TextAlign.center,
-            ),
-          ),
+        SizedBox(height: 32.0.h),
+        Text(
+          title,
+          style: AppStyles.header1,
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          subtitle,
+          style: AppStyles.body1Regular,
+          textAlign: TextAlign.center,
         ),
         SizedBox(height: 20.h),
         TextButton(
