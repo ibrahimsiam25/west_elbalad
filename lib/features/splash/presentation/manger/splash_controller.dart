@@ -15,12 +15,11 @@ class SplashController extends GetxController {
     Future.delayed(
       Duration(milliseconds: 4500),
       () {
-         Get.offNamed(AppRouter.signInView);
-        // if (isOnBoardingView) {
-        //   Get.offNamed(AppRouter.kBottomNavBarController);
-        // } else {
-        //   Get.offNamed(AppRouter.kOnBoardingView);
-        // }
+        if (isOnBoardingView) {
+          Get.offNamed(AppRouter.kBottomNavBarController);
+        } else {
+          Get.offNamed(AppRouter.kOnBoardingView);
+        }
       },
     );
   }
