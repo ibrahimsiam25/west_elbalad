@@ -4,26 +4,15 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
-import 'package:west_elbalad/core/constants/app_consts.dart';
-import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
-import 'package:west_elbalad/core/utils/app_router.dart';
+import 'package:west_elbalad/features/splash/presentation/manger/splash_controller.dart';
 
-class SplashViewBody extends StatefulWidget {
+class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});
 
   @override
-  State<SplashViewBody> createState() => _SplashViewBodyState();
-}
-
-class _SplashViewBodyState extends State<SplashViewBody> {
-  @override
-  void initState() {
-    super.initState();
-    _executeNavigation();
-  }
-
   @override
   Widget build(BuildContext context) {
+    Get.find<SplashController>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -58,15 +47,5 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         backgroundColor: AppColors.grey,
       ),
     );
-  }
-
-  void _executeNavigation() {
-    bool isOnBoardingView = SharedPref.getBool(kIsOnBoardingView);
-    Future.delayed(const Duration(seconds: 3), () {
-      final route = isOnBoardingView
-          ? AppRouter.kBottomNavBarController
-          : AppRouter.kOnBoardingView;
-      Get.offNamed(route);
-    });
   }
 }

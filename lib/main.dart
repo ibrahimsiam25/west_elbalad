@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
 import 'package:west_elbalad/core/utils/my_bindings.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
+  await SharedPref.init();
   runApp(const MyApp());
 }
 
