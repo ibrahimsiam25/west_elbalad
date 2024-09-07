@@ -1,4 +1,4 @@
-import 'package:west_elbalad/features/onboarding/data/onboarding_model.dart';
+import 'package:west_elbalad/features/onboarding/data/model/onboarding_model.dart';
 
 List<OnboardingModel> onboardingList = [
   OnboardingModel(

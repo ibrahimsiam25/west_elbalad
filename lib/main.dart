@@ -13,10 +13,9 @@ import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
 
-
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp(
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setupGetIt();
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           initialBinding: MyBindings(),
-          initialRoute: AppRouter.kSplashView,
+          initialRoute: AppRouter.kHomeView,
           getPages: AppRouter.routes,
           theme: ThemeData(
             fontFamily: appFontCairo,
