@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:west_elbalad/features/onboarding/presentation/manager/onboarding_controller.dart';
 import 'package:west_elbalad/features/splash/presentation/manger/splash_controller.dart';
 
 class MyBindings implements Bindings {
@@ -6,6 +7,9 @@ class MyBindings implements Bindings {
   void dependencies() {
     Get.lazyPut(
       () => SplashController(),
+    );
+    Get.lazyPut(
+      () => OnBoardingController(),
     );
   }
 }

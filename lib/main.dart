@@ -30,6 +30,9 @@ class MyApp extends StatelessWidget {
             statusBarColor: Colors.transparent,
           ),
         );
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           initialBinding: MyBindings(),

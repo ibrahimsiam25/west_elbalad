@@ -6,8 +6,8 @@ import '../../../../core/service/shared_preferences_singleton.dart';
 class SplashController extends GetxController {
   @override
   void onInit() {
-    super.onInit();
     _executeNavigation();
+    super.onInit();
   }
 
   void _executeNavigation() {
