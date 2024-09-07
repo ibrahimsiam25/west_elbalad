@@ -41,9 +41,15 @@ class PhoneItem extends StatelessWidget {
             ),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
-          Text(
-            phone.name,
-            style: AppStyles.title,
+          SizedBox(
+            width: 128.0.w,
+            child: Center(
+              child: Text(
+                phone.name,
+                textAlign: TextAlign.center,
+                style: AppStyles.title,
+              ),
+            ),
           ),
           SizedBox(
             width: 128.0.w,
