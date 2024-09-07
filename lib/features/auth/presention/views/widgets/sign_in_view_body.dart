@@ -13,9 +13,6 @@ import 'package:west_elbalad/features/auth/presention/views/widgets/or_divider.d
 import 'package:west_elbalad/features/auth/presention/views/widgets/dont_have_acount.dart';
 import 'package:west_elbalad/features/auth/presention/views/widgets/soical_sign_in_button.dart';
 
-
-
-
 class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
 
@@ -100,15 +97,12 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 onPressed: () {
                   context.read<SignInCubit>().signInWithGoogle();
                 },
-                image:  AppAssets.assetsImagesGoogleIcon,
+                image: AppAssets.assetsImagesGoogleIcon,
                 title: 'تسجيل بواسطة جوجل',
               ),
               const SizedBox(
                 height: 16,
               ),
-          
-       
-           
             ],
           ),
         ),
