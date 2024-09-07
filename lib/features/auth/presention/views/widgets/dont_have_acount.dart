@@ -1,9 +1,10 @@
-import 'package:get/get.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_color.dart';
-import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/app_text_style.dart';
+import 'package:west_elbalad/features/auth/presention/views/create_user_view.dart';
+
+
 
 class DontHaveAcount extends StatelessWidget {
   const DontHaveAcount({
@@ -16,10 +17,29 @@ class DontHaveAcount extends StatelessWidget {
       TextSpan(
         children: [
           TextSpan(
-            text: 'لا تمتلك حساب؟',
-            style: AppTextStyle.semiBold16.copyWith(
-              color: const Color(0xFF949D9E),
-            ),
+            children: [
+              TextSpan(
+    text: 'لا تمتلك حساب؟',
+    style: AppTextStyle.semiBold16.copyWith(
+      color: const Color(0xFF949D9E),
+    ),
+              ),
+              TextSpan(
+    text: ' ',
+    style: AppTextStyle.semiBold16.copyWith(
+      color: const Color(0xFF616A6B),
+    ),
+              ),
+              TextSpan(
+                 recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Navigator.pushReplacementNamed(context, SignUpView.routeName);
+              },
+    text: 'قم بإنشاء حساب',
+    style:
+        AppTextStyle.semiBold16.copyWith(color: AppColor.primaryColor),
+              ),
+            ],
           ),
           TextSpan(
             text: ' ',
@@ -27,15 +47,15 @@ class DontHaveAcount extends StatelessWidget {
               color: const Color(0xFF616A6B),
             ),
           ),
-          TextSpan(
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Get.offNamed(AppRouter.signUpView);
-              },
-            text: 'قم بإنشاء حساب',
-            style:
-                AppTextStyle.semiBold16.copyWith(color: AppColor.primaryColor),
-          ),
+          // TextSpan(
+          //   recognizer: TapGestureRecognizer()
+          //     ..onTap = () {
+          //      Navigator.pushReplacementNamed(context, SignUpView.routeName);
+          //     },
+          //   text: 'قم بإنشاء حساب',
+          //   style:
+          //       AppTextStyle.semiBold16.copyWith(color: AppColor.primaryColor),
+          // ),
         ],
       ),
       textAlign: TextAlign.center,

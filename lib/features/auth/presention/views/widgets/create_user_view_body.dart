@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:west_elbalad/core/utils/constents.dart';
+import '../../../../../core/constants/app_consts.dart';
 import '../../manger/create_user/create_user_cubit.dart';
 import 'package:west_elbalad/core/widgets/custom_botton.dart';
 import '../../../../../core/widgets/custom_password_field.dart';
@@ -8,6 +8,7 @@ import 'package:west_elbalad/core/widgets/custom_snack_bar.dart';
 import 'package:west_elbalad/core/widgets/custom_text_field.dart';
 import 'package:west_elbalad/features/auth/presention/views/widgets/have_an_account_widget.dart';
 import 'package:west_elbalad/features/auth/presention/views/widgets/terms_and_condition_widget.dart';
+
 
 class CreateUserViewBody extends StatefulWidget {
   const CreateUserViewBody({super.key});
@@ -25,7 +26,7 @@ class _SiginUpViewBodyState extends State<CreateUserViewBody> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
         child: Form(
           key: _formKey,
           autovalidateMode: _autoValidateMode,

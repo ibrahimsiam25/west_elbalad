@@ -1,16 +1,16 @@
-import 'package:get/get.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/service/get_it_service.dart';
+import 'core/functions/on_generate_routes.dart';
 import 'core/service/custom_bloc_observer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:west_elbalad/core/utils/app_router.dart';
-import 'package:west_elbalad/core/utils/my_bindings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'features/splash/presentation/views/splash_view.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
 
 void main() async {
@@ -44,16 +44,25 @@ class MyApp extends StatelessWidget {
         SystemChrome.setPreferredOrientations([
           DeviceOrientation.portraitUp,
         ]);
-        return GetMaterialApp(
+        return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialBinding: MyBindings(),
-          initialRoute: AppRouter.kHomeView,
-          getPages: AppRouter.routes,
           theme: ThemeData(
             fontFamily: appFontCairo,
             scaffoldBackgroundColor: AppColors.lightGrey,
           ),
-          textDirection: TextDirection.rtl,
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            Locale(
+              'ar',
+              'AR',
+            ),
+          ],
+          initialRoute: SplashView.routeName,
+          onGenerateRoute: onGenerateRoute,
         );
       },
     );
