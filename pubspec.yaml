@@ -51,6 +51,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  skeletonizer: ^1.4.2
 
 dev_dependencies:
   flutter_test:

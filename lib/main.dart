@@ -56,10 +56,7 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: [
-            Locale(
-              'ar',
-              'AR',
-            ),
+            Locale('ar', 'AR'),
           ],
           initialRoute: SplashView.routeName,
           onGenerateRoute: onGenerateRoute,

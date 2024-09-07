@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
@@ -16,7 +17,7 @@ class PhoneItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(
@@ -28,9 +29,16 @@ class PhoneItem extends StatelessWidget {
           CachedNetworkImage(
             imageUrl:
                 'https://th.bing.com/th/id/OIP.O-gRqcByJK1mGi5PGsL57AHaHa?rs=1&pid=ImgDetMain',
-            width: 200.0.w,
-            height: 200.0.h,
-            placeholder: (context, url) => CircularProgressIndicator(),
+            width: 128.0.w,
+            height: 128.0.h,
+            placeholder: (context, url) => Skeletonizer(
+              containersColor: AppColors.darkGrey,
+              child: Container(
+                width: 128.0.w,
+                height: 128.0.h,
+                color: AppColors.white,
+              ),
+            ),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
           Text(
@@ -38,7 +46,7 @@ class PhoneItem extends StatelessWidget {
             style: AppStyles.title,
           ),
           SizedBox(
-            width: 200.0.w,
+            width: 128.0.w,
             child: Center(
               child: Text(
                 phone.description,

@@ -28,7 +28,6 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
   Widget build(BuildContext context) {
     return PageView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      reverse: true,
       itemCount: 3,
       controller: pageController,
       itemBuilder: (context, index) {
