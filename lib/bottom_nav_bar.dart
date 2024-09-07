@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/features/home/presentation/views/home_view.dart';
@@ -19,7 +18,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.lightGrey,
+        backgroundColor: AppColors.white,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         elevation: 0,
@@ -31,13 +30,13 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
         },
         items: [
           bottomNavBarItem(
-            Icons.home,
+            'assets/images/home.png',
           ),
           bottomNavBarItem(
-            Icons.settings,
+            'assets/images/setting.png',
           ),
           bottomNavBarItem(
-            Icons.person,
+            'assets/images/user.png',
           ),
         ],
       ),
@@ -48,7 +47,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
           Scaffold(
             body: Center(
               child: Text(
-                'Settings',
+                'الإعدادات',
                 style: AppStyles.header,
               ),
             ),
@@ -56,7 +55,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
           Scaffold(
             body: Center(
               child: Text(
-                'Profile',
+                'الحساب',
                 style: AppStyles.header,
               ),
             ),
@@ -66,7 +65,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
     );
   }
 
-  BottomNavigationBarItem bottomNavBarItem(IconData icon) {
+  BottomNavigationBarItem bottomNavBarItem(String image) {
     return BottomNavigationBarItem(
       activeIcon: Container(
         padding: const EdgeInsets.all(10.0),
@@ -76,16 +75,19 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
             kRadius32,
           ),
         ),
-        child: Icon(
-          icon,
-          size: 26.r,
+        child: Image.asset(
+          width: 32.0,
+          height: 32.0,
           color: AppColors.white,
+          image,
         ),
       ),
-      icon: Icon(
-        icon,
-        size: 26.r,
+      icon: Image.asset(
+        width: 32.0,
+        height: 32.0,
         color: AppColors.black,
+        repeat: ImageRepeat.repeatX,
+        image,
       ),
       label: '',
     );

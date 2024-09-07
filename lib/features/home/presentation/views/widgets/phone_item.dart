@@ -18,6 +18,7 @@ class PhoneItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16.0),
+      margin: EdgeInsets.only(bottom: 16.0.h),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(
