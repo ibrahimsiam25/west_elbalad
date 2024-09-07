@@ -28,7 +28,7 @@ class SplashViewBody extends StatelessWidget {
                 width: 180.0.w,
                 animation: true,
                 lineHeight: 3.0,
-                animationDuration: 4000,
+                animationDuration: 3000,
                 percent: 1,
                 barRadius: const Radius.circular(10),
                 progressColor: AppColors.red,

@@ -13,7 +13,7 @@ class SplashController extends GetxController {
   void _executeNavigation() {
     bool isOnBoardingView = SharedPref.getBool(kIsOnBoardingView);
     Future.delayed(
-      Duration(milliseconds: 4500),
+      Duration(milliseconds: 3500),
       () {
         if (isOnBoardingView) {
           Get.offNamed(AppRouter.kBottomNavBarController);
