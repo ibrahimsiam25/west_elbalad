@@ -1,59 +1,67 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:west_elbalad/features/onboarding/presentation/views/widgets/custom_button.dart';
 import '../../../../../../core/utils/app_router.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PageViewItem extends StatelessWidget {
-  const PageViewItem({
-    super.key,
-    required this.image,
-    required this.text,
-    required this.pageController,
-    required this.isLastPage,
-  });
   final PageController pageController;
   final bool isLastPage;
   final String image;
-  final String text;
+  final String title;
+  final String subtitle;
+  const PageViewItem({
+    super.key,
+    required this.image,
+    required this.pageController,
+    required this.isLastPage,
+    required this.title,
+    required this.subtitle,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // SvgPicture.asset(image),
-        Image.asset(image),
-        SizedBox(height: 121.0.h),
+        Spacer(),
+        Lottie.asset(
+          width: 300.w,
+          height: 300.h,
+          image,
+        ),
+        SizedBox(height: 24.0.h),
+        Text(
+          title,
+          style: AppStyles.title,
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 16.0.h),
         SizedBox(
-          width: 343.0.w,
-          height: 95.0.h,
-          child: Center(
-            child: Text(
-              text,
-              style: AppStyles.header1,
-              textAlign: TextAlign.center,
-            ),
+          width: 300.0.w,
+          child: Text(
+            subtitle,
+            style: AppStyles.subtitle,
+            textAlign: TextAlign.center,
           ),
         ),
-        SizedBox(height: 20.h),
-        TextButton(
-          onPressed: () {
+        Spacer(),
+        CustomButton(
+          onTap: () {
             if (isLastPage) {
-              Get.offAllNamed(AppRouter.kHomeView);
+              Get.offAllNamed(AppRouter.kBottomNavBarController);
             } else {
               // Move to the next page
               pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.easeIn,
               );
             }
           },
-          child: Text('data'),
-          // child: SvgPicture.asset(
-          //   AppAssets.arrowIcon,
-          // ),
         ),
-        SizedBox(height: 46.0.h),
+        SizedBox(height: 32.0.h),
       ],
     );
   }

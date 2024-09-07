@@ -5,6 +5,5 @@ double kVerticalPadding = 16.0.h;
 double kRadius16 = 16.0.r;
 double kRadius24 = 24.0.r;
 double kRadius32 = 32.0.r;
-String appFontMontserrat = 'Montserrat';
-String appFontOutfit = 'Outfit';
+String appFontCairo = 'Cairo';
 const String kIsOnBoardingView = 'isOnBoardingView';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
+import 'package:west_elbalad/core/constants/app_consts.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,13 +17,15 @@ class CustomButton extends StatelessWidget {
         onPressed: onTap,
         color: AppColors.red,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(13.r),
+          borderRadius: BorderRadius.circular(kRadius32),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 28.0.w, vertical: 12.0.h),
+          padding: EdgeInsets.symmetric(horizontal: 64.0.w, vertical: 8.0.h),
           child: Text(
-            "Next",
-            style: AppStyles.body1Regular.copyWith(color: AppColors.black),
+            "التالي",
+            style: AppStyles.title.copyWith(
+              color: AppColors.white,
+            ),
           ),
         ),
       ),
