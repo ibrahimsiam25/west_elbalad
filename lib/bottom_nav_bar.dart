@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
-import 'package:west_elbalad/core/utils/app_styles.dart';
 import 'package:west_elbalad/features/home/presentation/views/home_view.dart';
 
 class BottomNavBarController extends StatefulWidget {
   const BottomNavBarController({super.key});
-
+  static const String routeName = '/BottomNavBarController';
   @override
   State<BottomNavBarController> createState() => _BottomNavBarControllerState();
 }

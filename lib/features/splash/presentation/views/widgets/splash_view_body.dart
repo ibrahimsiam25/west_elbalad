@@ -1,16 +1,46 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import '../../../../../bottom_nav_bar.dart';
+import '../../../../../core/constants/app_colors.dart';
+import '../../../../../core/constants/app_consts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:west_elbalad/core/constants/app_colors.dart';
-import 'package:west_elbalad/features/splash/presentation/manger/splash_controller.dart';
+import '../../../../../core/service/shared_preferences_singleton.dart';
+import '../../../../onboarding/presentation/views/onboarding_view.dart';
 
-class SplashViewBody extends StatelessWidget {
+
+
+
+
+
+class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
+ 
+  @override
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
 
+class _SplashViewBodyState extends State<SplashViewBody> {
+  @override
+  void initState() {
+    _executeNavigation();
+    super.initState();
+  }
+    void _executeNavigation() {
+    bool isOnBoardingView = SharedPref.getBool(kIsOnBoardingView);
+    Future.delayed(
+      Duration(milliseconds: 4500),
+      () {
+        if (isOnBoardingView) {
+          Navigator.pushReplacementNamed(context, BottomNavBarController.routeName);
+        } else {
+          Navigator.pushReplacementNamed(context, OnboardingView.routeName);
+        }
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
-    Get.find<SplashController>();
+ 
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

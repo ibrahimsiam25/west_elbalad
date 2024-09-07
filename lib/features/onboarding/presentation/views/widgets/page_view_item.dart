@@ -1,10 +1,13 @@
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import '../../../../../../core/utils/app_router.dart';
+import '../../../../../bottom_nav_bar.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:west_elbalad/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/custom_button.dart';
+
+
+
 
 class PageViewItem extends StatelessWidget {
   final PageController pageController;
@@ -51,7 +54,7 @@ class PageViewItem extends StatelessWidget {
         CustomButton(
           onTap: () {
             if (isLastPage) {
-              Get.offAllNamed(AppRouter.kBottomNavBarController);
+             Navigator.pushReplacementNamed(context, BottomNavBarController.routeName);
             } else {
               // Move to the next page
               pageController.nextPage(
