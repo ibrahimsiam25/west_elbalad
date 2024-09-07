@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           getPages: AppRouter.routes,
           theme: ThemeData(
             fontFamily: appFontMontserrat,
-            scaffoldBackgroundColor: AppColors.white,
+            scaffoldBackgroundColor: AppColors.lightGrey,
           ),
         );
       },
