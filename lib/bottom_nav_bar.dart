@@ -47,7 +47,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
           Scaffold(
             body: Center(
               child: Text(
-                'Settings',
+                'الإعدادات',
                 style: AppStyles.header,
               ),
             ),
@@ -55,7 +55,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
           Scaffold(
             body: Center(
               child: Text(
-                'Profile',
+                'الحساب',
                 style: AppStyles.header,
               ),
             ),
@@ -68,7 +68,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
   BottomNavigationBarItem bottomNavBarItem(String image) {
     return BottomNavigationBarItem(
       activeIcon: Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: AppColors.red,
           borderRadius: BorderRadius.circular(
@@ -76,14 +76,17 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
           ),
         ),
         child: Image.asset(
-          width: 40.0,
-          height: 40.0,
+          width: 32.0,
+          height: 32.0,
+          color: AppColors.white,
           image,
         ),
       ),
       icon: Image.asset(
-        width: 40.0,
-        height: 40.0,
+        width: 32.0,
+        height: 32.0,
+        color: AppColors.black,
+        repeat: ImageRepeat.repeatX,
         image,
       ),
       label: '',
