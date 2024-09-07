@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
 import 'package:west_elbalad/features/home/presentation/views/home_view.dart';
 
-class BottomNavBarController extends StatelessWidget {
+class BottomNavBarController extends StatefulWidget {
   const BottomNavBarController({super.key});
 
   @override
+  State<BottomNavBarController> createState() => _BottomNavBarControllerState();
+}
+
+class _BottomNavBarControllerState extends State<BottomNavBarController> {
+  int index = 0;
+  @override
   Widget build(BuildContext context) {
-    int index = 0;
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.lightGrey,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         elevation: 0,
         currentIndex: index,
         onTap: (int value) {
-          index = value;
+          setState(() {
+            index = value;
+          });
         },
         items: [
           bottomNavBarItem(
@@ -34,16 +43,22 @@ class BottomNavBarController extends StatelessWidget {
       ),
       body: IndexedStack(
         index: index,
-        children: const [
+        children: [
           HomeView(),
           Scaffold(
             body: Center(
-              child: Text('Settings'),
+              child: Text(
+                'Settings',
+                style: AppStyles.header,
+              ),
             ),
           ),
           Scaffold(
             body: Center(
-              child: Text('Profile'),
+              child: Text(
+                'Profile',
+                style: AppStyles.header,
+              ),
             ),
           ),
         ],
@@ -56,17 +71,21 @@ class BottomNavBarController extends StatelessWidget {
       activeIcon: Container(
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          color: AppColors.blueAccent,
+          color: AppColors.red,
           borderRadius: BorderRadius.circular(
             kRadius32,
           ),
         ),
         child: Icon(
           icon,
+          size: 26.r,
+          color: AppColors.white,
         ),
       ),
       icon: Icon(
         icon,
+        size: 26.r,
+        color: AppColors.black,
       ),
       label: '',
     );

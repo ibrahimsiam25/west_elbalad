@@ -39,9 +39,10 @@ class MyApp extends StatelessWidget {
           initialRoute: AppRouter.kSplashView,
           getPages: AppRouter.routes,
           theme: ThemeData(
-            fontFamily: appFontMontserrat,
+            fontFamily: appFontCairo,
             scaffoldBackgroundColor: AppColors.lightGrey,
           ),
+          textDirection: TextDirection.rtl,
         );
       },
     );

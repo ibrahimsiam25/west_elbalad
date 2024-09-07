@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:west_elbalad/features/onboarding/presentation/views/widgets/custom_button.dart';
 import '../../../../../../core/utils/app_router.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,43 +24,44 @@ class PageViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Spacer(),
         Lottie.asset(
           width: 300.w,
           height: 300.h,
           image,
         ),
-        SizedBox(height: 32.0.h),
+        SizedBox(height: 24.0.h),
         Text(
           title,
-          style: AppStyles.header1,
+          style: AppStyles.title,
           textAlign: TextAlign.center,
         ),
-        Text(
-          subtitle,
-          style: AppStyles.body1Regular,
-          textAlign: TextAlign.center,
+        SizedBox(height: 16.0.h),
+        SizedBox(
+          width: 300.0.w,
+          child: Text(
+            subtitle,
+            style: AppStyles.subtitle,
+            textAlign: TextAlign.center,
+          ),
         ),
-        SizedBox(height: 20.h),
-        TextButton(
-          onPressed: () {
+        Spacer(),
+        CustomButton(
+          onTap: () {
             if (isLastPage) {
-              Get.offAllNamed(AppRouter.kHomeView);
+              Get.offAllNamed(AppRouter.kBottomNavBarController);
             } else {
               // Move to the next page
               pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.easeIn,
               );
             }
           },
-          child: Text('data'),
-          // child: SvgPicture.asset(
-          //   AppAssets.arrowIcon,
-          // ),
         ),
-        SizedBox(height: 46.0.h),
+        SizedBox(height: 32.0.h),
       ],
     );
   }
