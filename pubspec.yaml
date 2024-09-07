@@ -94,8 +94,6 @@ flutter:
       fonts:
         - asset: assets/fonts/Cairo-Regular.ttf
           weight: 400
-    - family: Outfit
-      fonts:
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 600
   # For details regarding fonts from package dependencies,
