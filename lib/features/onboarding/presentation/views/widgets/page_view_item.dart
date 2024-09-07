@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import '../../../../../../core/utils/app_router.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,9 @@ class PageViewItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         // SvgPicture.asset(image),
-        Image.asset(image),
+        Lottie.asset(
+          image,
+        ),
         SizedBox(height: 121.0.h),
         SizedBox(
           width: 343.0.w,

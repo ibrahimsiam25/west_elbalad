@@ -5,9 +5,9 @@ class OnBoardingController extends GetxController {
   late PageController pageController;
 
   final List<String> images = [
-    'assets/images/launcher_icon.png',
-    'assets/images/launcher_icon.png',
-    'assets/images/launcher_icon.png',
+    'assets/images/fix_mobile.json',
+    'assets/images/fix_mobile.json',
+    'assets/images/fix_mobile.json',
   ];
 
   final List<String> texts = [
