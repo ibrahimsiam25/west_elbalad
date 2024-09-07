@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/features/home/presentation/views/home_view.dart';
@@ -19,7 +18,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.lightGrey,
+        backgroundColor: AppColors.white,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         elevation: 0,
@@ -31,13 +30,13 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
         },
         items: [
           bottomNavBarItem(
-            Icons.home,
+            'assets/images/home.png',
           ),
           bottomNavBarItem(
-            Icons.settings,
+            'assets/images/setting.png',
           ),
           bottomNavBarItem(
-            Icons.person,
+            'assets/images/user.png',
           ),
         ],
       ),
@@ -66,26 +65,26 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
     );
   }
 
-  BottomNavigationBarItem bottomNavBarItem(IconData icon) {
+  BottomNavigationBarItem bottomNavBarItem(String image) {
     return BottomNavigationBarItem(
       activeIcon: Container(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           color: AppColors.red,
           borderRadius: BorderRadius.circular(
             kRadius32,
           ),
         ),
-        child: Icon(
-          icon,
-          size: 26.r,
-          color: AppColors.white,
+        child: Image.asset(
+          width: 40.0,
+          height: 40.0,
+          image,
         ),
       ),
-      icon: Icon(
-        icon,
-        size: 26.r,
-        color: AppColors.black,
+      icon: Image.asset(
+        width: 40.0,
+        height: 40.0,
+        image,
       ),
       label: '',
     );
