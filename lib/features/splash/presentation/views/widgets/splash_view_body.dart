@@ -31,9 +31,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       Duration(milliseconds: 4500),
       () {
         if (isOnBoardingView) {
-          Navigator.pushReplacementNamed(context, BottomNavBarController.routeName);
+         Navigator.pushReplacementNamed(context, BottomNavBarController.routeName);
         } else {
-          Navigator.pushReplacementNamed(context, OnboardingView.routeName);
+         Navigator.pushReplacementNamed(context, OnboardingView.routeName);
         }
       },
     );
