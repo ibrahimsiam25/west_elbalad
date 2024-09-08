@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:west_elbalad/core/utils/app_styles.dart';
+import 'package:flutter/material.dart';
 import '../../../../../bottom_nav_bar.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
 import '../../../data/static/onboarding_static_data.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/circle_transition_painter.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -73,33 +73,19 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
     final double contentScale = 0.6 + (0.4 * (1.0 - offsetPercent).abs());
 
     return Center(
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            if (currentPageIndex == 2) {
-              // If the user is on the third page, navigate to BottomNavBarController
-              Navigator.pushReplacementNamed(
-                context,
-                BottomNavBarController.routeName,
-              );
-            } else {
-              // Otherwise, continue the animation to the next page
-              animationController!.forward();
-            }
-          });
-        },
-        child: CustomPaint(
-          painter: CircleTransitionPainter(
-            backgroundColor: onboardingList[currentPageIndex].backgroundColor,
-            currentCircleColor: onboardingList[nextPageIndex].backgroundColor,
-            nextCircleColor:
-                onboardingList[nextToNextPageIndex].backgroundColor,
-            transitionPercent: transitionPercent,
-          ),
-          child: Transform(
-            transform: Matrix4.translationValues(contentOffset, 0, 0)
-              ..scale(contentScale),
-            child: Column(
+      child: CustomPaint(
+        painter: CircleTransitionPainter(
+          backgroundColor: onboardingList[currentPageIndex].backgroundColor,
+          currentCircleColor: onboardingList[nextPageIndex].backgroundColor,
+          nextCircleColor:
+              onboardingList[nextToNextPageIndex].backgroundColor,
+          transitionPercent: transitionPercent,
+        ),
+        child: Transform(
+          transform: Matrix4.translationValues(contentOffset, 0, 0)
+            ..scale(contentScale),
+          child: Stack(
+            children:[Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -132,12 +118,41 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
                     ),
                   ),
                 ),
-                Spacer(flex: 2),
+                Spacer(flex: 4),
               ],
             ),
+            Positioned(
+              left: MediaQuery.of(context).size.width * 0.3,
+              bottom: MediaQuery.of(context).size.height * 0.18,
+              child: GestureDetector(
+                onTap: () {
+                      setState(() {
+            if (currentPageIndex == 2) {
+              // If the user is on the third page, navigate to BottomNavBarController
+              Navigator.pushReplacementNamed(
+                context,
+                BottomNavBarController.routeName,
+              );
+            } else {
+              // Otherwise, continue the animation to the next page
+              animationController!.forward();
+            }
+          });
+                },
+                child: Container(
+                  color:Colors.transparent, 
+                width: MediaQuery.of(context).size.width * 0.25,
+                height: MediaQuery.of(context).size.height * 0.13,
+                            
+                            ),
+              ))
+            ]
           ),
         ),
       ),
     );
   }
 }
+
+
+   
