@@ -1,15 +1,16 @@
 import 'dart:ui';
 
-class Page {
+class OnboardingModel {
   final String image;
   final String title;
-  final String description;
+  final String subtitle;
   final Color backgroundColor;
-
-  Page({
+  final Color textColor;
+  OnboardingModel({
     required this.image,
     required this.title,
-    required this.description,
+    required this.subtitle,
     required this.backgroundColor,
+    required this.textColor,
   });
 }
