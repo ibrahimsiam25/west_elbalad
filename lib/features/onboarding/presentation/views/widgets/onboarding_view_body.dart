@@ -1,5 +1,7 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
 import '../../../../../bottom_nav_bar.dart';
 import '../../../data/static/onboarding_static_data.dart';
 import 'package:west_elbalad/features/auth/presention/views/sign_in_view.dart';
@@ -66,101 +68,92 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
     final int nextPageIndex = (currentPageIndex + 1) % onboardingList.length;
     final int nextToNextPageIndex =
         (currentPageIndex + 2) % onboardingList.length;
-
-    final double maxOffset = 300;
-    double offsetPercent = transitionPercent <= 0.25
-        ? transitionPercent / 0.25
-        : (transitionPercent >= 0.7
-            ? Curves.easeInCubic.transform((1.0 - transitionPercent) / 0.3)
-            : 1.0);
-    final double contentOffset = offsetPercent * maxOffset;
-    final double contentScale = 0.6 + (0.4 * (1.0 - offsetPercent).abs());
-
-    return
-       Stack(
-        children: [
-        
-          Positioned.fill(
-            child: CustomPaint(
-              painter: CircleTransitionPainter(
-                backgroundColor: onboardingList[currentPageIndex].backgroundColor,
-                currentCircleColor: onboardingList[nextPageIndex].backgroundColor,
-                nextCircleColor:
-                    onboardingList[nextToNextPageIndex].backgroundColor,
-                transitionPercent: transitionPercent,
-              ), child:  PageView.builder(
-          
-            controller: _pageController,
-            itemCount: onboardingList.length,
-           physics: const NeverScrollableScrollPhysics(),
-
-            itemBuilder: (context, index) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Spacer(flex: 1),
-                  SizedBox(
-                    width: 240.0,
-                    child: Lottie.asset(
-                      onboardingList[index].image,
-                      fit: BoxFit.fitWidth,
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: CustomPaint(
+            painter: CircleTransitionPainter(
+              backgroundColor: onboardingList[currentPageIndex].backgroundColor,
+              currentCircleColor: onboardingList[nextPageIndex].backgroundColor,
+              nextCircleColor:
+                  onboardingList[nextToNextPageIndex].backgroundColor,
+              transitionPercent: transitionPercent,
+            ),
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: onboardingList.length,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Spacer(flex: 1),
+                    SizedBox(
+                      width: 240.0,
+                      child: Lottie.asset(
+                        onboardingList[index].image,
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 32.0),
-                  Text(
-                    onboardingList[index].title,
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: onboardingList[index].textColor,
-                    ),
-                  ),
-                  SizedBox(height: 16.0),
-                  SizedBox(
-                    width: 300.0,
-                    child: Center(
-                      child: Text(
-                        onboardingList[index].subtitle,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: onboardingList[index].textColor,
+                    SizedBox(height: 16.0),
+                    SizedBox(
+                      width: 300.0.w,
+                      child: Center(
+                        child: Text(
+                          onboardingList[index].title,
+                          style: AppStyles.title.copyWith(
+                            color: AppColors.white,
+                            fontSize: 22.0.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Spacer(flex: 2),
-                ],
-              );
-            },
-          ) ,
-            ),
-          ),
-          Positioned(
-            left: MediaQuery.of(context).size.width * 0.3,
-            bottom: MediaQuery.of(context).size.height * 0.18,
-            child: GestureDetector(
-              onTap: () {
-                controllWithAnimation(context);
+                    SizedBox(height: 8.0),
+                    SizedBox(
+                      width: 300.0.w,
+                      child: Center(
+                        child: Text(
+                          onboardingList[index].subtitle,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Spacer(flex: 2),
+                  ],
+                );
               },
-              child: Container(
-                color: Colors.transparent,
-                width: MediaQuery.of(context).size.width * 0.25,
-                height: MediaQuery.of(context).size.height * 0.13,
-              ),
             ),
           ),
-        ],
-      );
+        ),
+        Positioned(
+          left: MediaQuery.of(context).size.width * 0.3,
+          bottom: MediaQuery.of(context).size.height * 0.18,
+          child: GestureDetector(
+            onTap: () {
+              controllWithAnimation(context);
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: MediaQuery.of(context).size.width * 0.25,
+              height: MediaQuery.of(context).size.height * 0.13,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   void controllWithAnimation(BuildContext context, {bool forward = true}) {
-        if (currentPageIndex == onboardingList.length - 1) {
-      Navigator.pushReplacementNamed(
-          context, SignInView.routeName);
-    } else if(forward) {
+    if (currentPageIndex == onboardingList.length - 1) {
+      Navigator.pushReplacementNamed(context, SignInView.routeName);
+    } else if (forward) {
       animationController!.forward();
-    } else{
+    } else {
       animationController!.reverse();
     }
   }

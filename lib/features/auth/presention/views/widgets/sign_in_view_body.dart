@@ -1,7 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../manger/sign_in/sign_in_cubit.dart';
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_consts.dart';
 import '../../../../../core/constants/app_assets.dart';
@@ -12,7 +10,6 @@ import 'package:west_elbalad/core/widgets/custom_text_field.dart';
 import 'package:west_elbalad/features/auth/presention/views/widgets/or_divider.dart';
 import 'package:west_elbalad/features/auth/presention/views/widgets/dont_have_acount.dart';
 import 'package:west_elbalad/features/auth/presention/views/widgets/soical_sign_in_button.dart';
-
 
 class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
@@ -61,8 +58,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 children: [
                   Text(
                     "نسيت كلمة المرور؟",
-                    style: AppTextStyle.bold13
-                        .copyWith(color: AppColors.red),
+                    style: AppTextStyle.bold13.copyWith(color: AppColors.red),
                   ),
                 ],
               ),
@@ -75,7 +71,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               CustomBotton(
                   text: 'تسجيل دخول',
                   onPressed: () {
-                    
                     // if (formKey.currentState!.validate()) {
                     //   formKey.currentState!.save();
                     //   context.read<SignInCubit>().signIn(email, password);
@@ -97,7 +92,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               ),
               SocialSignInButton(
                 onPressed: () {
-               //   context.read<SignInCubit>().signInWithGoogle();
+                  //   context.read<SignInCubit>().signInWithGoogle();
                 },
                 image: AppAssets.assetsImagesGoogleIcon,
                 title: 'تسجيل بواسطة جوجل',
