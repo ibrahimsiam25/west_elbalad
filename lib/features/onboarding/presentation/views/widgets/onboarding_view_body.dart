@@ -2,6 +2,7 @@ import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import '../../../../../bottom_nav_bar.dart';
 import '../../../data/static/onboarding_static_data.dart';
+import 'package:west_elbalad/features/auth/presention/views/sign_in_view.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/circle_transition_painter.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -156,7 +157,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
   void controllWithAnimation(BuildContext context, {bool forward = true}) {
         if (currentPageIndex == onboardingList.length - 1) {
       Navigator.pushReplacementNamed(
-          context, BottomNavBarController.routeName);
+          context, SignInView.routeName);
     } else if(forward) {
       animationController!.forward();
     } else{

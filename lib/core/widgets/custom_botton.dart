@@ -1,4 +1,5 @@
 import '../utils/app_color.dart';
+import '../constants/app_colors.dart';
 import '../utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class CustomBotton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)
             ),
-            backgroundColor: AppColor.primaryColor),
+            backgroundColor:  AppColors.red),
           onPressed: onPressed,
           child: Text(text,style:AppTextStyle.bold16.copyWith(color: Colors.white),)),
     );
