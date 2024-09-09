@@ -30,7 +30,7 @@ List<OnboardingModel> onboardingList = [
     backgroundColor: AppColors.brightRed,
   ),
   OnboardingModel(
-    image: 'assets/images/onboarding4.json',
+    image: 'assets/images/a.json',
     title: 'عروض مميزة',
     subtitle: 'استفد من أفضل العروض والخصومات على الهواتف الذكية.',
     backgroundColor: AppColors.brightPurple,
