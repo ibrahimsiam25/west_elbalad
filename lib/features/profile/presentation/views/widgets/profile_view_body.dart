@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
-import 'package:west_elbalad/features/profile/presentation/views/widgets/profile_image.dart';
+import 'package:west_elbalad/features/profile/presentation/views/widgets/image_picker_option.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -15,7 +15,7 @@ class ProfileViewBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ProfileImage(),
+            ImagePickerOptions(),
             SizedBox(height: 16.0.h),
             UserDataElement(
               text: 'ابراهيم فتحي ابراهيم ابراهيم',
