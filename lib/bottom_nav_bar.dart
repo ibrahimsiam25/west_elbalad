@@ -3,6 +3,7 @@ import 'package:west_elbalad/core/utils/app_styles.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/features/home/presentation/views/home_view.dart';
+import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
 
 class BottomNavBarController extends StatefulWidget {
   const BottomNavBarController({super.key});
@@ -33,10 +34,10 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
             'assets/images/home.png',
           ),
           bottomNavBarItem(
-            'assets/images/setting.png',
+            'assets/images/user.png',
           ),
           bottomNavBarItem(
-            'assets/images/user.png',
+            'assets/images/setting.png',
           ),
         ],
       ),
@@ -44,18 +45,11 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
         index: index,
         children: [
           HomeView(),
+          ProfileView(),
           Scaffold(
             body: Center(
               child: Text(
                 'الإعدادات',
-                style: AppStyles.header,
-              ),
-            ),
-          ),
-          Scaffold(
-            body: Center(
-              child: Text(
-                'الحساب',
                 style: AppStyles.header,
               ),
             ),
