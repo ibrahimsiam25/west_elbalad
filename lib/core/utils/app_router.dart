@@ -1,8 +1,9 @@
+import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
 import '../../bottom_nav_bar.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
+import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
-import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 
 abstract class AppRouter {
@@ -13,7 +14,7 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: '/',
+        path: "/",
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -31,6 +32,10 @@ abstract class AppRouter {
       GoRoute(
         path: kSigninView,
         builder: (context, state) => const SigninView(),
+      ),
+      GoRoute(
+        path: kSignupView,
+        builder: (context, state) => const SignupView(),
       ),
     ],
   );

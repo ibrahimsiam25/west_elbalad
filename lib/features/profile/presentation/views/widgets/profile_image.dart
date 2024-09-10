@@ -21,7 +21,7 @@ class ProfileImage extends StatelessWidget {
               fit: BoxFit.fill,
             )
           : Image.asset(
-              'assets/images/avatar.gif',
+              'AppAssets/images/avatar.gif',
               fit: BoxFit.fill,
             ),
     );

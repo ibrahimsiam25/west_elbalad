@@ -9,18 +9,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
-
-
-
-
-
 class FirebaseAuthService {
-
-
-
   Future deleteUser() async {
     await FirebaseAuth.instance.currentUser!.delete();
   }
+
   Future<User> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
@@ -32,16 +25,27 @@ class FirebaseAuthService {
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
-      if (e.code == 'weak-password') {
-        throw CustomException(message: 'الرقم السري ضعيف جداً.');
-      } else if (e.code == 'email-already-in-use') {
-        throw CustomException(
-            message: 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.');
-      } else if (e.code == 'network-request-failed') {
-        throw CustomException(message: 'تاكد من اتصالك بالانترنت.');
-      } else {
-        throw CustomException(
-            message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.');
+      switch (e.code) {
+        case 'weak-password':
+          throw CustomException(message: 'الرقم السري ضعيف جداً.');
+        case 'email-already-in-use':
+          throw CustomException(
+              message: 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.');
+        case 'network-request-failed':
+          throw CustomException(message: 'تأكد من اتصالك بالإنترنت.');
+        case 'invalid-email':
+          throw CustomException(message: 'البريد الإلكتروني غير صالح.');
+        case 'operation-not-allowed':
+          throw CustomException(message: 'عملية التسجيل غير مسموح بها حالياً.');
+        case 'user-disabled':
+          throw CustomException(
+              message: 'تم تعطيل حسابك. الرجاء المحاولة مرة أخرى.');
+        case 'too-many-requests':
+          throw CustomException(
+              message: 'تم حظر الطلبات مؤقتاً. حاول مرة أخرى لاحقاً.');
+        default:
+          throw CustomException(
+              message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة أخرى.');
       }
     } catch (e) {
       log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()}");

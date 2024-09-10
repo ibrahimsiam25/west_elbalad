@@ -38,11 +38,13 @@ class AuthRepoImpl extends AuthRepo {
       await deleteUser(user);
       return left(ServerFailure(e.message));
     } catch (e) {
+     
       await deleteUser(user);
       log(
         'Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}',
       );
       return left(
+       
         ServerFailure(
           'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
         ),

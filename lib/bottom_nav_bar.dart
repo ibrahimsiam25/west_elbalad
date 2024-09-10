@@ -30,13 +30,13 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
         },
         items: [
           bottomNavBarItem(
-            'assets/images/home.png',
+            'AppAssets/images/home.png',
           ),
           bottomNavBarItem(
-            'assets/images/user.png',
+            'AppAssets/images/user.png',
           ),
           bottomNavBarItem(
-            'assets/images/setting.png',
+            'AppAssets/images/setting.png',
           ),
         ],
       ),
