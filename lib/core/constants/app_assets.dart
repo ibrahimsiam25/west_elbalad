@@ -6,5 +6,5 @@ class AppAssets {
   static const check = "assets/images/Check.svg";
 
   static const googleIcon = "assets/images/google_icon.svg";
-    static const facebookIcon = "assets/images/google_icon.svg";
+    static const facebookIcon = "assets/images/facebook_icon.svg";
 }
