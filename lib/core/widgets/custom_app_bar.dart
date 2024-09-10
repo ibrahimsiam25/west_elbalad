@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/app_text_style.dart';
-
-
+import 'package:west_elbalad/core/utils/app_styles.dart';
 
 AppBar buildAppBar(context, {required String title}) {
   return AppBar(
@@ -18,7 +16,7 @@ AppBar buildAppBar(context, {required String title}) {
     title: Text(
       title,
       textAlign: TextAlign.center,
-      style: TextStyles.bold19,
+      style: AppStyles.semiBold16,
     ),
   );
 }

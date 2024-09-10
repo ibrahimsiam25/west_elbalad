@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/app_text_style.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
@@ -28,9 +27,9 @@ class CustomTextFormField extends StatelessWidget {
       keyboardType: textInputType,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
-        hintStyle: TextStyles.bold13.copyWith(
-          color: const Color(0xFF949D9E),
-        ),
+    //    hintStyle: TextStyles.bold13.copyWith(
+       //   color: const Color(0xFF949D9E),
+       // ),
         hintText: hintText,
         filled: true,
         fillColor: const Color(0xFFF9FAFA),

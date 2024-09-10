@@ -9,7 +9,6 @@ import 'package:west_elbalad/features/auth/presentation/cubits/signin_cubit/sign
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -17,7 +16,6 @@ class SigninView extends StatelessWidget {
         getIt.get<AuthRepo>(),
       ),
       child: Scaffold(
-        appBar: buildAppBar(context, title: 'تسجيل دخول'),
         body: const SigninViewBodyBlocConsumer(),
       ),
     );
