@@ -12,7 +12,7 @@ import 'package:west_elbalad/features/auth/presentation/cubits/signin_cubit/sign
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
 
-  static const routeName = 'login';
+  
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

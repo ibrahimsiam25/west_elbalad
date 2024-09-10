@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../bottom_nav_bar.dart';
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_consts.dart';
+import 'package:west_elbalad/core/utils/app_router.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/service/shared_preferences_singleton.dart';
@@ -27,10 +29,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       Duration(milliseconds: 4500),
       () {
         if (isOnBoardingView) {
-          Navigator.pushReplacementNamed(
-              context, BottomNavBarController.routeName);
+          context.go(AppRouter.kBottomNavBarController);
         } else {
-          Navigator.pushReplacementNamed(context, OnboardingView.routeName);
+         context.go(AppRouter.kOnBoardingView);
         }
       },
     );

@@ -1,11 +1,13 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import '../../../../../bottom_nav_bar.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../core/utils/app_router.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
 import '../../../data/static/onboarding_static_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../auth/presentation/views/signin_view.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/circle_transition_painter.dart';
+
 
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -41,17 +43,12 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
         if (status == AnimationStatus.completed) {
           setState(() {
             currentPageIndex += 1;
-            if (currentPageIndex == onboardingList.length) {
-              Navigator.pushReplacementNamed(
-                  context, BottomNavBarController.routeName);
-            } else {
-              animationController?.reset();
+                    animationController?.reset();
               _pageController.animateToPage(
                 currentPageIndex,
                 duration: Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
               );
-            }
           });
         }
       });
@@ -156,7 +153,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
 
   void controllWithAnimation(BuildContext context, {bool forward = true}) {
     if (currentPageIndex == onboardingList.length - 1) {
-      Navigator.pushReplacementNamed(context, SigninView.routeName);
+      context.go(AppRouter.kSigninView);
     } else if (forward) {
       animationController!.forward();
     } else {

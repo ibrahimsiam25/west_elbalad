@@ -12,7 +12,7 @@ import 'package:west_elbalad/features/auth/presentation/cubits/signup_cubits/sig
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
 
-  static const routeName = 'signup';
+ 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
