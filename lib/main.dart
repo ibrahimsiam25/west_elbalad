@@ -1,7 +1,7 @@
-import 'package:west_elbalad/bottom_nav_bar.dart';
-
-import 'firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/features/auth/presentation/views/signin_view.dart';
+import 'package:west_elbalad/features/splash/presentation/views/splash_view.dart';
+import 'firebase_options.dart';
 import 'package:flutter/services.dart';
 import 'core/service/get_it_service.dart';
 import 'core/functions/on_generate_routes.dart';
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: [
             Locale('ar', 'AR'),
           ],
-          initialRoute: BottomNavBarController.routeName,
+          initialRoute: SplashView.routeName,
           onGenerateRoute: onGenerateRoute,
         );
       },
