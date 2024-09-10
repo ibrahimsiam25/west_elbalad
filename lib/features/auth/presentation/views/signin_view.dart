@@ -4,10 +4,7 @@ import 'widgets/signin_view_body_bloc_consumer.dart';
 import '../../../../core/service/get_it_service.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import 'package:west_elbalad/features/auth/domain/repos/auth_repo.dart';
-import 'package:west_elbalad/features/auth/presentation/views/widgets/signin_view_body.dart';
 import 'package:west_elbalad/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
-
-
 
 class SigninView extends StatelessWidget {
   const SigninView({super.key});
