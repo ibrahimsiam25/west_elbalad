@@ -31,6 +31,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+         multiDexEnabled true
     }
 
     buildTypes {
@@ -40,8 +41,18 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+    buildscript {
+  dependencies {
+
+    classpath 'com.google.gms:google-services:4.3.8'
+  }
+}
+}
+dependencies {
+  implementation 'com.android.support:multidex:1.0.3'
 }
 
 flutter {
     source = "../.."
 }
+apply plugin: 'com.google.gms.google-services'

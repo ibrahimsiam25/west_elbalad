@@ -13,7 +13,15 @@ class FirebaseAuthService {
   Future deleteUser() async {
     await FirebaseAuth.instance.currentUser!.delete();
   }
-
+Future<void> sendEmailVerification(User user) async {
+  try {
+    await user.sendEmailVerification();
+    log('Verification email sent to ${user.email}');
+  } catch (e) {
+    log("Error in sending email verification: ${e.toString()}");
+    throw CustomException(message: 'فشل في إرسال بريد التحقق.');
+  }
+}
   Future<User> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
@@ -22,7 +30,9 @@ class FirebaseAuthService {
         email: email,
         password: password,
       );
-      return credential.user!;
+        User user = credential.user!;
+        await sendEmailVerification(user);
+      return user;
     } on FirebaseAuthException catch (e) {
       log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
       switch (e.code) {
