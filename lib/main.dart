@@ -1,6 +1,6 @@
-import 'firebase_options.dart';
-import 'core/utils/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/core/utils/app_router.dart';
+import 'firebase_options.dart';
 import 'package:flutter/services.dart';
 import 'core/service/get_it_service.dart';
 import 'core/service/custom_bloc_observer.dart';
@@ -11,10 +11,6 @@ import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
-
-
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,8 +57,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: [
             Locale('ar', 'AR'),
           ],
-         routerConfig: AppRouter.router,
-      
+          routerConfig: AppRouter.router,
         );
       },
     );
