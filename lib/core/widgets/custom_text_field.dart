@@ -1,10 +1,11 @@
-import '../utils/app_text_style.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import '../../../../../core/utils/app_text_style.dart';
 
 
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField(
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField(
       {super.key,
       required this.hintText,
       required this.textInputType,
@@ -30,7 +31,7 @@ class CustomTextField extends StatelessWidget {
       keyboardType: textInputType,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
-        hintStyle: AppTextStyle.semiBold13.copyWith(
+        hintStyle: TextStyles.bold13.copyWith(
           color: const Color(0xFF949D9E),
         ),
         hintText: hintText,

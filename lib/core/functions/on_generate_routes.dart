@@ -1,9 +1,11 @@
 import '../../bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
-import '../../features/auth/presention/views/sign_in_view.dart';
+import '../../features/auth/presentation/views/signin_view.dart';
+import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
-import '../../features/auth/presention/views/create_user_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+
+
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -19,13 +21,13 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const BottomNavBarController(),
       );
-    case SignInView.routeName:
+    case SigninView.routeName:
       return MaterialPageRoute(
-        builder: (context) => const SignInView(),
+        builder: (context) => const SigninView(),
       );
-    case SignUpView.routeName:
+    case SignupView.routeName:
       return MaterialPageRoute(
-        builder: (context) => const SignUpView(),
+        builder: (context) => const SignupView(),
       );
     default:
       return MaterialPageRoute(

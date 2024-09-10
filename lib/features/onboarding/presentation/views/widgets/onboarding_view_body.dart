@@ -1,11 +1,12 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:west_elbalad/core/utils/app_styles.dart';
 import '../../../../../bottom_nav_bar.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
 import '../../../data/static/onboarding_static_data.dart';
-import 'package:west_elbalad/features/auth/presention/views/sign_in_view.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../auth/presentation/views/signin_view.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/circle_transition_painter.dart';
+
 
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
@@ -155,7 +156,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
 
   void controllWithAnimation(BuildContext context, {bool forward = true}) {
     if (currentPageIndex == onboardingList.length - 1) {
-      Navigator.pushReplacementNamed(context, SignInView.routeName);
+      Navigator.pushReplacementNamed(context, SigninView.routeName);
     } else if (forward) {
       animationController!.forward();
     } else {
