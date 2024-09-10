@@ -1,8 +1,8 @@
-import '../signup_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_text_style.dart';
+
 
 
 class DontHaveAnAccountWidget extends StatelessWidget {
@@ -30,7 +30,7 @@ class DontHaveAnAccountWidget extends StatelessWidget {
           TextSpan(
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                Navigator.pushNamed(context, SignupView.routeName);
+               // Navigator.pushNamed(context, SignupView.routeName);
               },
             text: 'قم بإنشاء حساب',
             style:

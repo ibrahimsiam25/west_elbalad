@@ -7,7 +7,6 @@ import 'package:west_elbalad/features/profile/presentation/views/profile_view.da
 
 class BottomNavBarController extends StatefulWidget {
   const BottomNavBarController({super.key});
-  static const String routeName = '/BottomNavBarController';
   @override
   State<BottomNavBarController> createState() => _BottomNavBarControllerState();
 }

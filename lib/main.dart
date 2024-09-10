@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:west_elbalad/features/auth/presentation/views/signin_view.dart';
-import 'package:west_elbalad/features/splash/presentation/views/splash_view.dart';
+import 'package:west_elbalad/core/utils/app_router.dart';
 import 'firebase_options.dart';
 import 'package:flutter/services.dart';
 import 'core/service/get_it_service.dart';
-import 'core/functions/on_generate_routes.dart';
 import 'core/service/custom_bloc_observer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,7 +43,7 @@ class MyApp extends StatelessWidget {
         SystemChrome.setPreferredOrientations([
           DeviceOrientation.portraitUp,
         ]);
-        return MaterialApp(
+        return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             fontFamily: appFontCairo,
@@ -59,8 +57,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: [
             Locale('ar', 'AR'),
           ],
-          initialRoute: SplashView.routeName,
-          onGenerateRoute: onGenerateRoute,
+          routerConfig: AppRouter.router,
         );
       },
     );
