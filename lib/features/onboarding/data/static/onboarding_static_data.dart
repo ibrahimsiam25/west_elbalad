@@ -1,38 +1,32 @@
 import 'package:flutter/material.dart';
 import '../model/onboarding_model.dart';
+import 'package:west_elbalad/core/constants/app_assets.dart';
 
-class AppColors {
-  static const Color brightBlue = Color(0xFF0199FF);
-  static const Color brightYellow = Color(0xFFFFCC00);
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color brightRed = Color(0xFFE9394E);
-  static const Color brightPurple = Color(0xFF750CBE);
-  static const Color black = Color(0xFF000000);
-}
+
 
 List<OnboardingModel> onboardingList = [
   OnboardingModel(
-    image: 'assets/images/onboarding1.json',
+    image: AppAssets.onboarding1,
     title: 'احدث الهواتف بين يديك',
     subtitle: 'استمتع بتشكيلة واسعة من أحدث الهواتف الذكية بأفضل الأسعار.',
-    backgroundColor: AppColors.brightYellow,
+    backgroundColor:  Color(0xFFFFCC00),
   ),
   OnboardingModel(
-    image: 'assets/images/onboarding2.json',
+    image: AppAssets.onboarding2,
     title: 'خدمات الصيانة الموثوقة',
     subtitle: 'نقدم لك خدمة تصليح محترفة لكل أنواع الهواتف بأسرع وقت.',
-    backgroundColor: AppColors.brightBlue,
+    backgroundColor:Color(0xFF0199FF),
   ),
   OnboardingModel(
-    image: 'assets/images/onboarding3.json',
+    image: AppAssets.onboarding3,
     title: 'التقسيط أصبح أسهل',
     subtitle: 'امتلك هاتف أحلامك الآن وادفع على دفعات ميسرة دون أي تعقيدات.',
-    backgroundColor: AppColors.brightRed,
+    backgroundColor:Color(0xFFE9394E),
   ),
   OnboardingModel(
-    image: 'assets/images/a.json',
+    image: AppAssets.onboarding4,
     title: 'عروض مميزة',
     subtitle: 'استفد من أفضل العروض والخصومات على الهواتف الذكية.',
-    backgroundColor: AppColors.brightPurple,
+    backgroundColor: Color(0xFF750CBE),
   ),
 ];

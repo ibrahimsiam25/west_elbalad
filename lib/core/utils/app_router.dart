@@ -1,8 +1,8 @@
 import '../../bottom_nav_bar.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
+import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
-import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 
 
@@ -17,7 +17,7 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: '/يسي',
+        path: "/cs",
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -29,10 +29,13 @@ abstract class AppRouter {
         builder: (context, state) => const  BottomNavBarController(),
       ),
       GoRoute(
-        path: '/',
-        builder: (context, state) => const  ProfileView(),
+        path: "/",
+        builder: (context, state) => const SigninView(),
       ),
-
+     GoRoute(
+        path: kSignupView,
+        builder: (context, state) => const SignupView(),
+      ),
 
     ],
   );

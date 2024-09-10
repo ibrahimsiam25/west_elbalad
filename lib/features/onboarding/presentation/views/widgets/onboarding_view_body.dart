@@ -103,7 +103,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
                         child: Text(
                           onboardingList[index].title,
                           style: AppStyles.title.copyWith(
-                            color: AppColors.white,
+                            color: Colors.white,
                             fontSize: 22.0.sp,
                           ),
                         ),
@@ -118,7 +118,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,
-                            color: AppColors.white,
+                            color: Colors.white,
                           ),
                         ),
                       ),

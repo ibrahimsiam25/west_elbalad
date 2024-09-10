@@ -123,15 +123,15 @@ foreach(bundled_library ${PLUGIN_BUNDLED_LIBRARIES})
     COMPONENT Runtime)
 endforeach(bundled_library)
 
-# Copy the native assets provided by the build.dart from all packages.
-set(NATIVE_ASSETS_DIR "${PROJECT_BUILD_DIR}native_assets/linux/")
-install(DIRECTORY "${NATIVE_ASSETS_DIR}"
+# Copy the native AppAssets provided by the build.dart from all packages.
+set(NATIVE_AppAssets_DIR "${PROJECT_BUILD_DIR}native_AppAssets/linux/")
+install(DIRECTORY "${NATIVE_AppAssets_DIR}"
    DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
    COMPONENT Runtime)
 
-# Fully re-copy the assets directory on each build to avoid having stale files
+# Fully re-copy the AppAssets directory on each build to avoid having stale files
 # from a previous install.
-set(FLUTTER_ASSET_DIR_NAME "flutter_assets")
+set(FLUTTER_ASSET_DIR_NAME "flutter_AppAssets")
 install(CODE "
   file(REMOVE_RECURSE \"${INSTALL_BUNDLE_DATA_DIR}/${FLUTTER_ASSET_DIR_NAME}\")
   " COMPONENT Runtime)

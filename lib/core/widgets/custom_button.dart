@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
+import 'package:west_elbalad/core/constants/app_colors.dart';
 
 
 class CustomButton extends StatelessWidget {
@@ -12,6 +14,7 @@ class CustomButton extends StatelessWidget {
       height: 54,
       child: TextButton(
         style: TextButton.styleFrom(
+          backgroundColor: AppColors.red,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
               16,
@@ -22,9 +25,9 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          // style: TextStyles.bold16.copyWith(
-          //   color: Colors.white,
-          // ),
+           style:AppStyles.semiBold16.copyWith(
+           color: Colors.white,
+           ),
         ),
       ),
     );

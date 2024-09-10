@@ -5,6 +5,7 @@ import '../../../../../core/constants/app_consts.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:west_elbalad/core/constants/app_assets.dart';
 import '../../../../../core/service/shared_preferences_singleton.dart';
 
 
@@ -44,7 +45,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         children: [
           Image.asset(
             width: 224.0.w,
-            'assets/images/logo.png',
+            AppAssets.logo,
           ),
           SizedBox(height: 32.0.h),
           Row(

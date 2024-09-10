@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
-import 'package:west_elbalad/core/utils/app_styles.dart';
 import 'package:west_elbalad/features/profile/presentation/views/widgets/image_picker_option.dart';
 
 class ProfileViewBody extends StatelessWidget {
@@ -19,22 +19,22 @@ class ProfileViewBody extends StatelessWidget {
             SizedBox(height: 16.0.h),
             UserDataElement(
               text: 'ابراهيم فتحي ابراهيم ابراهيم',
-              image: 'assets/images/user.png',
+              image: 'AppAssets/images/user.png',
             ),
             SizedBox(height: 8.0.h),
             UserDataElement(
               text: 'ibrahim@ibrahim.ibrahim',
-              image: 'assets/images/mail.png',
+              image: 'AppAssets/images/mail.png',
             ),
             SizedBox(height: 8.0.h),
             UserDataElement(
               text: '0123456789',
-              image: 'assets/images/telephone.png',
+              image: 'AppAssets/images/telephone.png',
             ),
             SizedBox(height: 8.0.h),
             UserDataElement(
               text: 'ابو حماد الدولة',
-              image: 'assets/images/address.png',
+              image: 'AppAssets/images/address.png',
             )
           ],
         ),
