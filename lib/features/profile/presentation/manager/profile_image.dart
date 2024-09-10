@@ -8,8 +8,8 @@ class ProfileImageCubit extends Cubit<File?> {
 
   final picker = ImagePicker();
 
-  Future<void> openImagePicker() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+  Future<void> openImagePicker(ImageSource source) async {
+    final pickedFile = await picker.pickImage(source: source);
     if (pickedFile != null) {
       emit(File(pickedFile.path));
     }
