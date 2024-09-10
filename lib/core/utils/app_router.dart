@@ -5,19 +5,15 @@ import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 
-
-
-
-
 abstract class AppRouter {
- static const kOnBoardingView = '/onBoardingView';
+  static const kOnBoardingView = '/onBoardingView';
   static const kBottomNavBarController = '/bottomNavBarController';
   static const kSigninView = '/signinView';
   static const kSignupView = '/signupView';
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: '/يسي',
+        path: '/',
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -26,14 +22,16 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kBottomNavBarController,
-        builder: (context, state) => const  BottomNavBarController(),
+        builder: (context, state) => const BottomNavBarController(),
       ),
       GoRoute(
-        path: '/',
-        builder: (context, state) => const  ProfileView(),
+        path: '/s',
+        builder: (context, state) => const ProfileView(),
       ),
-
-
+      GoRoute(
+        path: kSigninView,
+        builder: (context, state) => const SigninView(),
+      ),
     ],
   );
 }
