@@ -5,8 +5,8 @@ import '../../../../../core/utils/app_router.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
 import '../../../data/static/onboarding_static_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../auth/presentation/views/signin_view.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/circle_transition_painter.dart';
+
 
 
 
