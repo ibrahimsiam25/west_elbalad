@@ -7,14 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/service/shared_preferences_singleton.dart';
 import '../../../../onboarding/presentation/views/onboarding_view.dart';
 
-
-
-
-
-
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
- 
+
   @override
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
@@ -25,22 +20,24 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     _executeNavigation();
     super.initState();
   }
-    void _executeNavigation() {
+
+  void _executeNavigation() {
     bool isOnBoardingView = SharedPref.getBool(kIsOnBoardingView);
     Future.delayed(
       Duration(milliseconds: 4500),
       () {
         if (isOnBoardingView) {
-         Navigator.pushReplacementNamed(context, BottomNavBarController.routeName);
+          Navigator.pushReplacementNamed(
+              context, BottomNavBarController.routeName);
         } else {
-         Navigator.pushReplacementNamed(context, OnboardingView.routeName);
+          Navigator.pushReplacementNamed(context, OnboardingView.routeName);
         }
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
- 
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
