@@ -1,10 +1,12 @@
+import 'package:go_router/go_router.dart';
+
+import '../../../../../core/utils/app_router.dart';
 import 'signin_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubits/signin_cubit/signin_cubit.dart';
 import '../../../../../core/functions/build_error_bar.dart';
 import '../../../../../core/widgets/custom_progress_hud.dart';
-
 
 class SigninViewBodyBlocConsumer extends StatelessWidget {
   const SigninViewBodyBlocConsumer({
@@ -15,8 +17,9 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SigninCubit, SigninState>(
       listener: (context, state) {
-        if (state is SigninSuccess) {}
-
+        if (state is SigninSuccess) {
+          GoRouter.of(context).go(AppRouter.kBottomNavBarController);
+        }
         if (state is SigninFailure) {
           buildErrorBar(context, state.message);
         }

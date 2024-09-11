@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import '../../../domain/entites/user_entity.dart';
 import 'package:west_elbalad/features/auth/domain/repos/auth_repo.dart';
 
-
 part 'signin_state.dart';
 
 class SigninCubit extends Cubit<SigninState> {
@@ -18,7 +17,9 @@ class SigninCubit extends Cubit<SigninState> {
     );
     result.fold(
       (failure) => emit(SigninFailure(message: failure.message)),
-      (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
+      (userEntity) {
+        emit(SigninSuccess(userEntity: userEntity));
+      },
     );
   }
 
@@ -39,7 +40,6 @@ class SigninCubit extends Cubit<SigninState> {
       (userEntity) => emit(SigninSuccess(userEntity: userEntity)),
     );
   }
-
 
   Future<void> signinWithApple() async {
     emit(SigninLoading());
