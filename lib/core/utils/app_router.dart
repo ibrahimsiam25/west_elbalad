@@ -25,7 +25,7 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: "/s",
+        path: "/",
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(

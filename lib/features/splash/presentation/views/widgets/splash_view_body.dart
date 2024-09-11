@@ -24,13 +24,18 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void _executeNavigation() {
     bool isOnBoardingView = SharedPref.getBool(kIsOnBoardingView);
+    bool isSigninView = SharedPref.getBool(kIsSigninView);
     Future.delayed(
       Duration(milliseconds: 4500),
       () {
         if (isOnBoardingView) {
-          context.go(AppRouter.kSigninView);
+          if (isSigninView) {
+            GoRouter.of(context).go(AppRouter.kBottomNavBarController);
+          } else {
+            GoRouter.of(context).go(AppRouter.kSigninView);
+          }
         } else {
-          context.go(AppRouter.kOnBoardingView);
+          GoRouter.of(context).go(AppRouter.kOnBoardingView);
         }
       },
     );

@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
 
 import '../../../../../core/utils/app_router.dart';
 import 'signin_view_body.dart';
@@ -19,6 +21,7 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is SigninSuccess) {
           GoRouter.of(context).go(AppRouter.kBottomNavBarController);
+          SharedPref.setBool(kIsSigninView, true);
         }
         if (state is SigninFailure) {
           buildErrorBar(context, state.message);
