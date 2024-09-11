@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/core/constants/app_assets.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
@@ -30,13 +31,13 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
         },
         items: [
           bottomNavBarItem(
-            'AppAssets/images/home.png',
+            AppAssets.home,
           ),
           bottomNavBarItem(
-            'AppAssets/images/user.png',
+            AppAssets.user,
           ),
           bottomNavBarItem(
-            'AppAssets/images/setting.png',
+            AppAssets.settings,
           ),
         ],
       ),
