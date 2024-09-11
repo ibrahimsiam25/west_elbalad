@@ -6,6 +6,7 @@ import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/auth/presentation/views/verification_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
 
 abstract class AppRouter {
   static const kOnBoardingView = '/onBoardingView';
@@ -17,7 +18,7 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: "/cs",
+        path: "/sp",
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -26,13 +27,17 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kBottomNavBarController,
-        builder: (context, state) => const  BottomNavBarController(),
+        builder: (context, state) => const BottomNavBarController(),
       ),
       GoRoute(
-        path: "/",
+        path: '/s',
+        builder: (context, state) => const ProfileView(),
+      ),
+      GoRoute(
+        path: '/',
         builder: (context, state) => const SigninView(),
       ),
-     GoRoute(
+      GoRoute(
         path: kSignupView,
         builder: (context, state) => const SignupView(),
       ),

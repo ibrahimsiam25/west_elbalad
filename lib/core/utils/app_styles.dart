@@ -21,10 +21,10 @@ abstract class AppStyles {
     letterSpacing: 0.0,
     color: AppColors.black,
   );
-  
+
   static const TextStyle semiBold16 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 16,
-     color: AppColors.black,
+    color: AppColors.black,
   );
 }

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dont_have_account_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/app_styles.dart';
@@ -12,8 +13,6 @@ import 'package:west_elbalad/core/widgets/custom_text_field.dart';
 import 'package:west_elbalad/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:west_elbalad/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
 import 'package:west_elbalad/features/auth/presentation/views/widgets/social_login_button.dart';
-
-
 
 class SigninViewBody extends StatefulWidget {
   const SigninViewBody({super.key});
@@ -40,13 +39,35 @@ class _SigninViewBodyState extends State<SigninViewBody> {
             autovalidateMode: autovalidateMode,
             child: Column(
               children: [
-                const SizedBox(
-                  height: 16,
+                SizedBox(height: 16.h),
+                Text(
+                  "تسجيل الدخول",
+                  style: AppStyles.title.copyWith(
+                    color: AppColors.darkGrey,
+                  ),
                 ),
-                Text("تسجيل دخول", style: AppStyles.header),
-                   const SizedBox(
-                  height: 24,
+                SizedBox(height: 24.h),
+                Image.asset(
+                  height: 128.0.h,
+                  AppAssets.logo,
                 ),
+                SizedBox(height: 16.0.h),
+                Text(
+                  "مرحبًا بك مرة أخرى",
+                  style: AppStyles.title,
+                ),
+                SizedBox(height: 8.0.h),
+                Align(
+                  child: Text(
+                    "قم بتسجيل الدخول الدخول الى حسابك",
+                    textAlign: TextAlign.center,
+                    style: AppStyles.semiBold16.copyWith(
+                      color: AppColors.darkGrey,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0.h),
+                //Email
                 CustomTextFormField(
                   onSaved: (value) {
                     email = value!;
@@ -54,36 +75,30 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   hintText: 'البريد الالكتروني',
                   textInputType: TextInputType.emailAddress,
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                SizedBox(height: 4.0.h),
+                //Password
                 PasswordField(
                   onSaved: (value) {
                     password = value!;
                   },
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'نسيت كلمة المرور؟',
-                      style: AppStyles.semiBold16.copyWith(
-                        color: AppColors.red,
-                      ),
+                SizedBox(height: 8.0.h),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'نسيت كلمة المرور؟',
+                    style: AppStyles.semiBold16.copyWith(
+                      color: AppColors.red,
+                      fontSize: 12.sp,
                     ),
-                  ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 33,
-                ),
+                SizedBox(height: 20.0.h),
+                //Signin
                 CustomButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-      
                       context.read<SigninCubit>().signin(email, password);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
@@ -92,43 +107,34 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   },
                   text: 'تسجيل دخول',
                 ),
-                const SizedBox(
-                  height: 33,
-                ),
+                SizedBox(height: 12.0.h),
                 const DontHaveAnAccountWidget(),
-                const SizedBox(
-                  height: 33,
-                ),
+                SizedBox(height: 20.0.h),
                 const OrDivider(),
-                const SizedBox(
-                  height: 16,
-                ),
+                SizedBox(height: 20.0.w),
+                //Google
                 SocialLoginButton(
                   onPressed: () {
                     context.read<SigninCubit>().signinWithGoogle();
                   },
                   image: AppAssets.googleIcon,
-                  title: 'تسجيل بواسطة جوجل',
+                  title: 'التسجيل بواسطة جوجل',
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Platform.isIOS
-                    ? Column(
-                        children: [
-                          SocialLoginButton(
-                            onPressed: () {
-                              context.read<SigninCubit>().signinWithApple();
-                            },
-                            image: AppAssets.applIcon,
-                            title: 'تسجيل بواسطة أبل',
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                        ],
-                      )
-                    : const SizedBox(),
+                //Apple
+                if (Platform.isIOS)
+                  Column(
+                    children: [
+                      SizedBox(height: 20.0.w),
+                      SocialLoginButton(
+                        onPressed: () {
+                          context.read<SigninCubit>().signinWithApple();
+                        },
+                        image: AppAssets.applIcon,
+                        title: 'التسجيل بواسطة أبل',
+                      ),
+                      SizedBox(height: 20.0.w),
+                    ],
+                  ),
               ],
             ),
           ),

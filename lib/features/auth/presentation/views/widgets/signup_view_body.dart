@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constants/app_consts.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
 import '../../../../../core/widgets/password_field.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/functions/build_error_bar.dart';
+import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/widgets/custom_button.dart';
 import 'package:west_elbalad/core/widgets/custom_text_field.dart';
 import 'package:west_elbalad/features/auth/presentation/cubits/signup_cubits/signup_cubit.dart';
 import 'package:west_elbalad/features/auth/presentation/views/widgets/terms_and_conditions.dart';
 import 'package:west_elbalad/features/auth/presentation/views/widgets/have_an_account_widget.dart';
-
-
-
 
 class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});
@@ -30,27 +30,49 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   late bool isTermsAccepted = false;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-        child: Form(
-          key: formKey,
-          autovalidateMode: autovalidateMode,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 24,
-              ),
-              CustomTextFormField(
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            autovalidateMode: autovalidateMode,
+            child: Column(
+              children: [
+                SizedBox(height: 16.h),
+                Text(
+                  "تسجيل حساب جديد",
+                  style: AppStyles.title.copyWith(
+                    color: AppColors.darkGrey,
+                  ),
+                ),
+                SizedBox(height: 24.h),
+                Text(
+                  "مرحبًا بك",
+                  style: AppStyles.title,
+                ),
+                SizedBox(height: 8.0.h),
+                Align(
+                  child: Text(
+                    "من فضلك قم بتسجيل بياناتك",
+                    textAlign: TextAlign.center,
+                    style: AppStyles.semiBold16.copyWith(
+                      color: AppColors.darkGrey,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.0.h),
+                //Name
+                CustomTextFormField(
                   onSaved: (value) {
                     userName = value!;
                   },
                   hintText: 'الاسم كامل',
-                  textInputType: TextInputType.name),
-              const SizedBox(
-                height: 16,
-              ),
-              CustomTextFormField(
+                  textInputType: TextInputType.name,
+                ),
+                SizedBox(height: 8.0.h),
+                //Email
+                CustomTextFormField(
                   onSaved: (value) {
                     email = value!;
                   },
@@ -89,22 +111,17 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                           );
                       
                     } else {
-                      buildErrorBar(
-                          context, 'يجب عليك الموافقة على الشروط والإحكام');
+                      setState(() {
+                        autovalidateMode = AutovalidateMode.always;
+                      });
                     }
-                  } else {
-                    setState(() {
-                      autovalidateMode = AutovalidateMode.always;
-                    });
-                  }
-                },
-                text: 'إنشاء حساب جديد',
-              ),
-              const SizedBox(
-                height: 26,
-              ),
-              const HaveAnAccountWidget(),
-            ],
+                  }},
+                  text: 'إنشاء حساب جديد',
+                ),
+                SizedBox(height: 12.0.h),
+                const HaveAnAccountWidget(),
+              ],
+            ),
           ),
         ),
       ),

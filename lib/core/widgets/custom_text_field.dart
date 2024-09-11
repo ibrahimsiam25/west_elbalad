@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/core/constants/app_consts.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField(
-      {super.key,
-      required this.hintText,
-      required this.textInputType,
-      this.suffixIcon,
-      this.onSaved,
-      this.obscureText = false});
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
   final bool obscureText;
+  const CustomTextFormField({
+    super.key,
+    required this.hintText,
+    required this.textInputType,
+    this.suffixIcon,
+    this.onSaved,
+    this.obscureText = false,
+  });
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -27,9 +30,6 @@ class CustomTextFormField extends StatelessWidget {
       keyboardType: textInputType,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
-    //    hintStyle: AppStyles.bold13.copyWith(
-       //   color: const Color(0xFF949D9E),
-       // ),
         hintText: hintText,
         filled: true,
         fillColor: const Color(0xFFF9FAFA),
@@ -42,7 +42,7 @@ class CustomTextFormField extends StatelessWidget {
 
   OutlineInputBorder buildBorder() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(4),
+      borderRadius: BorderRadius.circular(kRadius16),
       borderSide: const BorderSide(
         width: 1,
         color: Color(0xFFE6E9E9),
