@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dont_have_account_widget.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/constants/app_assets.dart';
 import '../../../../../core/constants/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/core/widgets/custom_button.dart';
 import 'package:west_elbalad/core/widgets/password_field.dart';
@@ -85,11 +87,16 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                 SizedBox(height: 8.0.h),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    'نسيت كلمة المرور؟',
-                    style: AppStyles.semiBold16.copyWith(
-                      color: AppColors.red,
-                      fontSize: 12.sp,
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.kforgetPasswordView);
+                    },
+                    child: Text(
+                      'نسيت كلمة المرور؟',
+                      style: AppStyles.semiBold16.copyWith(
+                        color: AppColors.red,
+                        fontSize: 12.sp,
+                      ),
                     ),
                   ),
                 ),
