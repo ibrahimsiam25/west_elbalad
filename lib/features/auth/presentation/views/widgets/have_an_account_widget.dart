@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/constants/app_colors.dart';
 
-
-
-
 class HaveAnAccountWidget extends StatelessWidget {
   const HaveAnAccountWidget({
     super.key,
@@ -17,15 +14,9 @@ class HaveAnAccountWidget extends StatelessWidget {
       TextSpan(
         children: [
           TextSpan(
-            text: 'تمتلك حساب بالفعل ؟',
+            text: 'تمتلك حساب بالفعل ؟  ',
             style: AppStyles.semiBold16.copyWith(
-              color: const Color(0xFF949D9E),
-            ),
-          ),
-          TextSpan(
-            text: ' ',
-            style: AppStyles.semiBold16.copyWith(
-              color: const Color(0xFF616A6B),
+              color: AppColors.black,
             ),
           ),
           TextSpan(
@@ -34,8 +25,9 @@ class HaveAnAccountWidget extends StatelessWidget {
                 Navigator.pop(context);
               },
             text: 'تسجيل الدخول',
-            style:
-                AppStyles.semiBold16.copyWith(color: AppColors.red),
+            style: AppStyles.semiBold16.copyWith(
+              color: AppColors.red,
+            ),
           ),
         ],
       ),

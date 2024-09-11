@@ -56,7 +56,6 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   "مرحبًا بك مرة أخرى",
                   style: AppStyles.title,
                 ),
-
                 SizedBox(height: 8.0.h),
                 Align(
                   child: Text(
@@ -95,6 +94,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   ),
                 ),
                 SizedBox(height: 20.0.h),
+                //Signin
                 CustomButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
@@ -107,7 +107,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   },
                   text: 'تسجيل دخول',
                 ),
-                SizedBox(height: 20.0.h),
+                SizedBox(height: 12.0.h),
                 const DontHaveAnAccountWidget(),
                 SizedBox(height: 20.0.h),
                 const OrDivider(),
