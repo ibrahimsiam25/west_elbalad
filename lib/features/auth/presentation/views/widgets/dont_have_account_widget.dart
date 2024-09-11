@@ -1,12 +1,9 @@
-import '../signup_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/constants/app_colors.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
-
-
 
 class DontHaveAnAccountWidget extends StatelessWidget {
   const DontHaveAnAccountWidget({
@@ -19,26 +16,20 @@ class DontHaveAnAccountWidget extends StatelessWidget {
       TextSpan(
         children: [
           TextSpan(
-            text: 'لا تمتلك حساب؟',
+            text: 'لا تمتلك حساب؟  ',
             style: AppStyles.semiBold16.copyWith(
-              color: const Color(0xFF949D9E),
-            ),
-          ),
-          TextSpan(
-            text: ' ',
-            style: AppStyles.semiBold16.copyWith(
-              color: const Color(0xFF616A6B),
+              color: AppColors.black,
             ),
           ),
           TextSpan(
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                
                 GoRouter.of(context).push(AppRouter.kSignupView);
               },
             text: 'قم بإنشاء حساب',
-            style:
-                AppStyles.semiBold16.copyWith(color: AppColors.red),
+            style: AppStyles.semiBold16.copyWith(
+              color: AppColors.red,
+            ),
           ),
         ],
       ),
