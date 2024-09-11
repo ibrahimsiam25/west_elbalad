@@ -7,9 +7,6 @@ import '../../cubits/signup_cubits/signup_cubit.dart';
 import '../../../../../core/functions/build_error_bar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-
-
-
 class SignupViewBodyBlocConsumer extends StatelessWidget {
   const SignupViewBodyBlocConsumer({
     super.key,
@@ -20,12 +17,10 @@ class SignupViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<SignupCubit, SignupState>(
       listener: (context, state) {
         if (state is SignupSuccess) {
-  
-         GoRouter.of(context).go(AppRouter.kVerificationView);
+          GoRouter.of(context).go(AppRouter.kVerificationView);
         }
         if (state is SignupFailure) {
-         
-          if (state.message ==  'الايميل مسجل من قبل ولاكن لم يتحقق منه') {
+          if (state.message == 'الايميل مسجل من قبل ولاكن لم يتحقق منه') {
             GoRouter.of(context).go(AppRouter.kVerificationView);
           }
           buildErrorBar(context, state.message);
