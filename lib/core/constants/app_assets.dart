@@ -13,4 +13,5 @@ class AppAssets {
   static const mail = "assets/images/mail.png";
   static const phone = "assets/images/telephone.png";
   static const avatar = "assets/images/avatar.gif";
+  static const successfull = "assets/images/successfull.gif";
 }

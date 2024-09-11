@@ -9,7 +9,6 @@ import '../../presentation/views/signin_view.dart';
 import '../../../../core/service/data_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../core/utils/backend_endpoints.dart';
-import '../../../home/presentation/views/home_view.dart';
 import '../../presentation/views/verification_view.dart';
 import '../../../../core/service/firebase_auth_Service.dart';
 import 'package:west_elbalad/features/auth/data/models/user_model.dart';
