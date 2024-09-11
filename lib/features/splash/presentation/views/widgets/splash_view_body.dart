@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 import '../../../../../core/service/shared_preferences_singleton.dart';
 
-
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
 
@@ -29,9 +28,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       Duration(milliseconds: 4500),
       () {
         if (isOnBoardingView) {
-          context.go(AppRouter.kBottomNavBarController);
+          context.go(AppRouter.kSigninView);
         } else {
-         context.go(AppRouter.kOnBoardingView);
+          context.go(AppRouter.kOnBoardingView);
         }
       },
     );

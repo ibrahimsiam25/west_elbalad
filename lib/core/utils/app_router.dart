@@ -21,7 +21,7 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: "/sp",
+        path: "/",
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -33,7 +33,7 @@ abstract class AppRouter {
         builder: (context, state) => const BottomNavBarController(),
       ),
       GoRoute(
-        path: '/',
+        path: kProfileView,
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
@@ -41,7 +41,7 @@ abstract class AppRouter {
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: "/",
+        path: kSigninView,
         builder: (context, state) => const SigninView(),
       ),
       GoRoute(
