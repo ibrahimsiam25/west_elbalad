@@ -20,6 +20,9 @@ class SharedPref {
   static Future<void> setInt(String key, int value) async {
     await _instance.setInt(key, value);
   }
+  static Future<void> setStringList(String key, List<String> value) async {
+    await _instance.setStringList(key, value);
+  }
 
 
   // Getters
@@ -34,5 +37,8 @@ class SharedPref {
   static int getInt(String key, {int defaultValue = -1}) {
     return _instance.getInt(key) ?? defaultValue;
   }
-
+  
+static List<String> getStringList(String key, {List<String> defaultValue = const []}) {
+    return _instance.getStringList(key) ?? defaultValue;
+  }
 }

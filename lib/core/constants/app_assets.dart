@@ -4,6 +4,7 @@ class AppAssets {
   static const onboarding2 = 'assets/images/onboarding2.json';
   static const onboarding3 = 'assets/images/onboarding3.json';
   static const onboarding4 = 'assets/images/onboarding4.json';
+  static const verificationLottie = 'assets/images/sign_in.json';
   static const googleIcon = "assets/images/google_icon.svg";
   static const checkIcon = "assets/images/Check.svg";
   static const applIcon = "assets/images/appl_icon.svg";
