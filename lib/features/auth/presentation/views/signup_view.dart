@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/signup_view_body_bloc_consumer.dart';
 import '../../../../core/service/get_it_service.dart';
-import 'package:west_elbalad/core/widgets/custom_app_bar.dart';
 import 'package:west_elbalad/features/auth/domain/repos/auth_repo.dart';
 import 'package:west_elbalad/features/auth/presentation/cubits/signup_cubits/signup_cubit.dart';
 
