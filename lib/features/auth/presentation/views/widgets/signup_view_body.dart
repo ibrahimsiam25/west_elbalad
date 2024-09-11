@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constants/app_consts.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
-import 'package:west_elbalad/core/utils/app_router.dart';
 import '../../../../../core/widgets/password_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/functions/build_error_bar.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/widgets/custom_button.dart';
 import 'package:west_elbalad/core/widgets/custom_text_field.dart';
@@ -73,49 +70,49 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 SizedBox(height: 8.0.h),
                 //Email
                 CustomTextFormField(
+                    onSaved: (value) {
+                      email = value!;
+                    },
+                    hintText: 'البريد الإلكتروني',
+                    textInputType: TextInputType.emailAddress),
+                const SizedBox(
+                  height: 16,
+                ),
+                PasswordField(
                   onSaved: (value) {
-                    email = value!;
+                    password = value!;
                   },
-                  hintText: 'البريد الإلكتروني',
-                  textInputType: TextInputType.emailAddress),
-              const SizedBox(
-                height: 16,
-              ),
-              PasswordField(
-                onSaved: (value) {
-                  password = value!;
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TermsAndConditionsWidget(
-                onChanged: (value) {
-                  isTermsAccepted = value;
-                },
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CustomButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    if (isTermsAccepted) {
-                      context
-                          .read<SignupCubit>()
-                          .createUserWithEmailAndPassword(
-                            email,
-                            password,
-                            userName,
-                          );
-                      
-                    } else {
-                      setState(() {
-                        autovalidateMode = AutovalidateMode.always;
-                      });
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                TermsAndConditionsWidget(
+                  onChanged: (value) {
+                    isTermsAccepted = value;
+                  },
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      if (isTermsAccepted) {
+                        context
+                            .read<SignupCubit>()
+                            .createUserWithEmailAndPassword(
+                              email,
+                              password,
+                              userName,
+                            );
+                      } else {
+                        setState(() {
+                          autovalidateMode = AutovalidateMode.always;
+                        });
+                      }
                     }
-                  }},
+                  },
                   text: 'إنشاء حساب جديد',
                 ),
                 SizedBox(height: 12.0.h),
