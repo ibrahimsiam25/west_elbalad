@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
 
 AppBar buildAppBar(context, {required String title}) {
@@ -6,7 +7,7 @@ AppBar buildAppBar(context, {required String title}) {
     backgroundColor: Colors.white,
     leading: GestureDetector(
       onTap: () {
-        Navigator.pop(context);
+       GoRouter.of(context).pop();
       },
       child: const Icon(
         Icons.arrow_back_ios_new,

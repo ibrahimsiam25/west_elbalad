@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constants/app_consts.dart';
+import 'package:west_elbalad/core/utils/app_router.dart';
 import '../../../../../core/widgets/password_field.dart';
 import '../../../../../core/functions/build_error_bar.dart';
 import 'package:west_elbalad/core/widgets/custom_button.dart';
@@ -85,6 +87,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                             password,
                             userName,
                           );
+                      
                     } else {
                       buildErrorBar(
                           context, 'يجب عليك الموافقة على الشروط والإحكام');

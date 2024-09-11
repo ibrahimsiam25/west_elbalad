@@ -6,6 +6,7 @@ import '../errors/excptions.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
@@ -13,49 +14,69 @@ class FirebaseAuthService {
   Future deleteUser() async {
     await FirebaseAuth.instance.currentUser!.delete();
   }
-Future<void> sendEmailVerification(User user) async {
-  try {
-    await user.sendEmailVerification();
-    log('Verification email sent to ${user.email}');
+
+  Future<void> sendEmailVerification(User user) async {
+
+    try {
+      await user.sendEmailVerification();
+      log('Verification email sent to ${user.email}');
+    }on FirebaseAuthException catch (e) {
+    if (e.code == 'too-many-requests') {
+      log("Too many requests: ${e.message}");
+      throw CustomException(message: 'تم ارسال بريد التحقق بالفعل من قبل. يرجى المحاولة مرة أخرى في وقت لاحق.');
+    } else if (e.code == 'network-request-failed') {
+      log("Network error: ${e.message}");
+      throw CustomException(message: 'تعذر إرسال البريد بسبب مشكلة في الاتصال بالشبكة. يرجى التحقق من اتصالك وحاول مرة أخرى.');
+    } else {
+      log("FirebaseAuthException: ${e.message}");
+      throw CustomException(message: 'فشل في إرسال بريد التحقق.');
+    }
   } catch (e) {
-    log("Error in sending email verification: ${e.toString()}");
-    throw CustomException(message: 'فشل في إرسال بريد التحقق.');
+    log("Unexpected error: ${e.toString()}");
+    throw CustomException(message: 'حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا.');
   }
-}
+  }
+
   Future<User> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
+       
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-        User user = credential.user!;
-        await sendEmailVerification(user);
+      User user = credential.user!;
+      await sendEmailVerification(user);
       return user;
     } on FirebaseAuthException catch (e) {
       log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
-      switch (e.code) {
-        case 'weak-password':
-          throw CustomException(message: 'الرقم السري ضعيف جداً.');
-        case 'email-already-in-use':
-          throw CustomException(
-              message: 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.');
-        case 'network-request-failed':
-          throw CustomException(message: 'تأكد من اتصالك بالإنترنت.');
-        case 'invalid-email':
-          throw CustomException(message: 'البريد الإلكتروني غير صالح.');
-        case 'operation-not-allowed':
-          throw CustomException(message: 'عملية التسجيل غير مسموح بها حالياً.');
-        case 'user-disabled':
-          throw CustomException(
-              message: 'تم تعطيل حسابك. الرجاء المحاولة مرة أخرى.');
-        case 'too-many-requests':
-          throw CustomException(
-              message: 'تم حظر الطلبات مؤقتاً. حاول مرة أخرى لاحقاً.');
-        default:
-          throw CustomException(
-              message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة أخرى.');
+      final user = FirebaseAuth.instance.currentUser;
+
+      bool isUserExist = await doesDocumentExist(user!.uid);
+      if (e.code == 'email-already-in-use' && !isUserExist) {
+        await sendEmailVerification(user);
+        throw CustomException(message: 'الايميل مسجل من قبل ولاكن لم يتحقق منه');
+      } else if (e.code == 'weak-password') {
+        throw CustomException(message: 'الرقم السري ضعيف جداً.');
+      } else if (e.code == 'email-already-in-use') {
+        throw CustomException(
+            message: 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException(message: 'تأكد من اتصالك بالإنترنت.');
+      } else if (e.code == 'invalid-email') {
+        throw CustomException(message: 'البريد الإلكتروني غير صالح.');
+      } else if (e.code == 'operation-not-allowed') {
+        throw CustomException(message: 'عملية التسجيل غير مسموح بها حالياً.');
+      } else if (e.code == 'user-disabled') {
+        throw CustomException(
+            message: 'تم تعطيل حسابك. الرجاء المحاولة مرة أخرى.');
+      } else if (e.code == 'too-many-requests') {
+        throw CustomException(
+            message: 'تم حظر الطلبات مؤقتاً. حاول مرة أخرى لاحقاً.');
+      } else {
+        throw CustomException(
+            message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة أخرى.');
       }
     } catch (e) {
       log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()}");
@@ -188,5 +209,26 @@ Future<void> sendEmailVerification(User user) async {
 
     return (await FirebaseAuth.instance.signInWithCredential(oauthCredential))
         .user!;
+  }
+
+  Future<bool> doesDocumentExist(String documentName) async {
+    try {
+      // Reference to the Firestore collection
+      CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('users');
+
+      // Get the document reference
+      DocumentReference documentRef = usersCollection.doc(documentName);
+
+      // Get the document snapshot
+      DocumentSnapshot documentSnapshot = await documentRef.get();
+
+      // Check if the document exists
+      return documentSnapshot.exists;
+    } catch (e) {
+      // Handle any errors that occur
+      print('Error checking document existence: $e');
+      return false;
+    }
   }
 }
