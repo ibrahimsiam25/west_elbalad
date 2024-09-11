@@ -26,11 +26,11 @@ abstract class AppRouter {
         builder: (context, state) => const BottomNavBarController(),
       ),
       GoRoute(
-        path: '/s',
+        path: '/',
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: '/',
+        path: '/up',
         builder: (context, state) => const SigninView(),
       ),
       GoRoute(

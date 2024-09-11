@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:west_elbalad/core/constants/app_assets.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 
 class ProfileImage extends StatelessWidget {
@@ -21,7 +22,7 @@ class ProfileImage extends StatelessWidget {
               fit: BoxFit.fill,
             )
           : Image.asset(
-              'AppAssets/images/avatar.gif',
+              AppAssets.avatar,
               fit: BoxFit.fill,
             ),
     );
