@@ -18,7 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setupGetIt();
-    SystemChrome.setPreferredOrientations([
+  SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
   Bloc.observer = CustomBlocObserver();
@@ -43,12 +43,7 @@ class MyApp extends StatelessWidget {
             statusBarColor: Colors.transparent,
           ),
         );
-        SystemChrome.setSystemUIOverlayStyle(
-          const SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.light,
-            statusBarColor: Colors.transparent,
-          ),
-        );
+
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

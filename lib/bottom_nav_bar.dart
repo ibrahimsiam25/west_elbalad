@@ -64,7 +64,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
       activeIcon: Container(
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          color: AppColors.red,
+          color: AppColors.lightGreen,
           borderRadius: BorderRadius.circular(
             kRadius32,
           ),
