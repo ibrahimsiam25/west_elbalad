@@ -63,3 +63,13 @@ List<PhoneModel> phones = [
     imageUrl: 'https://via.placeholder.com/200x200',
   ),
 ];
+
+List<String> phonesLogos = [
+  'assets/phones/samsung_logo.png',
+  'assets/phones/oppo_logo.png',
+  'assets/phones/realme_logo.png',
+  'assets/phones/nokia_logo.png',
+  'assets/phones/itel_logo.png',
+  'assets/phones/mi_logo.png',
+  'assets/phones/uni_logo.png',
+];
