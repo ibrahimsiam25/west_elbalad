@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // Import the Bloc package
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 
-// Create a Cubit for managing the selected index
 class ImagePickerCubit extends Cubit<int> {
-  ImagePickerCubit() : super(0); // Initialize with the default index (0)
+  ImagePickerCubit() : super(0);
 
   void selectIndex(int index) {
-    emit(index); // Update the selected index
+    emit(index);
   }
 }
 
@@ -26,14 +25,11 @@ class FilterElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ImagePickerCubit, int>(
-      // Use BlocBuilder to listen to changes in the selected index
       builder: (context, selectedIndex) {
         return InkWell(
           borderRadius: BorderRadius.circular(kRadius24),
           onTap: () {
-            context
-                .read<ImagePickerCubit>()
-                .selectIndex(index); // Update the selected index
+            context.read<ImagePickerCubit>().selectIndex(index);
           },
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 8.0.w),
@@ -49,8 +45,8 @@ class FilterElement extends StatelessWidget {
             ),
             child: Image.asset(
               image,
-              height: 40.0.h,
-              width: 80.0.w,
+              height: 28.0.h,
+              width: 56.0.w,
               fit: BoxFit.contain,
             ),
           ),
