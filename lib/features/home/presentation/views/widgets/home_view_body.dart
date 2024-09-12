@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:west_elbalad/core/utils/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
 import 'package:west_elbalad/features/home/data/static/phones_static_data.dart';
 import 'package:west_elbalad/features/home/presentation/views/widgets/phone_item.dart';
 
@@ -15,9 +18,12 @@ class HomeViewBody extends StatelessWidget {
         child: Column(
           children: [
             SafeArea(
-              child: SizedBox(
-                height: 12.0.h,
-              ),
+           
+           child: ElevatedButton(onPressed: (){
+
+            SharedPref.setBool(kIsSigninView, false);
+            GoRouter.of(context).go(AppRouter.kSigninView);
+           }, child: Text("تسجيل خروج"),),
             ),
             // Banner
             // Container(
@@ -46,14 +52,14 @@ class HomeViewBody extends StatelessWidget {
             //   style: AppStyles.header,
             // ),
             // SizedBox(height: 12.0.h),
-            Wrap(
-              spacing: 16.0,
-              children: phones
-                  .map((phone) => PhoneItem(
-                        phone: phone,
-                      ))
-                  .toList(),
-            ),
+            // Wrap(
+            //   spacing: 16.0,
+            //   children: phones
+            //       .map((phone) => PhoneItem(
+            //             phone: phone,
+            //           ))
+            //       .toList(),
+            // ),
           ],
         ),
       ),

@@ -1,12 +1,12 @@
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:west_elbalad/core/constants/app_consts.dart';
-import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
 import '../../../../../core/utils/app_router.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
 import '../../../data/static/onboarding_static_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
 import 'package:west_elbalad/features/onboarding/presentation/views/widgets/circle_transition_painter.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -128,16 +128,16 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
           ),
         ),
         Positioned(
-          left: MediaQuery.of(context).size.width * 0.3,
-          bottom: MediaQuery.of(context).size.height * 0.18,
+          left: MediaQuery.of(context).size.width * 0.32,
+          bottom: MediaQuery.of(context).size.height * 0.15,
           child: GestureDetector(
             onTap: () {
               controllWithAnimation(context);
             },
             child: Container(
               color: Colors.transparent,
-              width: MediaQuery.of(context).size.width * 0.25,
-              height: MediaQuery.of(context).size.height * 0.13,
+              width: MediaQuery.of(context).size.width * 0.4,
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
           ),
         ),
