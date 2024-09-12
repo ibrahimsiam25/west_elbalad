@@ -1,3 +1,5 @@
+import 'package:west_elbalad/features/auth/presentation/views/widgets/sign_up_successfully.dart';
+
 import '../../bottom_nav_bar.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/data/repos/auth_repo_impl.dart';
@@ -18,10 +20,12 @@ abstract class AppRouter {
   static const kWrapper = '/wrapper';
   static const kProfileView = '/profileView';
   static const kforgetPasswordView = '/forgetPasswordView';
+  static const kSignupSuccessView = '/signupSuccessView';
+
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: "/sp",
+        path: "/",
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -41,7 +45,7 @@ abstract class AppRouter {
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: "/",
+        path: kSigninView,
         builder: (context, state) => const SigninView(),
       ),
       GoRoute(
@@ -59,6 +63,10 @@ abstract class AppRouter {
       GoRoute(
         path: kforgetPasswordView,
         builder: (context, state) => const ForgetPasswordView(),
+      ),
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const SignUpSuccessfully(),
       ),
     ],
   );

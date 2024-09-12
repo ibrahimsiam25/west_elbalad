@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:west_elbalad/core/constants/app_colors.dart';
 import '../../../../../core/errors/excptions.dart';
 import '../../../../../core/utils/app_styles.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
@@ -67,20 +69,25 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
         );
       }
     } on FirebaseAuthException catch (e) {
-    if (e.code == 'too-many-requests') {
-      log("Too many requests: ${e.message}");
-      throw CustomException(message: 'تم ارسال بريد التحقق بالفعل من قبل. يرجى المحاولة مرة أخرى في وقت لاحق.');
-    } else if (e.code == 'network-request-failed') {
-      log("Network error: ${e.message}");
-      throw CustomException(message: 'تعذر إرسال البريد بسبب مشكلة في الاتصال بالشبكة. يرجى التحقق من اتصالك وحاول مرة أخرى.');
-    } else {
-      log("FirebaseAuthException: ${e.message}");
-      throw CustomException(message: 'فشل في إرسال بريد التحقق.');
+      if (e.code == 'too-many-requests') {
+        log("Too many requests: ${e.message}");
+        throw CustomException(
+            message:
+                'تم ارسال بريد التحقق بالفعل من قبل. يرجى المحاولة مرة أخرى في وقت لاحق.');
+      } else if (e.code == 'network-request-failed') {
+        log("Network error: ${e.message}");
+        throw CustomException(
+            message:
+                'تعذر إرسال البريد بسبب مشكلة في الاتصال بالشبكة. يرجى التحقق من اتصالك وحاول مرة أخرى.');
+      } else {
+        log("FirebaseAuthException: ${e.message}");
+        throw CustomException(message: 'فشل في إرسال بريد التحقق.');
+      }
+    } catch (e) {
+      log("Unexpected error: ${e.toString()}");
+      throw CustomException(
+          message: 'حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا.');
     }
-  } catch (e) {
-    log("Unexpected error: ${e.toString()}");
-    throw CustomException(message: 'حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا.');
-  }
 
     // Reset the timer and button after resending email
     setState(() {
@@ -93,33 +100,60 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-            child: Column(children: [
-              const SizedBox(height: 24),
-              Text('التحقق من البريد الالكتروني', style: AppStyles.header),
-              Spacer(
-                flex: 1,
-              ),
-              LottieBuilder.asset(AppAssets.verificationLottie),
-              Text(
-                'يرجى الانتظار ${60 - _timerSeconds}  ثانية قبل إعادة إرسال بريد التحقق مرة اخري.',
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _canResendEmail ? _resendEmailVerification : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: _canResendEmail
-                      ? Colors.blue
-                      : Colors.red, // Red when disabled, Blue when enabled
-                  textStyle: const TextStyle(fontSize: 16),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: 16.0.h),
+            Text(
+              'التحقق من البريد الالكتروني',
+              style: AppStyles.title,
+            ),
+            Spacer(),
+            LottieBuilder.asset(
+              AppAssets.verificationLottie,
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(kRadius16),
+              onTap: _canResendEmail ? _resendEmailVerification : null,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 8.0.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(kRadius16),
+                  color: _canResendEmail ? Colors.green : Colors.red,
                 ),
-                child: const Text("اعادة ارسال البريد الالكتروني للتحقق"),
+                child: Align(
+                  child: Text(
+                    "اعادة ارسال البريد الالكتروني للتحقق",
+                    style: AppStyles.semiBold16.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(height: 50),
-            ])));
+            ),
+            SizedBox(height: 8.0.h),
+            if (_timerSeconds < 60)
+              Text.rich(
+                textAlign: TextAlign.center,
+                TextSpan(
+                  text: 'اعادة ارسال البريد الالكتروني بعد ',
+                  style: AppStyles.subtitle,
+                  children: [
+                    TextSpan(
+                      text: '${60 - _timerSeconds} ثانية ',
+                      style: AppStyles.semiBold16.copyWith(
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            Spacer(flex: 2),
+          ],
+        ),
+      ),
+    );
   }
 }
-
-

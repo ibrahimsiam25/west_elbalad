@@ -5,10 +5,6 @@ import '../../../../../core/widgets/custom_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 
-
-
-
-
 class ForgetPasswordViewBody extends StatefulWidget {
   const ForgetPasswordViewBody({super.key});
 
@@ -17,35 +13,38 @@ class ForgetPasswordViewBody extends StatefulWidget {
 }
 
 class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
-AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email;
-Future<void> resetPassword(BuildContext context) async {
-  final String successMessage = 'تم إرسال بريد إعادة تعيين كلمة المرور إلى $email';
-  final String userNotFoundMessage = 'البريد الإلكتروني غير مسجل';
-  final String genericErrorMessage = 'حدث خطأ ما. حاول مرة أخرى لاحقًا';
-  final String unexpectedErrorMessage = 'حدث خطأ غير متوقع';
+  Future<void> resetPassword(BuildContext context) async {
+    final String successMessage =
+        'تم إرسال بريد إعادة تعيين كلمة المرور إلى $email';
+    final String userNotFoundMessage = 'البريد الإلكتروني غير مسجل';
+    final String genericErrorMessage = 'حدث خطأ ما. حاول مرة أخرى لاحقًا';
+    final String unexpectedErrorMessage = 'حدث خطأ غير متوقع';
 
-  void showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-  }
-
-  try {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-    showSnackBar(successMessage);
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found') {
-      showSnackBar(userNotFoundMessage);
-    } else {
-      showSnackBar(genericErrorMessage);
+    void showSnackBar(String message) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
     }
-  } catch (_) {
-    showSnackBar(unexpectedErrorMessage);
-  } finally {
-    formKey.currentState?.reset();
+
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      showSnackBar(successMessage);
+      Navigator.of(context).pop();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        showSnackBar(userNotFoundMessage);
+      } else {
+        showSnackBar(genericErrorMessage);
+      }
+    } catch (_) {
+      showSnackBar(unexpectedErrorMessage);
+    } finally {
+      formKey.currentState?.reset();
+    }
   }
-}
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -60,9 +59,7 @@ Future<void> resetPassword(BuildContext context) async {
             autovalidateMode: autovalidateMode,
             child: Column(
               children: [
-
                 SizedBox(height: 24.h),
-  
                 CustomTextFormField(
                   onSaved: (value) {
                     email = value!;
@@ -71,14 +68,12 @@ Future<void> resetPassword(BuildContext context) async {
                   textInputType: TextInputType.emailAddress,
                 ),
                 SizedBox(height: 24.0.h),
-
-
                 //Signin
                 CustomButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                     resetPassword(context);
+                      resetPassword(context);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
@@ -87,7 +82,6 @@ Future<void> resetPassword(BuildContext context) async {
                   text: 'اعادة تعيين كلمة المرور',
                 ),
                 SizedBox(height: 16.0.h),
-
               ],
             ),
           ),

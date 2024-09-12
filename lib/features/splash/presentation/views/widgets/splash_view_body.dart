@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 import '../../../../../core/service/shared_preferences_singleton.dart';
 
-
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
 
@@ -25,13 +24,18 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void _executeNavigation() {
     bool isOnBoardingView = SharedPref.getBool(kIsOnBoardingView);
+    bool isSigninView = SharedPref.getBool(kIsSigninView);
     Future.delayed(
       Duration(milliseconds: 4500),
       () {
         if (isOnBoardingView) {
-          context.go(AppRouter.kBottomNavBarController);
+          if (isSigninView) {
+            GoRouter.of(context).go(AppRouter.kBottomNavBarController);
+          } else {
+            GoRouter.of(context).go(AppRouter.kSigninView);
+          }
         } else {
-         context.go(AppRouter.kOnBoardingView);
+          GoRouter.of(context).go(AppRouter.kOnBoardingView);
         }
       },
     );

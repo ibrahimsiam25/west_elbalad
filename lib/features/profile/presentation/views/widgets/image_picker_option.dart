@@ -24,6 +24,7 @@ class _ImagePickerOptionsState extends State<ImagePickerOptions> {
       setState(() {
         image = File(pickedImage.path);
       });
+      Navigator.pop(context);
     }
   }
 
@@ -43,8 +44,12 @@ class _ImagePickerOptionsState extends State<ImagePickerOptions> {
               child: Wrap(
                 children: [
                   ListTile(
-                    leading: const Icon(
-                      Icons.photo_library,
+                    leading: Padding(
+                      padding: EdgeInsets.only(top: 4.0.h),
+                      child: const Icon(
+                        Icons.photo_library,
+                        size: 28,
+                      ),
                     ),
                     title: Text(
                       'فتح معرض الصور',
@@ -57,8 +62,12 @@ class _ImagePickerOptionsState extends State<ImagePickerOptions> {
                     },
                   ),
                   ListTile(
-                    leading: const Icon(
-                      Icons.camera_alt,
+                    leading: Padding(
+                      padding: EdgeInsets.only(top: 4.0.h),
+                      child: const Icon(
+                        Icons.camera_alt,
+                        size: 28,
+                      ),
                     ),
                     title: Text(
                       'فتح الكاميرا',

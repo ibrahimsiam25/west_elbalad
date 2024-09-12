@@ -9,8 +9,11 @@ class AppAssets {
   static const checkIcon = "assets/images/Check.svg";
   static const applIcon = "assets/images/appl_icon.svg";
   static const user = "assets/images/user.png";
+  static const home = "assets/images/home.png";
+  static const settings = "assets/images/setting.png";
   static const address = "assets/images/address.png";
   static const mail = "assets/images/mail.png";
   static const phone = "assets/images/telephone.png";
   static const avatar = "assets/images/avatar.gif";
+  static const successfull = "assets/images/successfull.gif";
 }

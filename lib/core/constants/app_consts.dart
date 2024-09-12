@@ -8,6 +8,7 @@ double kRadius32 = 32.0.r;
 double kRadius48 = 48.0.r;
 String appFontCairo = 'Cairo';
 const String kIsOnBoardingView = 'isOnBoardingView';
+const String kIsSigninView = 'isSigninView';
 
 List<String> governorates = [
   'القاهرة',
