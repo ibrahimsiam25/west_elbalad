@@ -33,7 +33,7 @@ abstract class AppRouter {
         builder: (context, state) => const BottomNavBarController(),
       ),
       GoRoute(
-        path: '/',
+        path: kProfileView,
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
