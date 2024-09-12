@@ -7,26 +7,31 @@ class SelectedPhones extends StatelessWidget {
   final String desiredType;
   const SelectedPhones({
     super.key,
-    this.desiredType = 'mi',
+    this.desiredType = 'samsung',
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 16.0.h),
-        Wrap(
-          spacing: 16.0,
-          children: phones
-              .where((phone) => phone.type == desiredType)
-              .map(
-                (phone) => PhoneItem(
-                  phone: phone,
-                ),
-              )
-              .toList(),
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 12.0,
+      ),
+      child: Column(
+        children: [
+          SizedBox(height: 16.0.h),
+          Wrap(
+            spacing: 16.0,
+            children: phones
+                .where((phone) => phone.type == desiredType)
+                .map(
+                  (phone) => PhoneItem(
+                    phone: phone,
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
     );
   }
 }

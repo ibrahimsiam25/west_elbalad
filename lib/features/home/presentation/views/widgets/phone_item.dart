@@ -28,8 +28,7 @@ class PhoneItem extends StatelessWidget {
       child: Column(
         children: [
           CachedNetworkImage(
-            imageUrl:
-                'https://th.bing.com/th/id/OIP.O-gRqcByJK1mGi5PGsL57AHaHa?rs=1&pid=ImgDetMain',
+            imageUrl: phone.imageUrl,
             width: 128.0.w,
             height: 128.0.h,
             placeholder: (context, url) => Skeletonizer(
@@ -42,6 +41,7 @@ class PhoneItem extends StatelessWidget {
             ),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
+          SizedBox(height: 4.0.h),
           SizedBox(
             width: 128.0.w,
             child: Center(
@@ -58,14 +58,25 @@ class PhoneItem extends StatelessWidget {
               child: Text(
                 phone.description,
                 textAlign: TextAlign.center,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
                 style: AppStyles.subtitle,
               ),
             ),
           ),
-          Text(
-            '${phone.price}\$',
-            style: AppStyles.title.copyWith(
-              color: AppColors.red,
+          SizedBox(height: 4.0.h),
+          SizedBox(
+            width: 128.0.w,
+            child: Center(
+              child: FittedBox(
+                child: Text(
+                  '${phone.price} جنية',
+                  style: AppStyles.title.copyWith(
+                    color: AppColors.red,
+                    fontSize: 18.0.sp,
+                  ),
+                ),
+              ),
             ),
           ),
         ],

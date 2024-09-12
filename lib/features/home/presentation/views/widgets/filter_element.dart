@@ -26,28 +26,31 @@ class FilterElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ImagePickerCubit, int>(
       builder: (context, selectedIndex) {
-        return InkWell(
-          borderRadius: BorderRadius.circular(kRadius24),
-          onTap: () {
-            context.read<ImagePickerCubit>().selectIndex(index);
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              border: Border.all(
-                width: 1,
-                color: selectedIndex == index
-                    ? AppColors.lightGreen
-                    : AppColors.white,
+        return Padding(
+          padding: EdgeInsets.only(left: 8.0.w),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(kRadius24),
+            onTap: () {
+              context.read<ImagePickerCubit>().selectIndex(index);
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                border: Border.all(
+                  width: 1,
+                  color: selectedIndex == index
+                      ? AppColors.lightGreen
+                      : AppColors.white,
+                ),
+                borderRadius: BorderRadius.circular(kRadius24),
               ),
-              borderRadius: BorderRadius.circular(kRadius24),
-            ),
-            child: Image.asset(
-              image,
-              height: 28.0.h,
-              width: 56.0.w,
-              fit: BoxFit.contain,
+              child: Image.asset(
+                image,
+                height: 28.0.h,
+                width: 56.0.w,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         );
