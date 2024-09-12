@@ -9,8 +9,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
-
 
 class FirebaseAuthService {
   Future deleteUser() async {
@@ -18,30 +16,33 @@ class FirebaseAuthService {
   }
 
   Future<void> sendEmailVerification(User user) async {
-
     try {
       await user.sendEmailVerification();
       log('Verification email sent to ${user.email}');
-    }on FirebaseAuthException catch (e) {
-    if (e.code == 'too-many-requests') {
-      log("Too many requests: ${e.message}");
-      throw CustomException(message: 'تم ارسال بريد التحقق بالفعل من قبل. يرجى المحاولة مرة أخرى في وقت لاحق.');
-    } else if (e.code == 'network-request-failed') {
-      log("Network error: ${e.message}");
-      throw CustomException(message: 'تعذر إرسال البريد بسبب مشكلة في الاتصال بالشبكة. يرجى التحقق من اتصالك وحاول مرة أخرى.');
-    } else {
-      log("FirebaseAuthException: ${e.message}");
-      throw CustomException(message: 'فشل في إرسال بريد التحقق.');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'too-many-requests') {
+        log("Too many requests: ${e.message}");
+        throw CustomException(
+            message:
+                'تم ارسال بريد التحقق بالفعل من قبل. يرجى المحاولة مرة أخرى في وقت لاحق.');
+      } else if (e.code == 'network-request-failed') {
+        log("Network error: ${e.message}");
+        throw CustomException(
+            message:
+                'تعذر إرسال البريد بسبب مشكلة في الاتصال بالشبكة. يرجى التحقق من اتصالك وحاول مرة أخرى.');
+      } else {
+        log("FirebaseAuthException: ${e.message}");
+        throw CustomException(message: 'فشل في إرسال بريد التحقق.');
+      }
+    } catch (e) {
+      log("Unexpected error: ${e.toString()}");
+      throw CustomException(
+          message: 'حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا.');
     }
-  } catch (e) {
-    log("Unexpected error: ${e.toString()}");
-    throw CustomException(message: 'حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا.');
-  }
   }
 
   Future<User> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
-       
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -50,7 +51,7 @@ class FirebaseAuthService {
       );
       User user = credential.user!;
       await sendEmailVerification(user);
-      
+
       return user;
     } on FirebaseAuthException catch (e) {
       log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
@@ -59,7 +60,8 @@ class FirebaseAuthService {
       bool isUserExist = await doesDocumentExist(user!.uid);
       if (e.code == 'email-already-in-use' && !isUserExist) {
         await sendEmailVerification(user);
-        throw CustomException(message: 'الايميل مسجل من قبل ولاكن لم يتحقق منه');
+        throw CustomException(
+            message: 'الايميل مسجل من قبل ولاكن لم يتحقق منه');
       } else if (e.code == 'weak-password') {
         throw CustomException(message: 'الرقم السري ضعيف جداً.');
       } else if (e.code == 'email-already-in-use') {
@@ -94,7 +96,7 @@ class FirebaseAuthService {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-          
+
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       log("Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
