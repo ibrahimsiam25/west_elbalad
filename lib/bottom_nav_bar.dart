@@ -6,6 +6,7 @@ import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/features/home/presentation/views/home_view.dart';
 import 'package:west_elbalad/features/admin/presentation/views/admin_view.dart';
 import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
+
 class BottomNavBarController extends StatefulWidget {
   const BottomNavBarController({super.key});
   @override
@@ -14,8 +15,6 @@ class BottomNavBarController extends StatefulWidget {
 
 class _BottomNavBarControllerState extends State<BottomNavBarController> {
   int index = 0;
-
-  // Boolean flag to determine whether to show the admin item/view
   bool showAdmin = false;
 
   @override
@@ -37,7 +36,7 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
           bottomNavBarItem(AppAssets.home),
           bottomNavBarItem(AppAssets.user),
           bottomNavBarItem(AppAssets.settings),
-          if (showAdmin) bottomNavBarItem(AppAssets.admin), // Conditionally show the admin item
+          if (showAdmin) bottomNavBarItem(AppAssets.admin),
         ],
       ),
       body: IndexedStack(
@@ -59,31 +58,31 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
     );
   }
 }
-  BottomNavigationBarItem bottomNavBarItem(String image) {
-    return BottomNavigationBarItem(
-      activeIcon: Container(
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          color: AppColors.lightGreen,
-          borderRadius: BorderRadius.circular(
-            kRadius32,
-          ),
-        ),
-        child: Image.asset(
-          width: 32.0,
-          height: 32.0,
-          color: AppColors.white,
-          image,
+
+BottomNavigationBarItem bottomNavBarItem(String image) {
+  return BottomNavigationBarItem(
+    activeIcon: Container(
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        color: AppColors.lightGreen,
+        borderRadius: BorderRadius.circular(
+          kRadius32,
         ),
       ),
-      icon: Image.asset(
+      child: Image.asset(
         width: 32.0,
         height: 32.0,
-        color: AppColors.black,
-        repeat: ImageRepeat.repeatX,
+        color: AppColors.white,
         image,
       ),
-      label: '',
-    );
-  }
-
+    ),
+    icon: Image.asset(
+      width: 32.0,
+      height: 32.0,
+      color: AppColors.black,
+      repeat: ImageRepeat.repeatX,
+      image,
+    ),
+    label: '',
+  );
+}
