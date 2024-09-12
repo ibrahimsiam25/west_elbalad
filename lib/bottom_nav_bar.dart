@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:west_elbalad/core/constants/app_assets.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
+import 'package:west_elbalad/core/constants/app_assets.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/features/home/presentation/views/home_view.dart';
+import 'package:west_elbalad/features/admin/presentation/views/admin_view.dart';
 import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
-
 class BottomNavBarController extends StatefulWidget {
   const BottomNavBarController({super.key});
   @override
@@ -14,6 +14,10 @@ class BottomNavBarController extends StatefulWidget {
 
 class _BottomNavBarControllerState extends State<BottomNavBarController> {
   int index = 0;
+
+  // Boolean flag to determine whether to show the admin item/view
+  bool showAdmin = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,15 +34,10 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
           });
         },
         items: [
-          bottomNavBarItem(
-            AppAssets.home,
-          ),
-          bottomNavBarItem(
-            AppAssets.user,
-          ),
-          bottomNavBarItem(
-            AppAssets.settings,
-          ),
+          bottomNavBarItem(AppAssets.home),
+          bottomNavBarItem(AppAssets.user),
+          bottomNavBarItem(AppAssets.settings),
+          if (showAdmin) bottomNavBarItem(AppAssets.admin), // Conditionally show the admin item
         ],
       ),
       body: IndexedStack(
@@ -54,11 +53,12 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
               ),
             ),
           ),
+          if (showAdmin) AdminView(), // Conditionally show the admin view
         ],
       ),
     );
   }
-
+}
   BottomNavigationBarItem bottomNavBarItem(String image) {
     return BottomNavigationBarItem(
       activeIcon: Container(
@@ -86,4 +86,4 @@ class _BottomNavBarControllerState extends State<BottomNavBarController> {
       label: '',
     );
   }
-}
+
