@@ -1,10 +1,11 @@
 import 'package:get_it/get_it.dart';
 import '../../features/auth/domain/repos/auth_repo.dart';
+import '../../features/admin/domain/repos/admin_repo.dart';
 import '../../features/auth/data/repos/auth_repo_impl.dart';
 import 'package:west_elbalad/core/service/data_service.dart';
 import 'package:west_elbalad/core/service/firestore_service.dart';
 import 'package:west_elbalad/core/service/firebase_auth_Service.dart';
-
+import 'package:west_elbalad/features/admin/data/repos/admin_repo_impl.dart';
 
 
 
@@ -15,6 +16,11 @@ void setupGetIt() {
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImpl(
       firebaseAuthService: getIt.get<FirebaseAuthService>(),
+      databaseService: getIt.get<DatabaseService>(),
+    ),
+  );
+    getIt.registerSingleton<AdminRepo>(
+    AdminRepoImpl(
       databaseService: getIt.get<DatabaseService>(),
     ),
   );
