@@ -7,12 +7,5 @@ class UserEntity {
 
 
 
-  toMap() {
-    return {
-      'name': name,
-      'email': email,
-      'uId': uId,
-    };
-  }
 
 }

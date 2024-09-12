@@ -12,23 +12,48 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Wrap(
-                spacing: 16.0,
-                children: phones
-                    .map((phone) => PhoneItem(
-                          phone: phone,
-                        ))
-                    .toList(),
-              ),
-            ],
+        padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              children: [
+                SizedBox(height: 16.0.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'تصفح الأجهزة المتاحة',
+                    style: AppStyles.title,
+                  ),
+                ),
+                SizedBox(height: 16.0.h),
+                Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(
+                          kRadius24,
+                        ),
+                      ),
+                      child: Image.asset(
+                        height: 48.0.h,
+                        'assets/phones/itel_logo.png',
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16.0.h),
+                Wrap(
+                  spacing: 16.0,
+                  children: phones
+                      .map((phone) => PhoneItem(
+                            phone: phone,
+                          ))
+                      .toList(),
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

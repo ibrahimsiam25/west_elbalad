@@ -9,6 +9,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
+
 
 class FirebaseAuthService {
   Future deleteUser() async {
@@ -48,6 +50,7 @@ class FirebaseAuthService {
       );
       User user = credential.user!;
       await sendEmailVerification(user);
+      
       return user;
     } on FirebaseAuthException catch (e) {
       log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
@@ -91,6 +94,7 @@ class FirebaseAuthService {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+          
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       log("Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
@@ -102,7 +106,7 @@ class FirebaseAuthService {
             message: 'الرقم السري او البريد الالكتروني غير صحيح.');
       } else if (e.code == 'invalid-credential') {
         throw CustomException(
-            message: 'الرقم السري او البريد الالكتروني غير صحيح.');
+            message: 'البريد الاكتروني  غير مسجل توجه لانشاء حساب جديد.');
       } else if (e.code == 'network-request-failed') {
         throw CustomException(message: 'تاكد من اتصالك بالانترنت.');
       } else {

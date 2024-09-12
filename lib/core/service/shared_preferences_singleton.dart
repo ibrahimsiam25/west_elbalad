@@ -14,6 +14,7 @@ class SharedPref {
   }
 
   static Future<void> setString(String key, String value) async {
+    print("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
     await _instance.setString(key, value);
   }
 
