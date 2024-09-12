@@ -24,7 +24,7 @@ class FirebaseAuthService {
         log("Too many requests: ${e.message}");
         throw CustomException(
             message:
-                'تم ارسال بريد التحقق بالفعل من قبل. يرجى المحاولة مرة أخرى في وقت لاحق.');
+                'تم ارسال بريد التحقق بالفعل من قبل يرجي محاوله  تسجيل بعد دقيقة.');
       } else if (e.code == 'network-request-failed') {
         log("Network error: ${e.message}");
         throw CustomException(

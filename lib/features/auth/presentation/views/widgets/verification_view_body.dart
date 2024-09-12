@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:west_elbalad/core/constants/app_colors.dart';
 import '../../../../../core/errors/excptions.dart';
 import '../../../../../core/utils/app_styles.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/core/service/firebase_auth_Service.dart';
@@ -73,7 +73,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
         log("Too many requests: ${e.message}");
         throw CustomException(
             message:
-                'تم ارسال بريد التحقق بالفعل من قبل. يرجى المحاولة مرة أخرى في وقت لاحق.');
+                'تم ارسال بريد التحقق بالفعل من قبل يرجي محاوله  تسجيل بعد دقيقة.');
       } else if (e.code == 'network-request-failed') {
         log("Network error: ${e.message}");
         throw CustomException(
