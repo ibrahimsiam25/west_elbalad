@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_consts.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 import '../../../../../core/service/shared_preferences_singleton.dart';
@@ -44,31 +42,25 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            width: 224.0.w,
-            AppAssets.logo,
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              AppAssets.splashBack,
+            ),
+            fit: BoxFit.cover,
           ),
-          SizedBox(height: 32.0.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LinearPercentIndicator(
-                padding: EdgeInsets.zero,
-                width: 180.0.w,
-                animation: true,
-                lineHeight: 3.0,
-                animationDuration: 3000,
-                percent: 1,
-                barRadius: const Radius.circular(10),
-                progressColor: AppColors.red,
-                backgroundColor: AppColors.grey,
-              ),
-            ],
+        ),
+        child: SizedBox(
+          width: 120.0.w,
+          child: FittedBox(
+            child: Image.asset(
+              AppAssets.logo,
+            ),
           ),
-        ],
+        ),
       ),
     );
   }

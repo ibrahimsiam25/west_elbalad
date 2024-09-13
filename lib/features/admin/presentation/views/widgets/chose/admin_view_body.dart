@@ -1,40 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:west_elbalad/core/widgets/custom_app_bar.dart';
 import '../../../../../../core/utils/app_router.dart';
-import '../../../../../../core/utils/app_styles.dart';
 import 'package:west_elbalad/features/admin/presentation/views/widgets/chose/custom_admin_view_card.dart';
-
 
 class AdminViewBody extends StatelessWidget {
   const AdminViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Column(
+    return Column(
       children: [
-        Spacer(flex: 1),
-        Center(child: Text('الصفحة الرئيسية للمشرف', style: AppStyles.header)),
-        Spacer(flex: 1),
-        CustomAdminViewCard(
-          onPressed: () {
-            GoRouter.of(context).push(AppRouter.kusersInformatinsView);
-          },
-          title: "عرض المستخدمين",
+        CustomAppBar(
+          title: 'المشرف',
+          backButton: false,
         ),
-        Spacer(flex: 2),
-                CustomAdminViewCard(
-          onPressed: () {},
-          title: " عرض الطلبات ",
+        SizedBox(height: 8.0.h),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: kHorizontalPadding,
+          ),
+          child: Column(
+            children: [
+              CustomAdminViewCard(
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kusersInformatinsView);
+                },
+                title: "عرض المستخدمين",
+              ),
+              CustomAdminViewCard(
+                onPressed: () {},
+                title: " عرض الطلبات ",
+              ),
+              CustomAdminViewCard(
+                onPressed: () {},
+                title: "اضافة منتج ",
+              ),
+            ],
+          ),
         ),
-        Spacer(flex: 2),
-                CustomAdminViewCard(
-          onPressed: () {},
-          title: "التعديل في المتجر ",
-        ),
-        Spacer(flex: 4),
       ],
-    ));
+    );
   }
 }
-

@@ -48,27 +48,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     color: AppColors.darkGrey,
                   ),
                 ),
-                SizedBox(height: 24.h),
-                Image.asset(
-                  height: 128.0.h,
-                  AppAssets.logo,
-                ),
-                SizedBox(height: 16.0.h),
-                Text(
-                  "مرحبًا بك مرة أخرى",
-                  style: AppStyles.title,
-                ),
-                SizedBox(height: 8.0.h),
-                Align(
-                  child: Text(
-                    "قم بتسجيل الدخول الدخول الى حسابك",
-                    textAlign: TextAlign.center,
-                    style: AppStyles.semiBold16.copyWith(
-                      color: AppColors.darkGrey,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16.0.h),
+                SizedBox(height: 40.0.h),
                 //Email
                 CustomTextFormField(
                   onSaved: (value) {

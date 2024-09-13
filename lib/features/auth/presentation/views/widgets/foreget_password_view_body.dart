@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:west_elbalad/core/widgets/custom_app_bar.dart';
 import '../../../../../core/constants/app_consts.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,43 +49,48 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: kHorizontalPadding,
-        ),
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            autovalidateMode: autovalidateMode,
-            child: Column(
-              children: [
-                SizedBox(height: 24.h),
-                CustomTextFormField(
-                  onSaved: (value) {
-                    email = value!;
-                  },
-                  hintText: 'البريد الالكتروني',
-                  textInputType: TextInputType.emailAddress,
-                ),
-                SizedBox(height: 24.0.h),
-                //Signin
-                CustomButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      resetPassword(context);
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
-                    }
-                  },
-                  text: 'اعادة تعيين كلمة المرور',
-                ),
-                SizedBox(height: 16.0.h),
-              ],
+    return SingleChildScrollView(
+      child: Form(
+        key: formKey,
+        autovalidateMode: autovalidateMode,
+        child: Column(
+          children: [
+            CustomAppBar(
+              title: 'اعادة تعيين كلمة المرور',
             ),
-          ),
+            SizedBox(height: 16.h),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: kHorizontalPadding,
+              ),
+              child: Column(
+                children: [
+                  CustomTextFormField(
+                    onSaved: (value) {
+                      email = value!;
+                    },
+                    hintText: 'البريد الالكتروني',
+                    textInputType: TextInputType.emailAddress,
+                  ),
+                  SizedBox(height: 16.0.h),
+                  //Signin
+                  CustomButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        resetPassword(context);
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                        setState(() {});
+                      }
+                    },
+                    text: 'اعادة تعيين كلمة المرور',
+                  ),
+                  SizedBox(height: 16.0.h),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

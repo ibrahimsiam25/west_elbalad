@@ -70,7 +70,7 @@ abstract class AppRouter {
         builder: (context, state) => const SignUpSuccessfully(),
       ),
       GoRoute(
-        path: kAdminView,
+        path: '/',
         builder: (context, state) => const AdminView(),
       ),
       GoRoute(
