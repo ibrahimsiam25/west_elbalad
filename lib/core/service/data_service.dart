@@ -1,3 +1,6 @@
+import 'package:west_elbalad/features/admin/domain/entities/user_informations_entites.dart';
+
+
 abstract class DatabaseService {
   Future<void> addData(
       {required String path,
@@ -8,6 +11,6 @@ abstract class DatabaseService {
     required String docuementId,
   });
 
-
+ Future<List<UserInformationsEntity>>fetchAllDecuments(String collectionName);
   Future<bool> checkIfDataExists({required String path, required String docuementId});
 }

@@ -1,15 +1,17 @@
-import 'package:west_elbalad/features/auth/presentation/views/widgets/sign_up_successfully.dart';
-
 import '../../bottom_nav_bar.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/data/repos/auth_repo_impl.dart';
+import '../../features/admin/presentation/views/admin_view.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/auth/presentation/views/verification_view.dart';
 import '../../features/auth/presentation/views/forget_password_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/admin/presentation/views/users_informatins_view.dart';
 import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
+import 'package:west_elbalad/features/auth/presentation/views/widgets/sign_up_successfully.dart';
+
 
 abstract class AppRouter {
   static const kOnBoardingView = '/onBoardingView';
@@ -21,6 +23,8 @@ abstract class AppRouter {
   static const kProfileView = '/profileView';
   static const kforgetPasswordView = '/forgetPasswordView';
   static const kSignupSuccessView = '/signupSuccessView';
+  static const kAdminView = '/adminView';
+  static const kusersInformatinsView = '/usersInformatinsView';
 
   static final router = GoRouter(
     routes: [
@@ -65,8 +69,16 @@ abstract class AppRouter {
         builder: (context, state) => const ForgetPasswordView(),
       ),
       GoRoute(
-        path: '/',
+        path: kSignupSuccessView,
         builder: (context, state) => const SignUpSuccessfully(),
+      ),
+      GoRoute(
+        path: kAdminView,
+        builder: (context, state) => const AdminView(),
+      ),
+      GoRoute(
+        path: kusersInformatinsView,
+        builder: (context, state) => const UsersInformatinsView(),
       ),
     ],
   );

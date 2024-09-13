@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:west_elbalad/core/utils/app_styles.dart';
 
-AppBar buildAppBar(context, {required String title}) {
+AppBar buildAppBar(BuildContext context, {required String title, VoidCallback? onRefresh}) {
   return AppBar(
     backgroundColor: Colors.white,
     leading: GestureDetector(
       onTap: () {
-       GoRouter.of(context).pop();
+        GoRouter.of(context).pop();
       },
       child: const Icon(
         Icons.arrow_back_ios_new,
@@ -19,5 +19,13 @@ AppBar buildAppBar(context, {required String title}) {
       textAlign: TextAlign.center,
       style: AppStyles.semiBold16,
     ),
+    actions: onRefresh != null
+        ? [
+            IconButton(
+              icon: const Icon(Icons.refresh),
+              onPressed: onRefresh,
+            ),
+          ]
+        : [],
   );
 }
