@@ -9,11 +9,13 @@ class CustomAppBar extends StatelessWidget {
   final String title;
   final IconData? icon;
   final VoidCallback? onTap;
+  final bool backButton;
   const CustomAppBar({
     super.key,
     required this.title,
     this.icon,
     this.onTap,
+    this.backButton = true,
   });
 
   @override
@@ -33,14 +35,16 @@ class CustomAppBar extends StatelessWidget {
           Row(
             children: [
               SizedBox(width: 24.0.w),
-              InkWell(
-                onTap: () {
-                  GoRouter.of(context).pop();
-                },
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
-                ),
-              ),
+              backButton
+                  ? InkWell(
+                      onTap: () {
+                        GoRouter.of(context).pop();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios_new,
+                      ),
+                    )
+                  : SizedBox(width: 24.0.w),
               Spacer(),
               Text(
                 title,
