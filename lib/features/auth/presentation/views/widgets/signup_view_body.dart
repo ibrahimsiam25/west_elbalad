@@ -43,22 +43,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                     color: AppColors.darkGrey,
                   ),
                 ),
-                SizedBox(height: 24.h),
-                Text(
-                  "مرحبًا بك",
-                  style: AppStyles.title,
-                ),
-                SizedBox(height: 8.0.h),
-                Align(
-                  child: Text(
-                    "من فضلك قم بتسجيل بياناتك",
-                    textAlign: TextAlign.center,
-                    style: AppStyles.semiBold16.copyWith(
-                      color: AppColors.darkGrey,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16.0.h),
+                SizedBox(height: 40.0.h),
                 //Name
                 CustomTextFormField(
                   onSaved: (value) {
