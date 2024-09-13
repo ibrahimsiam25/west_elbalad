@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../../../core/utils/app_router.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/core/widgets/custom_app_bar.dart';
-import '../../../../../../core/utils/app_router.dart';
 import 'package:west_elbalad/features/admin/presentation/views/widgets/chose/custom_admin_view_card.dart';
 
 class AdminViewBody extends StatelessWidget {
@@ -35,7 +35,9 @@ class AdminViewBody extends StatelessWidget {
                 title: " عرض الطلبات ",
               ),
               CustomAdminViewCard(
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kEditInStoreView);
+                },
                 title: "اضافة منتج ",
               ),
             ],

@@ -17,7 +17,7 @@ class EditInStoreView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => EditInStoreCubit(adminRepo: getIt<AdminRepo>(),),
+          create: (context) => EditInStoreCubit(adminRepo: getIt<AdminRepo>(), imagePickerCubit: getIt<ImagePickerCubit>()),
         ),
         BlocProvider(create: (context) => ImagePickerCubit(getIt<AdminRepo>()),),
       ],

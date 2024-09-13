@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:west_elbalad/core/widgets/custom_button.dart';
+import '../../../manager/image_picker/image_picker_cubit.dart';
 import '../../../../../../core/widgets/custom_number_field.dart';
 import '../../../manager/edit_in_store/edit_in_store_cubit.dart';
 import 'package:west_elbalad/core/functions/build_error_bar.dart';
 import 'package:west_elbalad/core/widgets/custom_text_field.dart';
-import 'package:west_elbalad/features/admin/presentation/views/widgets/edit_in_store/image_picker_bloc_builder.dart';
+
 
 class EditInStoreViewBody extends StatefulWidget {
   const EditInStoreViewBody({super.key});
@@ -63,10 +64,10 @@ class _EditInStoreViewBodyState extends State<EditInStoreViewBody> {
             onPressed: () async {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
-                if (imageAddPhone != null) {
+                if (context.read<ImagePickerCubit>().image != null) {
                   context
                       .read<EditInStoreCubit>()
-                      .uploadPhoneData(imageAddPhone, {
+                      .uploadPhoneData(context.read<ImagePickerCubit>().image, {
                     "phoneType": phoneType,
                     "phoneName": phoneName,
                     "phoneDescription": phoneDescription,

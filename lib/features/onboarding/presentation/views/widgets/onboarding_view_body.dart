@@ -100,7 +100,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
                         child: Text(
                           onboardingList[index].title,
                           style: AppStyles.title.copyWith(
-                            color: Colors.white,
+                            color:onboardingList[index].textColor,
                             fontSize: 22.0.sp,
                           ),
                         ),
@@ -115,7 +115,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.white,
+                            color: onboardingList[index].textColor,
                           ),
                         ),
                       ),
@@ -146,7 +146,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody>
   }
 
   void controllWithAnimation(BuildContext context, {bool forward = true}) {
-    if (currentPageIndex == onboardingList.length - 1) {
+    if (currentPageIndex == 3) {
       context.go(AppRouter.kSigninView);
       SharedPref.setBool(kIsOnBoardingView, true);
     } else if (forward) {

@@ -8,7 +8,7 @@ import '../../../../../../core/widgets/custom_show_image.dart';
 import '../../../manager/image_picker/image_picker_cubit.dart';
 import '../../../../../../core/widgets/show_image_picker_options.dart';
 
-File? imageAddPhone;
+
 class imagePickerBlocBuilder extends StatelessWidget {
   const imagePickerBlocBuilder({
     super.key,
@@ -26,12 +26,12 @@ class imagePickerBlocBuilder extends StatelessWidget {
                 showImagePickerOptions(
                   context: context,
                   onCameraPressed: ()async {
-      imageAddPhone   =     await      context
+          context
                         .read<ImagePickerCubit>()
                         .openImagePickerFromCamera();
                   },
                   onGalleryPressed: ()async {
-               imageAddPhone   =     await        context
+                     context
                         .read<ImagePickerCubit>()
                         .openImagePickerFromGallery();
                   },
