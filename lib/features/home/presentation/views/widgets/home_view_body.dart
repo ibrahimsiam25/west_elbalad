@@ -17,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
         child: Column(
           children: [
             //AppBar
-            HomeAppbar(),
+            const HomeAppbar(),
             //Banner
             //حط الاعلان هنا يعم ابراهيم
             SizedBox(height: 16.0.h),

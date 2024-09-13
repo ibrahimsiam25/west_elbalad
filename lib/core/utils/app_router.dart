@@ -12,7 +12,6 @@ import '../../features/admin/presentation/views/users_informatins_view.dart';
 import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
 import 'package:west_elbalad/features/auth/presentation/views/widgets/sign_up_successfully.dart';
 
-
 abstract class AppRouter {
   static const kOnBoardingView = '/onBoardingView';
   static const kBottomNavBarController = '/bottomNavBarController';
@@ -29,7 +28,7 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: "/",
+        path: "/s",
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -49,7 +48,7 @@ abstract class AppRouter {
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: kSigninView,
+        path: '/',
         builder: (context, state) => const SigninView(),
       ),
       GoRoute(

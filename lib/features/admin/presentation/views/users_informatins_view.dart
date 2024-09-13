@@ -6,30 +6,26 @@ import 'package:west_elbalad/core/widgets/custom_app_bar.dart';
 import '../manager/user_informations/user_informations_cubit.dart';
 import 'package:west_elbalad/features/admin/presentation/views/widgets/users_informations/users_informations_View_body_bloc_consumer.dart';
 
-
 class UsersInformatinsView extends StatelessWidget {
   const UsersInformatinsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserInformationsCubit(getIt<AdminRepo>())..fetchUserInformations(),
-      child :view(),
+      create: (context) =>
+          UserInformationsCubit(getIt<AdminRepo>())..fetchUserInformations(),
+      child: view(),
     );
   }
 }
-
 
 class view extends StatelessWidget {
   const view({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        appBar: buildAppBar(context, title: 'عرض المستخدمين', onRefresh: () {
-       BlocProvider.of<UserInformationsCubit>(context).fetchUserInformations(); // Refresh data
-        }),
-        body: const UsersInformationsViewBodyBlocConsumer(),
-      );
+    return Scaffold(
+      body: const UsersInformationsViewBodyBlocConsumer(),
+    );
   }
 }
