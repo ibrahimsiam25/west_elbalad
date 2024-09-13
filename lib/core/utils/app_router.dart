@@ -48,7 +48,7 @@ abstract class AppRouter {
         builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
-        path: '/',
+        path: kSigninView,
         builder: (context, state) => const SigninView(),
       ),
       GoRoute(
@@ -72,7 +72,7 @@ abstract class AppRouter {
         builder: (context, state) => const SignUpSuccessfully(),
       ),
       GoRoute(
-        path: kAdminView,
+        path: '/',
         builder: (context, state) => const AdminView(),
       ),
       GoRoute(
