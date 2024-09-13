@@ -13,13 +13,6 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody> {
-  @override
-  void initState() {
-    executeNavigation();
-    super.initState();
-    initializeVideoPlayer();
-  }
-
   void executeNavigation() {
     bool isOnBoardingView = SharedPref.getBool(kIsOnBoardingView);
     bool isSigninView = SharedPref.getBool(kIsSigninView);
@@ -39,33 +32,33 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     );
   }
 
-  late VideoPlayerController controller;
-  void initializeVideoPlayer() {
-    controller = VideoPlayerController.asset('assets/images/splash.mp4')
-      ..addListener(() {
-        setState(() {});
-      })
-      ..setLooping(true)
-      ..initialize().then(
-        (_) {
-          controller.play();
-        },
-      );
+  late VideoPlayerController _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/images/splash.mp4');
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.setLooping(true);
+    _controller.initialize().then((_) => setState(() {}));
+    _controller.play();
+    executeNavigation();
   }
 
   @override
   void dispose() {
     super.dispose();
-    controller.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: controller.value.isInitialized
+      child: _controller.value.isInitialized
           ? AspectRatio(
-              aspectRatio: controller.value.aspectRatio,
-              child: VideoPlayer(controller),
+              aspectRatio: _controller.value.aspectRatio,
+              child: VideoPlayer(_controller),
             )
           : const SizedBox(),
     );
