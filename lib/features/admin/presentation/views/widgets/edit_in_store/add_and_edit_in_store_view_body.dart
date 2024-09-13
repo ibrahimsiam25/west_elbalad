@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../../../../core/constants/app_assets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../core/widgets/custom_app_bar.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import '../../../../../../core/utils/backend_endpoints.dart';
 import 'package:west_elbalad/core/widgets/custom_button.dart';
@@ -53,7 +54,13 @@ class _AddAndEditInStoreViewBodyState extends State<AddAndEditInStoreViewBody> {
           key: formKey,
           autovalidateMode: autovalidateMode,
           child: Column(
+
             children: [
+              CustomAppBar(
+          title: "اضافة هاتف",
+    
+   
+        ),
               InkWell(
                 borderRadius: BorderRadius.circular(
                     48), // Updated kRadius48 to a fixed value

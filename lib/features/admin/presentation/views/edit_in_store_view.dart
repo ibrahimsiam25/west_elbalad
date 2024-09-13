@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:west_elbalad/core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import 'widgets/edit_in_store/add_and_edit_in_store_view_body.dart';
 
 
@@ -9,7 +9,7 @@ class EditInStoreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: "التعديل في المتجر"),
+ 
       body: const AddAndEditInStoreViewBody(),
     );
   }
