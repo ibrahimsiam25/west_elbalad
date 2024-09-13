@@ -11,7 +11,7 @@ import '../../../../core/service/data_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../core/utils/backend_endpoints.dart';
 import '../../presentation/views/verification_view.dart';
-import '../../../../core/service/firebase_auth_Service.dart';
+import '../../../../core/service/firebase_auth_service.dart';
 import '../../../../core/service/shared_preferences_singleton.dart';
 import 'package:west_elbalad/features/auth/data/models/user_model.dart';
 import 'package:west_elbalad/features/auth/domain/repos/auth_repo.dart';

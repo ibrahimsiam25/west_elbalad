@@ -6,12 +6,12 @@ import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/auth/presentation/views/verification_view.dart';
+import '../../features/admin/presentation/views/edit_in_store_view.dart';
 import '../../features/auth/presentation/views/forget_password_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/admin/presentation/views/users_informatins_view.dart';
 import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
 import 'package:west_elbalad/features/auth/presentation/views/widgets/sign_up_successfully.dart';
-
 
 abstract class AppRouter {
   static const kOnBoardingView = '/onBoardingView';
@@ -25,11 +25,12 @@ abstract class AppRouter {
   static const kSignupSuccessView = '/signupSuccessView';
   static const kAdminView = '/adminView';
   static const kusersInformatinsView = '/usersInformatinsView';
+  static const kEditInStoreView = '/editInStoreView';
 
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: "/",
+        path: "/s",
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
@@ -39,10 +40,6 @@ abstract class AppRouter {
       GoRoute(
         path: kBottomNavBarController,
         builder: (context, state) => const BottomNavBarController(),
-      ),
-      GoRoute(
-        path: kProfileView,
-        builder: (context, state) => const ProfileView(),
       ),
       GoRoute(
         path: kProfileView,
@@ -80,6 +77,9 @@ abstract class AppRouter {
         path: kusersInformatinsView,
         builder: (context, state) => const UsersInformatinsView(),
       ),
+      GoRoute(
+          path: "/",
+          builder: (context, state) => const EditInStoreView()),
     ],
   );
 }

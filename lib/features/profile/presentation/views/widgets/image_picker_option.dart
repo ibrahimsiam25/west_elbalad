@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:west_elbalad/core/constants/app_colors.dart';
+import '../../../../../core/constants/app_assets.dart';
+import '../../../../../core/widgets/custom_show_image.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
-import 'package:west_elbalad/core/utils/app_styles.dart';
-import 'package:west_elbalad/features/profile/presentation/views/widgets/profile_image.dart';
+import '../../../../../core/widgets/show_image_picker_options.dart';
+
 
 class ImagePickerOptions extends StatefulWidget {
   const ImagePickerOptions({super.key});
@@ -24,7 +24,7 @@ class _ImagePickerOptionsState extends State<ImagePickerOptions> {
       setState(() {
         image = File(pickedImage.path);
       });
-      Navigator.pop(context);
+   
     }
   }
 
@@ -33,61 +33,21 @@ class _ImagePickerOptionsState extends State<ImagePickerOptions> {
     return InkWell(
       borderRadius: BorderRadius.circular(kRadius48),
       onTap: () {
-        showModalBottomSheet(
-          isScrollControlled: true,
-          clipBehavior: Clip.antiAlias,
-          context: context,
-          builder: (context) {
-            return Container(
-              color: AppColors.white,
-              padding: EdgeInsets.all(12.0.r),
-              child: Wrap(
-                children: [
-                  ListTile(
-                    leading: Padding(
-                      padding: EdgeInsets.only(top: 4.0.h),
-                      child: const Icon(
-                        Icons.photo_library,
-                        size: 28,
-                      ),
-                    ),
-                    title: Text(
-                      'فتح معرض الصور',
-                      style: AppStyles.title,
-                    ),
-                    onTap: () {
-                      openImagePicker(
-                        ImageSource.gallery,
-                      );
-                    },
-                  ),
-                  ListTile(
-                    leading: Padding(
-                      padding: EdgeInsets.only(top: 4.0.h),
-                      child: const Icon(
-                        Icons.camera_alt,
-                        size: 28,
-                      ),
-                    ),
-                    title: Text(
-                      'فتح الكاميرا',
-                      style: AppStyles.title,
-                    ),
-                    onTap: () {
-                      openImagePicker(
-                        ImageSource.camera,
-                      );
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
-        );
+       showImagePickerOptions(context:context, onCameraPressed: () {
+         openImagePicker(ImageSource.camera);
+       }, onGalleryPressed: () {
+         openImagePicker(ImageSource.gallery);
+       });
       },
-      child: ProfileImage(
+      child:CustomShowImage(
         image: image,
+        radius: kRadius48,
+        height: 128,
+        width: 128,
+        defaultImage: AppAssets.avatar,
       ),
     );
   }
+
+
 }

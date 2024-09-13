@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
-import 'package:west_elbalad/core/service/firebase_auth_Service.dart';
+import 'package:west_elbalad/core/service/firebase_auth_service.dart';
 
 class VerificationViewBody extends StatefulWidget {
   const VerificationViewBody({super.key});
