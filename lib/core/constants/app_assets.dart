@@ -1,6 +1,4 @@
 class AppAssets {
-  static const logo = 'assets/images/splash_logo.gif';
-  static const splashBack = 'assets/images/splash_back.gif';
   static const onboarding1 = 'assets/images/onboarding1.json';
   static const onboarding2 = 'assets/images/onboarding2.json';
   static const onboarding3 = 'assets/images/onboarding3.json';

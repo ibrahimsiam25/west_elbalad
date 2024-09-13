@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:video_player/video_player.dart';
 import '../../../../../core/constants/app_consts.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:west_elbalad/core/constants/app_assets.dart';
 import '../../../../../core/service/shared_preferences_singleton.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -16,11 +15,12 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
-    _executeNavigation();
+    executeNavigation();
     super.initState();
+    initializeVideoPlayer();
   }
 
-  void _executeNavigation() {
+  void executeNavigation() {
     bool isOnBoardingView = SharedPref.getBool(kIsOnBoardingView);
     bool isSigninView = SharedPref.getBool(kIsSigninView);
     Future.delayed(
@@ -39,29 +39,35 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     );
   }
 
+  late VideoPlayerController controller;
+  void initializeVideoPlayer() {
+    controller = VideoPlayerController.asset('assets/images/splash.mp4')
+      ..addListener(() {
+        setState(() {});
+      })
+      ..setLooping(true)
+      ..initialize().then(
+        (_) {
+          controller.play();
+        },
+      );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              AppAssets.splashBack,
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: SizedBox(
-          width: 120.0.w,
-          child: FittedBox(
-            child: Image.asset(
-              AppAssets.logo,
-            ),
-          ),
-        ),
-      ),
+      child: controller.value.isInitialized
+          ? AspectRatio(
+              aspectRatio: controller.value.aspectRatio,
+              child: VideoPlayer(controller),
+            )
+          : const SizedBox(),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/constants/app_assets.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/widgets/custom_show_image.dart';
 import '../../../manager/image_picker/image_picker_cubit.dart';
 import '../../../../../../core/widgets/show_image_picker_options.dart';
-
 
 class imagePickerBlocBuilder extends StatelessWidget {
   const imagePickerBlocBuilder({
@@ -25,13 +23,13 @@ class imagePickerBlocBuilder extends StatelessWidget {
               onTap: () {
                 showImagePickerOptions(
                   context: context,
-                  onCameraPressed: ()async {
-          context
+                  onCameraPressed: () async {
+                    context
                         .read<ImagePickerCubit>()
                         .openImagePickerFromCamera();
                   },
-                  onGalleryPressed: ()async {
-                     context
+                  onGalleryPressed: () async {
+                    context
                         .read<ImagePickerCubit>()
                         .openImagePickerFromGallery();
                   },
