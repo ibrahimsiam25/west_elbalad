@@ -17,5 +17,5 @@ class AppAssets {
   static const phone = "assets/images/telephone.png";
   static const avatar = "assets/images/avatar.gif";
   static const successfull = "assets/images/successfull.gif";
-  static const admin = "assets/images/setting.png";
+  static const admin = "assets/images/admin.png";
 }

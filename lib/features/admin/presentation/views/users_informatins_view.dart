@@ -10,11 +10,12 @@ class UsersInformatinsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          UserInformationsCubit(getIt<AdminRepo>())..fetchUserInformations(),
-      child: const UsersInformationsViewBodyBlocConsumer(),
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) =>
+            UserInformationsCubit(getIt<AdminRepo>())..fetchUserInformations(),
+        child: const UsersInformationsViewBodyBlocConsumer(),
+      ),
     );
   }
 }
-
