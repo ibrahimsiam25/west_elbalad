@@ -1,3 +1,5 @@
+import 'package:west_elbalad/home_test.dart';
+
 import '../../bottom_nav_bar.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/data/repos/auth_repo_impl.dart';
@@ -31,7 +33,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: "/",
-        builder: (context, state) => const SplashView(),
+        builder: (context, state) => PhoneListScreen(),
       ),
       GoRoute(
         path: kOnBoardingView,
@@ -70,7 +72,6 @@ abstract class AppRouter {
         builder: (context, state) => const SignUpSuccessfully(),
       ),
       GoRoute(
-        
         path: kAdminView,
         builder: (context, state) => const AdminView(),
       ),

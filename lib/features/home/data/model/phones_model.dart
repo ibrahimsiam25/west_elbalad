@@ -1,9 +1,13 @@
 import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
 
-
-class PhoneModel extends PhoneEntites{
-  PhoneModel({required super.type, required super.name, required super.description, required super.price, required super.imageUrl});
-    factory PhoneModel.fromEntity(PhoneEntites user) {
+class PhoneModel extends PhoneEntites {
+  PhoneModel(
+      {required super.type,
+      required super.name,
+      required super.description,
+      required super.price,
+      required super.imageUrl});
+  factory PhoneModel.fromEntity(PhoneEntites user) {
     return PhoneModel(
       type: user.type,
       name: user.name,
@@ -13,7 +17,6 @@ class PhoneModel extends PhoneEntites{
     );
   }
 
-  
   toMap() {
     return {
       'type': type,
