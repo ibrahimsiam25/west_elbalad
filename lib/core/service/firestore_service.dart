@@ -126,6 +126,7 @@ class FireStoreService implements DatabaseService {
       final phones = querySnapshot.docs.map((doc) {
         return PhoneModel.fromEntity(
           PhoneEntites(
+         
             type: doc['type'],
             name: doc['name'],
             description: doc['description'],

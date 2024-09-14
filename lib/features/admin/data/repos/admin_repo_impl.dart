@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/errors/excptions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/service/data_service.dart';
 import '../../../home/data/model/phones_model.dart';
 import 'package:west_elbalad/core/errors/failure.dart';
@@ -27,7 +28,7 @@ class AdminRepoImpl extends AdminRepo {
     final Map<String, Map<String, dynamic>> usersData =
         await databaseService.fetchAllDocuments(BackendEndpoint.addUserData);
     
-    // Convert each document to a UserInformationsEntity and collect in a list
+
     final List<UserInformationsEntity> usersList = usersData.entries.map((entry) {
       return UserInformationsModel.fromMap(entry.value, entry.key);
     }).toList();
@@ -54,6 +55,7 @@ class AdminRepoImpl extends AdminRepo {
     );
 
     PhoneEntites phoneEntites = PhoneEntites(
+
       type: data["phoneType"],
       name: data["phoneName"],
       description: data["phoneDescription"],
@@ -74,4 +76,19 @@ class AdminRepoImpl extends AdminRepo {
   Future<File?> openImagePickerFromGallery() {
     return imagePickerService.uploadImageFromGallery();
   }
+  
+  @override
+Future<Either<Failure, List<PhoneEntites>>> fetchAllPhones() async {
+  try {
+    final Map<String, Map<String, dynamic>> phoneData =
+        await databaseService.fetchAllDocuments(BackendEndpoint.getPhone);
+      var phone =PhoneMultiFactorGenerator
+    return right(phoneList);
+  } on CustomException catch (e) {
+    return left(ServerFailure(e.message));
+  } catch (e) {
+    log('Exception in fetchAllPhones: ${e.toString()}');
+    return left(ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
+  }
+}
 }

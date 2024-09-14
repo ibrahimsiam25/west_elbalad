@@ -7,17 +7,17 @@ import 'package:west_elbalad/features/admin/domain/repos/admin_repo.dart';
 part 'edit_in_store_state.dart';
 
 class EditInStoreCubit extends Cubit<EditInStoreState> {
-  EditInStoreCubit() : super(EditInStoreInitial());
+  EditInStoreCubit(this.adminRepo) : super(EditInStoreInitial());
 
- //final AdminRepo adminRepo  ;
+ final AdminRepo adminRepo  ;
 
-  // Future<void> fetchPhonesData() async {
-  //   emit(EditInStoreLoading());
-  //  // final result = await adminRepo.fetchPhonesData();
+  Future<void> fetchPhonesData() async {
+    emit(EditInStoreLoading());
+    final result = await adminRepo.fetchAllPhones();
 
-  //   result.fold(
-  //     (failure) => emit(EditInStoreFailure(message: failure.message)),
-  //     (phones) => emit(EditInStoreSuccess(phonesList: phones)),
-  //   );
-  // }
+    result.fold(
+      (failure) => emit(EditInStoreFailure(message: failure.message)),
+      (phones) => emit(EditInStoreSuccess(phonesList: phones)),
+    );
+  }
 }
