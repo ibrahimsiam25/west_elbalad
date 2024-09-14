@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import '../../../../core/errors/excptions.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/service/data_service.dart';
 import '../../../home/data/model/phones_model.dart';
 import 'package:west_elbalad/core/errors/failure.dart';
