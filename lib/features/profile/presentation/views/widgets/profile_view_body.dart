@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import '../../../../../core/constants/app_consts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:west_elbalad/core/constants/app_consts.dart';
-import 'package:west_elbalad/core/widgets/custom_text_field.dart';
-import 'package:west_elbalad/features/profile/presentation/views/widgets/image_picker_option.dart';
+import '../../../../../core/widgets/custom_text_field.dart';
 import 'package:west_elbalad/features/profile/presentation/views/widgets/select_governorate.dart';
+
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -18,7 +18,6 @@ class ProfileViewBody extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ImagePickerOptions(),
                 SizedBox(height: 16.0.h),
                 //Name
                 CustomTextFormField(
@@ -64,6 +63,9 @@ class ProfileViewBody extends StatelessWidget {
           ),
         ),
       ),
-    );
+    );;
   }
 }
+
+
+

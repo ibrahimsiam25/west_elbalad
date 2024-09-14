@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:west_elbalad/core/widgets/custom_button.dart';
 import '../../../manager/image_picker/image_picker_cubit.dart';
+import '../../../manager/add_in_store/edit_in_store_cubit.dart';
 import '../../../../../../core/widgets/custom_number_field.dart';
-import '../../../manager/edit_in_store/edit_in_store_cubit.dart';
-import 'package:west_elbalad/core/functions/build_error_bar.dart';
 import 'package:west_elbalad/core/widgets/custom_text_field.dart';
+import 'package:west_elbalad/core/functions/build_message_bar.dart';
 
 
-class EditInStoreViewBody extends StatefulWidget {
-  const EditInStoreViewBody({super.key});
+class AddInStoreViewBody extends StatefulWidget {
+  const AddInStoreViewBody({super.key});
 
   @override
-  State<EditInStoreViewBody> createState() => _EditInStoreViewBodyState();
+  State<AddInStoreViewBody> createState() => _AddInStoreViewBodyState();
 }
 
-class _EditInStoreViewBodyState extends State<EditInStoreViewBody> {
+class _AddInStoreViewBodyState extends State<AddInStoreViewBody> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String phoneType, phoneName, phoneDescription, phonePrice;
 
@@ -66,7 +66,7 @@ class _EditInStoreViewBodyState extends State<EditInStoreViewBody> {
                 formKey.currentState!.save();
                 if (context.read<ImagePickerCubit>().image != null) {
                   context
-                      .read<EditInStoreCubit>()
+                      .read<AddInStoreCubit>()
                       .uploadPhoneData(context.read<ImagePickerCubit>().image, {
                     "phoneType": phoneType,
                     "phoneName": phoneName,
@@ -74,7 +74,7 @@ class _EditInStoreViewBodyState extends State<EditInStoreViewBody> {
                     "phonePrice": phonePrice
                   });
                 } else {
-                  buildErrorBar(context, "يجب تحديد صورة للهاتف");
+                  buildMessageBar(context, "يجب تحديد صورة للهاتف");
                 }
               } else {
                 autovalidateMode = AutovalidateMode.always;

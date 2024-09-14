@@ -36,9 +36,15 @@ class AdminViewBody extends StatelessWidget {
               ),
               CustomAdminViewCard(
                 onPressed: () {
-                  GoRouter.of(context).push(AppRouter.kEditInStoreView);
+                  GoRouter.of(context).push(AppRouter.kAddInStoreView);
                 },
                 title: "اضافة منتج ",
+              ),
+                        CustomAdminViewCard(
+                onPressed: () {
+                 // GoRouter.of(context).push(AppRouter.kAddInStoreView);
+                },
+                title: "التعديل في المتجر"
               ),
             ],
           ),

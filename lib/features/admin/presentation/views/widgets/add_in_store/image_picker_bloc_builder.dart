@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../core/constants/app_assets.dart';
-import '../../../../../../core/constants/app_consts.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/widgets/custom_show_image.dart';
 import '../../../manager/image_picker/image_picker_cubit.dart';
 import '../../../../../../core/widgets/show_image_picker_options.dart';
 
+
 class imagePickerBlocBuilder extends StatelessWidget {
   const imagePickerBlocBuilder({
-    super.key,
+    super.key, required this.radius, required this.width, required this.height, required this.defaultImage,
   });
-
+   final double radius ;
+   final double width;
+   final double height;
+   final String defaultImage;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ImagePickerCubit, ImagePickerState>(
@@ -37,11 +38,11 @@ class imagePickerBlocBuilder extends StatelessWidget {
               },
               child: CustomShowImage(
                 image: context.read<ImagePickerCubit>().image,
-                radius: kRadius48, // Updated kRadius48 to a fixed value
-                width: 128.0.w,
-                height: 180.0.h,
-                defaultImage:
-                    AppAssets.avatar, // Updated default image to a placeholder
+                radius: radius,
+                width: width,
+                height: height,
+                defaultImage:  defaultImage ,
+
               ));
         } else {
           return Container();
