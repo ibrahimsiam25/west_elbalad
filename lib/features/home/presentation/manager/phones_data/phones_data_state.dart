@@ -8,7 +8,7 @@ final class PhonesDataInitial extends PhonesDataState {}
 final class PhonesDataLoading extends PhonesDataState {}
 
 final class PhonesDataSuccess extends PhonesDataState {
-  final List<PhoneModel> phonesList;
+  final List<PhoneEntites> phonesList;
   PhonesDataSuccess({required this.phonesList});
 }
 
