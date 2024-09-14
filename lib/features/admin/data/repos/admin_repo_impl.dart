@@ -21,29 +21,27 @@ class AdminRepoImpl extends AdminRepo {
       {required this.imagePickerService, required this.databaseService});
 
   @override
-Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers() async {
-  try {
-    final List<Map<String, dynamic>> usersData =
-        await databaseService.fetchAllDocuments(BackendEndpoint.addUserData);
+  Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers() async {
+    try {
+      final List<Map<String, dynamic>> usersData =
+          await databaseService.fetchAllDocuments(BackendEndpoint.addUserData);
 
- 
-    final List<UserInformationsEntity> usersList = usersData.map((data) {
+      final List<UserInformationsEntity> usersList = usersData.map((data) {
+        return UserInformationsModel.fromMap(data);
+      }).toList();
 
-      return  UserInformationsModel.fromMap(data);
-    }).toList();
-
-    return right(usersList);
-  } on CustomException catch (e) {
-    return left(ServerFailure(e.message));
-  } catch (e) {
-    log('Exception in AuthRepoImpl.fetchAllUsers: ${e.toString()}');
-    return left(
-      ServerFailure(
-        'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
-      ),
-    );
+      return right(usersList);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in AuthRepoImpl.fetchAllUsers: ${e.toString()}');
+      return left(
+        ServerFailure(
+          'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        ),
+      );
+    }
   }
-}
 
   @override
   Future<void> uploadPhoneData(File image, Map<String, dynamic> data) async {
@@ -54,15 +52,15 @@ Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers() async {
     );
 
     PhoneEntites phoneEntites = PhoneEntites(
-      id:documentId,
+      id: documentId,
       type: data["phoneType"],
       name: data["phoneName"],
       description: data["phoneDescription"],
       imageUrl: imageUrl,
-      price: double.parse(data["phonePrice"]),
+      price: int.parse(data["phonePrice"]),
     );
     databaseService.addData(
-        documentId:documentId ,
+        documentId: documentId,
         path: BackendEndpoint.addPhone,
         data: PhoneModel.fromEntity(phoneEntites).toMap());
   }
@@ -76,7 +74,7 @@ Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers() async {
   Future<File?> openImagePickerFromGallery() {
     return imagePickerService.uploadImageFromGallery();
   }
-  
+
   @override
 Future<Either<Failure, List<PhoneEntites>>> fetchAllPhones() async {
   try {
@@ -84,17 +82,17 @@ Future<Either<Failure, List<PhoneEntites>>> fetchAllPhones() async {
         await databaseService.fetchAllDocuments(BackendEndpoint.getPhone);
 
 
-    final List<PhoneEntites> phoneList = phoneData.map((data) {
 
-      return  PhoneModel.fromMap(data);
-    }).toList();
+      final List<PhoneEntites> phoneList = phoneData.map((data) {
+        return PhoneModel.fromMap(data);
+      }).toList();
 
-    return right(phoneList);
-  } on CustomException catch (e) {
-    return left(ServerFailure(e.message));
-  } catch (e) {
-    log('Exception in fetchAllPhones: ${e.toString()}');
-    return left(ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
+      return right(phoneList);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in fetchAllPhones: ${e.toString()}');
+      return left(ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
+    }
   }
-}
 }
