@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:west_elbalad/features/admin/domain/entities/user_informations_entites.dart';
 import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
+import 'package:west_elbalad/features/admin/domain/entities/user_informations_entites.dart';
 
 abstract class DatabaseService {
   Future<void> addData(
@@ -11,7 +11,7 @@ abstract class DatabaseService {
     required String path,
     required String docuementId,
   });
-  Future<List<UserInformationsEntity>> fetchAllDecuments(String collectionName);
+ Future<Map<String, Map<String, dynamic>>> fetchAllDocuments(String collectionName);
   Future<List<PhoneEntites>> fetchAllPhones(String collectionName);
   Future<bool> checkIfDataExists(
       {required String path, required String docuementId});
