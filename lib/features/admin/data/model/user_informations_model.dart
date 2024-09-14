@@ -7,9 +7,9 @@ class UserInformationsModel extends UserInformationsEntity {
     required super.uId,
   });
   factory UserInformationsModel.fromMap(
-      Map<String, dynamic> data, String documentId) {
+      Map<String, dynamic> data) {
     return UserInformationsModel(
-      uId: documentId,
+      uId: data['uId'] ?? 'Unknown',
       name: data['name'] ?? 'Unknown',
       email: data['email'] ?? 'Unknown',
     );

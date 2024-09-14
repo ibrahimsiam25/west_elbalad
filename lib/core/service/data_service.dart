@@ -11,8 +11,8 @@ abstract class DatabaseService {
     required String path,
     required String docuementId,
   });
- Future<Map<String, Map<String, dynamic>>> fetchAllDocuments(String collectionName);
-  Future<List<PhoneEntites>> fetchAllPhones(String collectionName);
+ Future<List<Map<String, dynamic>>> fetchAllDocuments(String collectionName);
+
   Future<bool> checkIfDataExists(
       {required String path, required String docuementId});
   Future<String> uploadImage({required File image, required String path});

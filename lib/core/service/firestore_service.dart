@@ -40,21 +40,17 @@ class FireStoreService implements DatabaseService {
   }
 
   @override
-  Future<Map<String, Map<String, dynamic>>> fetchAllDocuments(
+ Future<List<Map<String, dynamic>>> fetchAllDocuments(
     String collectionName) async {
   try {
-    // Fetch all documents from the specified collection
+
     final querySnapshot = await FirebaseFirestore.instance
         .collection(collectionName)
         .get();
 
-    // Convert documents into a Map<String, Map<String, dynamic>>
-    final documentMap = <String, Map<String, dynamic>>{};
-    for (var doc in querySnapshot.docs) {
-      documentMap[doc.id] = doc.data();
-    }
+    final documents = querySnapshot.docs.map((doc) => doc.data()).toList();
+    return documents;
 
-    return documentMap;
   } on FirebaseException catch (e) {
     // Handle Firestore-specific errors
     switch (e.code) {
@@ -119,48 +115,5 @@ class FireStoreService implements DatabaseService {
     }
   }
 
-  @override
-  Future<List<PhoneEntites>> fetchAllPhones(String collectionName) async {
-    try {
-      final querySnapshot = await firestore.collection(collectionName).get();
-      final phones = querySnapshot.docs.map((doc) {
-        return PhoneModel.fromEntity(
-          PhoneEntites(
-         
-            type: doc['type'],
-            name: doc['name'],
-            description: doc['description'],
-            price: doc['price'],
-            imageUrl: doc['imageUrl'],
-          ),
-        );
-      }).toList();
-      return phones;
-    } on FirebaseException catch (e) {
-      switch (e.code) {
-        case 'permission-denied':
-          log("Permission denied: ${e.message}");
-          throw CustomException(
-            message: 'ليس لديك صلاحية للوصول إلى هذه البيانات.',
-          );
-        case 'network-request-failed':
-          log("Network error: ${e.message}");
-          throw CustomException(
-            message:
-                'تعذر الوصول إلى البيانات بسبب مشكلة في الشبكة. يرجى التحقق من اتصالك.',
-          );
-        default:
-          log("FirebaseException: ${e.message}");
-          throw CustomException(
-            message: 'حدث خطأ أثناء جلب البيانات من Firestore.',
-          );
-      }
-    } catch (e) {
-      // Handle any other exceptions
-      log("Unexpected error: ${e.toString()}");
-      throw CustomException(
-        message: 'حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا.',
-      );
-    }
-  }
+
 }
