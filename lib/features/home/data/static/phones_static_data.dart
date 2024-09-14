@@ -25,7 +25,7 @@ List phonesStaticData = [
   {
     "type": 'oppo',
     "name": 'Oppo A3X 4/128G',
-    "description": 'اوبو A3X - رامات 4 جيجا - 128 جيجا بايت - أحمر',
+    "description": '',
     "price": 00,
     "imageUrl": '',
   },
