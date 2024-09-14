@@ -4,8 +4,8 @@ import 'package:west_elbalad/core/widgets/custom_button.dart';
 import '../../../manager/image_picker/image_picker_cubit.dart';
 import '../../../../../../core/widgets/custom_number_field.dart';
 import '../../../manager/edit_in_store/edit_in_store_cubit.dart';
-import 'package:west_elbalad/core/functions/build_error_bar.dart';
 import 'package:west_elbalad/core/widgets/custom_text_field.dart';
+import 'package:west_elbalad/core/functions/build_message_bar.dart';
 
 
 class EditInStoreViewBody extends StatefulWidget {
@@ -74,7 +74,7 @@ class _EditInStoreViewBodyState extends State<EditInStoreViewBody> {
                     "phonePrice": phonePrice
                   });
                 } else {
-                  buildErrorBar(context, "يجب تحديد صورة للهاتف");
+                  buildMessageBar(context, "يجب تحديد صورة للهاتف");
                 }
               } else {
                 autovalidateMode = AutovalidateMode.always;

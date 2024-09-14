@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../cubits/signup_cubits/signup_cubit.dart';
-import '../../../../../core/functions/build_error_bar.dart';
+import '../../../../../core/functions/build_message_bar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignupViewBodyBlocConsumer extends StatelessWidget {
@@ -23,7 +23,7 @@ class SignupViewBodyBlocConsumer extends StatelessWidget {
           if (state.message == 'الايميل مسجل من قبل ولاكن لم يتحقق منه') {
             GoRouter.of(context).go(AppRouter.kVerificationView);
           }
-          buildErrorBar(context, state.message);
+          buildMessageBar(context, state.message);
         }
       },
       builder: (context, state) {

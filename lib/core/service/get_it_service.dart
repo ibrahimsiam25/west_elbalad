@@ -7,6 +7,8 @@ import 'package:west_elbalad/core/service/firestore_service.dart';
 import 'package:west_elbalad/core/service/image_picker_serivce.dart';
 import 'package:west_elbalad/core/service/firebase_auth_service.dart';
 import 'package:west_elbalad/features/admin/data/repos/admin_repo_impl.dart';
+import '../../features/admin/presentation/manager/edit_in_store/edit_in_store_cubit.dart';
+import 'package:west_elbalad/features/profile/presentation/manager/cubit/profile_cubit.dart';
 import 'package:west_elbalad/features/admin/presentation/manager/image_picker/image_picker_cubit.dart';
 
 
@@ -31,7 +33,14 @@ void setupGetIt() {
   getIt.registerFactory<ImagePickerCubit>(() => ImagePickerCubit(
     getIt.get<AdminRepo>()
   ));
-  
+    getIt.registerFactory<EditInStoreCubit>(() =>EditInStoreCubit(
+      adminRepo: getIt.get<AdminRepo>(),
+      imagePickerCubit:getIt.get<ImagePickerCubit>()
+    ) );
+    getIt.registerFactory<ProfileCubit>(() =>ProfileCubit(
+      adminRepo: getIt.get<AdminRepo>(),
+      imagePickerCubit:getIt.get<ImagePickerCubit>()
+    ) );
 
 
 }
