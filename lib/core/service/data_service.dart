@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
-import 'package:west_elbalad/features/admin/domain/entities/user_informations_entites.dart';
 
 abstract class DatabaseService {
   Future<void> addData(
