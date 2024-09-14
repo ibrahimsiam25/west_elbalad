@@ -3,7 +3,7 @@ class PhoneEntites {
   final String type;
   final String name;
   final String description;
-  final double price;
+  final int price;
   final String imageUrl;
 
   PhoneEntites({
