@@ -21,8 +21,7 @@ class HomeAppbar extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SafeArea(child: SizedBox()),
-          SizedBox(height: 8.0.h),
+          SafeArea(child: SizedBox(height: 16.0.h)),
           Align(
             child: Text(
               'تصفح الأجهزة المتاحة',

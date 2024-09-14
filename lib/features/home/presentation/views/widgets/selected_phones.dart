@@ -9,10 +9,8 @@ import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
 
 class SelectedPhones extends StatelessWidget {
   final PhoneEntites phones;
-  final String desiredType;
   const SelectedPhones({
     super.key,
-    this.desiredType = 'samsung',
     required this.phones,
   });
 

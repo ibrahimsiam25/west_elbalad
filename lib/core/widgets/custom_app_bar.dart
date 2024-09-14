@@ -30,8 +30,7 @@ class CustomAppBar extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SafeArea(child: SizedBox()),
-          SizedBox(height: 8.0.h),
+          SafeArea(child: SizedBox(height: 16.0.h)),
           Row(
             children: [
               SizedBox(width: 24.0.w),
