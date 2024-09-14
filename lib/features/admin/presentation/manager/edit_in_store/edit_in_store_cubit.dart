@@ -13,7 +13,7 @@ class EditInStoreCubit extends Cubit<EditInStoreState> {
 
   Future<void> fetchPhonesData() async {
     emit(EditInStoreLoading());
-    final result = await adminRepo.fetchAllPhones();
+    final result = await adminRepo.fetchPhonesData();
 
     result.fold(
       (failure) => emit(EditInStoreFailure(message: failure.message)),

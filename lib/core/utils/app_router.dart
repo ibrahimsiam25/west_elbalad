@@ -32,7 +32,7 @@ abstract class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: "/",
+        path: "/s",
         builder: (context, state) => SplashView(),
       ),
       GoRoute(
@@ -83,7 +83,7 @@ abstract class AppRouter {
           path: kAddInStoreView,
           builder: (context, state) => const AddInStoreView()),
       GoRoute(
-          path: kEditInStoreView,
+          path: "/",
           builder: (context, state) => const EditInStoreView()),
     ],
   );

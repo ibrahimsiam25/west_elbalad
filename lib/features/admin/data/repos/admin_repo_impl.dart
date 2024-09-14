@@ -76,14 +76,11 @@ class AdminRepoImpl extends AdminRepo {
   }
 
   @override
-Future<Either<Failure, List<PhoneEntites>>> fetchAllPhones() async {
-  try {
-    final List<Map<String, dynamic>> phoneData =
-        await databaseService.fetchAllDocuments(BackendEndpoint.getPhone);
-
-
-
-      final List<PhoneEntites> phoneList = phoneData.map((data) {
+  Future<Either<Failure, List<PhoneEntites>>> fetchPhonesData() async {
+    try {
+      final List<Map<String, dynamic>> phonesData =
+          await databaseService.fetchAllDocuments(BackendEndpoint.getPhone);
+      final List<PhoneEntites> phoneList = phonesData.map((data) {
         return PhoneModel.fromMap(data);
       }).toList();
 
@@ -91,8 +88,15 @@ Future<Either<Failure, List<PhoneEntites>>> fetchAllPhones() async {
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
-      log('Exception in fetchAllPhones: ${e.toString()}');
-      return left(ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
+      log(
+        'Exception in AuthRepoImpl.fetchAllPhones: ${e.toString()}',
+      );
+      return left(
+        ServerFailure(
+          'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        ),
+      );
     }
   }
 }
+  
