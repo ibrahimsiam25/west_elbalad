@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
 import 'package:west_elbalad/features/home/presentation/manager/phones_filter/filter_cubit.dart';
 import 'package:west_elbalad/features/home/presentation/views/widgets/filter_list.dart';
@@ -40,29 +41,24 @@ class HomeViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: 16.0.h),
                     //Selected phones
-                    Align(
-                      alignment: uniquePhoneTypes.length == 1
-                          ? Alignment.centerRight
-                          : Alignment.center,
-                      child: Wrap(
-                        spacing: uniquePhoneTypes.length == 1 ? 0 : 16.0.w,
-                        children: [
-                          ...phones
-                              .where(
-                                (phone) =>
-                                    phone.type == uniquePhoneTypes[state],
-                              )
-                              .map((phone) => Padding(
-                                    padding: EdgeInsets.only(
-                                      right: uniquePhoneTypes.length == 1
-                                          ? 16.0.w
-                                          : 0.0,
-                                    ),
-                                    child: SelectedPhones(phones: phone),
-                                  ))
-                              .toList(),
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 16.0.w,
+                      children: [
+                        ...phones
+                            .where(
+                              (phone) => phone.type == uniquePhoneTypes[state],
+                            )
+                            .map((phone) => SelectedPhones(phones: phone))
+                            .toList(),
+                        //For alighnment
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: kHorizontalPadding),
+                          child: SizedBox(
+                            width: 128.0.w,
+                          ),
+                        )
+                      ],
                     )
                   ],
                 );

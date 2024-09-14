@@ -32,7 +32,9 @@ class Filters extends StatelessWidget {
                 final phoneType = uniquePhoneTypes[index];
                 return Padding(
                   padding: EdgeInsets.only(
-                      left: 4.0.w, right: index == 0 ? 16.0.w : 0),
+                      left:
+                          index == uniquePhoneTypes.length - 1 ? 16.0.w : 4.0.w,
+                      right: index == 0 ? 16.0.w : 0),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(kRadius24),
                     onTap: () {
