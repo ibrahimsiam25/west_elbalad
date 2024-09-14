@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import 'package:west_elbalad/features/profile/presentation/views/widgets/select_governorate.dart';
 
-
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
 
@@ -63,9 +62,6 @@ class ProfileViewBody extends StatelessWidget {
           ),
         ),
       ),
-    );;
+    );
   }
 }
-
-
-
