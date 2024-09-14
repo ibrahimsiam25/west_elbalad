@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:west_elbalad/features/home/data/static/phones_static_data.dart';
+import 'package:west_elbalad/core/constants/app_colors.dart';
+import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
 import 'package:west_elbalad/features/home/presentation/views/widgets/filter_element.dart';
 
-class Filters extends StatelessWidget {
+class Filters extends StatefulWidget {
+  final String type;
+  final List<PhoneEntites> phones;
   const Filters({
     super.key,
+    this.type = 'samsung',
+    required this.phones,
   });
 
+  @override
+  State<Filters> createState() => _FiltersState();
+}
+
+class _FiltersState extends State<Filters> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,11 +29,20 @@ class Filters extends StatelessWidget {
           children: [
             SizedBox(width: 16.0.w),
             ...List.generate(
-              phonesLogos.length,
+              widget.phones.length,
               (index) {
-                return FilterElement(
-                  image: phonesLogos[index],
-                  index: index,
+                return Padding(
+                  padding: EdgeInsets.only(left: 4.0.w),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(kRadius24),
+                    onTap: () {},
+                    child: FilterElement(
+                      text: widget.phones[index].type,
+                      color: widget.type == widget.phones[index].type
+                          ? AppColors.lightGreen
+                          : AppColors.white,
+                    ),
+                  ),
                 );
               },
             ),
