@@ -1,5 +1,4 @@
-import 'package:west_elbalad/home_test.dart';
-
+import 'package:west_elbalad/features/splash/presentation/views/splash_view.dart';
 import '../../bottom_nav_bar.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/data/repos/auth_repo_impl.dart';
@@ -32,7 +31,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: "/",
-        builder: (context, state) => PhoneListScreen(),
+        builder: (context, state) => SplashView(),
       ),
       GoRoute(
         path: kOnBoardingView,
