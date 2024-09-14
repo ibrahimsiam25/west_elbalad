@@ -6,7 +6,6 @@ import '../../features/auth/data/repos/auth_repo_impl.dart';
 import '../../features/admin/presentation/views/admin_view.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
-import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/auth/presentation/views/verification_view.dart';
 import '../../features/admin/presentation/views/edit_in_store_view.dart';
 import '../../features/auth/presentation/views/forget_password_view.dart';

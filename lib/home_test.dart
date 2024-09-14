@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:west_elbalad/features/home/data/model/phones_model.dart';
-import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
 
 class PhoneListScreen extends StatelessWidget {
   @override
