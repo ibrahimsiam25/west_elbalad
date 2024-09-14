@@ -6,6 +6,7 @@ import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/auth/presentation/views/verification_view.dart';
 import '../../features/admin/presentation/views/add_in_store_view.dart';
+import '../../features/admin/presentation/views/edit_in_store_view.dart';
 import '../../features/auth/presentation/views/forget_password_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/admin/presentation/views/users_informatins_view.dart';
@@ -26,6 +27,7 @@ abstract class AppRouter {
   static const kAdminView = '/adminView';
   static const kusersInformatinsView = '/usersInformatinsView';
   static const kAddInStoreView = '/AddInStoreView';
+  static const kEditInStoreView = '/EditInStoreView';
 
   static final router = GoRouter(
     routes: [
@@ -80,6 +82,9 @@ abstract class AppRouter {
       GoRoute(
           path: kAddInStoreView,
           builder: (context, state) => const AddInStoreView()),
+      GoRoute(
+          path: kEditInStoreView,
+          builder: (context, state) => const EditInStoreView()),
     ],
   );
 }

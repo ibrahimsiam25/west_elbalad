@@ -11,9 +11,11 @@ class EditInStoreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
-      create: (context) => EditInStoreCubit(getIt<AdminRepo>()),
-      child: EditInStoreViewBodyBlocConsumer(),
+    return  Scaffold(
+      body: BlocProvider(
+        create: (context) => EditInStoreCubit(getIt<AdminRepo>())..fetchPhonesData(),
+        child: EditInStoreViewBodyBlocConsumer(),
+      ),
     );
   }
 }

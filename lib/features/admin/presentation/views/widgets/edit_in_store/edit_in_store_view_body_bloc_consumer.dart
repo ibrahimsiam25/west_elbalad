@@ -14,7 +14,14 @@ class EditInStoreViewBodyBlocConsumer extends StatelessWidget {
   
       },
       builder: (context, state) {
-        return EditInStoreViewBody();
+        if(state is EditInStoreSuccess) {
+          
+          return EditInStoreViewBody(phonesList: state.phonesList);
+        }else if(state is EditInStoreFailure) {
+          return Center(child: Text(state.message));
+        }else {
+          return const Center(child: CircularProgressIndicator());
+        }
       },
     );
   }
