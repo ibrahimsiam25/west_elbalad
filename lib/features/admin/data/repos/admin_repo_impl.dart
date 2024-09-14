@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import '../../../../core/errors/excptions.dart';
 import '../../../../core/service/data_service.dart';
 import '../../../home/data/model/phones_model.dart';
@@ -9,6 +10,8 @@ import '../../../home/domian/entites/phone_entites.dart';
 import '../../../../core/service/image_picker_serivce.dart';
 import 'package:west_elbalad/core/utils/backend_endpoints.dart';
 import 'package:west_elbalad/features/admin/domain/repos/admin_repo.dart';
+import 'package:west_elbalad/features/auth/domain/entites/user_entity.dart';
+import 'package:west_elbalad/features/admin/data/model/user_informations_model.dart';
 import 'package:west_elbalad/features/admin/domain/entities/user_informations_entites.dart';
 
 class AdminRepoImpl extends AdminRepo {
@@ -21,9 +24,14 @@ class AdminRepoImpl extends AdminRepo {
   @override
   Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers() async {
     try {
-      final user =
-          await databaseService.fetchAllDecuments(BackendEndpoint.addUserData);
-      return right(user);
+    final Map<String, Map<String, dynamic>> usersData =
+        await databaseService.fetchAllDocuments(BackendEndpoint.addUserData);
+    
+    // Convert each document to a UserInformationsEntity and collect in a list
+    final List<UserInformationsEntity> usersList = usersData.entries.map((entry) {
+      return UserInformationsModel.fromMap(entry.value, entry.key);
+    }).toList();
+      return right(usersList);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
