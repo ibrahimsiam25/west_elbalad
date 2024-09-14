@@ -76,12 +76,13 @@ class AdminRepoImpl extends AdminRepo {
   }
 
   @override
-  Future<Either<Failure, List<PhoneEntites>>> fetchAllPhones() async {
-    try {
-      final List<Map<String, dynamic>> phoneData =
-          await databaseService.fetchAllDocuments(BackendEndpoint.addUserData);
+Future<Either<Failure, List<PhoneEntites>>> fetchAllPhones() async {
+  try {
+    final List<Map<String, dynamic>> phoneData =
+        await databaseService.fetchAllDocuments(BackendEndpoint.getPhone);
 
-      // Map the fetched data to a list of UserInformationsEntity
+
+
       final List<PhoneEntites> phoneList = phoneData.map((data) {
         return PhoneModel.fromMap(data);
       }).toList();
