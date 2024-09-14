@@ -40,29 +40,25 @@ class HomeViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: 16.0.h),
                     //Selected phones
-                    Align(
-                      alignment: uniquePhoneTypes.length == 1
-                          ? Alignment.centerRight
-                          : Alignment.center,
-                      child: Wrap(
-                        spacing: uniquePhoneTypes.length == 1 ? 0 : 16.0.w,
-                        children: [
-                          ...phones
-                              .where(
-                                (phone) =>
-                                    phone.type == uniquePhoneTypes[state],
-                              )
-                              .map((phone) => Padding(
-                                    padding: EdgeInsets.only(
-                                      right: uniquePhoneTypes.length == 1
-                                          ? 16.0.w
-                                          : 0.0,
-                                    ),
-                                    child: SelectedPhones(phones: phone),
-                                  ))
-                              .toList(),
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 16.0.w,
+                      children: [
+                        ...phones
+                            .where(
+                              (phone) => phone.type == uniquePhoneTypes[state],
+                            )
+                            .map((phone) => SelectedPhones(phones: phone))
+                            .toList(),
+                        //For alighnment
+                        Container(
+                          padding: EdgeInsets.all(16.0),
+                          margin: EdgeInsets.only(bottom: 16.0.h),
+                          child: SizedBox(
+                            width: 128.0.w,
+                            height: 128.0.h,
+                          ),
+                        )
+                      ],
                     )
                   ],
                 );
