@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/features/home/data/static/phones_static_data.dart';
+import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
 import 'package:west_elbalad/features/home/presentation/views/widgets/filter_element.dart';
 import 'package:west_elbalad/features/home/presentation/views/widgets/home_appbar.dart';
 import 'package:west_elbalad/features/home/presentation/views/widgets/selected_phones.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+  final List<PhoneEntites> phones;
+  const HomeViewBody({super.key, required this.phones});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:west_elbalad/features/home/presentation/views/widgets/home_view_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:west_elbalad/core/service/get_it_service.dart';
+import 'package:west_elbalad/features/home/domian/repos/home_repo.dart';
+import 'package:west_elbalad/features/home/presentation/manager/phones_data/phones_data_cubit.dart';
+import 'package:west_elbalad/features/home/presentation/views/widgets/phones_bloc_consumer.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -7,7 +11,11 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeViewBody(),
+      body: BlocProvider(
+        create: (context) =>
+            PhonesDataCubit(getIt<HomeRepo>())..fetchPhonesData(),
+        child: const PhonesBlocConsumer(),
+      ),
     );
   }
 }

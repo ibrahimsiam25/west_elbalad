@@ -14,7 +14,9 @@ class PhonesBlocConsumer extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           if (state is PhonesDataSuccess) {
-            return HomeViewBody();
+            return HomeViewBody(
+              phones: state.phonesList,
+            );
           } else if (state is PhonesDataFailure) {
             return CustomErrorWidget(text: state.message);
           } else {
