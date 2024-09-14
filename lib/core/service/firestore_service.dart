@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'dart:developer';
+import 'package:west_elbalad/features/home/data/model/phones_model.dart';
+import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
+
 import '../errors/excptions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -82,6 +85,50 @@ class FireStoreService implements DatabaseService {
       await refStorage.putFile(image);
       var url = await refStorage.getDownloadURL();
       return url;
+    } on FirebaseException catch (e) {
+      switch (e.code) {
+        case 'permission-denied':
+          log("Permission denied: ${e.message}");
+          throw CustomException(
+            message: 'ليس لديك صلاحية للوصول إلى هذه البيانات.',
+          );
+        case 'network-request-failed':
+          log("Network error: ${e.message}");
+          throw CustomException(
+            message:
+                'تعذر الوصول إلى البيانات بسبب مشكلة في الشبكة. يرجى التحقق من اتصالك.',
+          );
+        default:
+          log("FirebaseException: ${e.message}");
+          throw CustomException(
+            message: 'حدث خطأ أثناء جلب البيانات من Firestore.',
+          );
+      }
+    } catch (e) {
+      // Handle any other exceptions
+      log("Unexpected error: ${e.toString()}");
+      throw CustomException(
+        message: 'حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا.',
+      );
+    }
+  }
+
+  @override
+  Future<List<PhoneEntites>> fetchAllPhones(String collectionName) async {
+    try {
+      final querySnapshot = await firestore.collection(collectionName).get();
+      final phones = querySnapshot.docs.map((doc) {
+        return PhoneModel.fromEntity(
+          PhoneEntites(
+            type: doc['type'],
+            name: doc['name'],
+            description: doc['description'],
+            price: doc['price'],
+            imageUrl: doc['imageUrl'],
+          ),
+        );
+      }).toList();
+      return phones;
     } on FirebaseException catch (e) {
       switch (e.code) {
         case 'permission-denied':

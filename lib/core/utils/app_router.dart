@@ -1,10 +1,10 @@
+import 'package:west_elbalad/features/splash/presentation/views/splash_view.dart';
 import '../../bottom_nav_bar.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/data/repos/auth_repo_impl.dart';
 import '../../features/admin/presentation/views/admin_view.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
-import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/auth/presentation/views/verification_view.dart';
 import '../../features/admin/presentation/views/edit_in_store_view.dart';
 import '../../features/auth/presentation/views/forget_password_view.dart';
@@ -31,7 +31,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: "/",
-        builder: (context, state) => const SplashView(),
+        builder: (context, state) => SplashView(),
       ),
       GoRoute(
         path: kOnBoardingView,
@@ -70,7 +70,6 @@ abstract class AppRouter {
         builder: (context, state) => const SignUpSuccessfully(),
       ),
       GoRoute(
-        
         path: kAdminView,
         builder: (context, state) => const AdminView(),
       ),

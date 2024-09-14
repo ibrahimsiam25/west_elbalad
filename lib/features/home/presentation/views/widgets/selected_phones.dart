@@ -1,34 +1,87 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:west_elbalad/features/home/data/static/phones_static_data.dart';
-import 'package:west_elbalad/features/home/presentation/views/widgets/phone_item.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:west_elbalad/core/constants/app_colors.dart';
+import 'package:west_elbalad/core/constants/app_consts.dart';
+import 'package:west_elbalad/core/utils/app_styles.dart';
+import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
 
 class SelectedPhones extends StatelessWidget {
+  final PhoneEntites phones;
   final String desiredType;
   const SelectedPhones({
     super.key,
     this.desiredType = 'samsung',
+    required this.phones,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 12.0,
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      margin: EdgeInsets.only(bottom: 16.0.h),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(
+          kRadius16,
+        ),
       ),
       child: Column(
         children: [
-          SizedBox(height: 16.0.h),
-          Wrap(
-            spacing: 16.0,
-            children: phones
-                .where((phone) => phone.type == desiredType)
-                .map(
-                  (phone) => PhoneItem(
-                    phone: phone,
+          CachedNetworkImage(
+            imageUrl: phones.imageUrl,
+            width: 128.0.w,
+            height: 128.0.h,
+            placeholder: (context, url) => Skeletonizer(
+              containersColor: AppColors.darkGrey,
+              child: Container(
+                width: 128.0.w,
+                height: 128.0.h,
+                color: AppColors.white,
+              ),
+            ),
+            errorWidget: (context, url, error) => Icon(
+              Icons.error,
+            ),
+          ),
+          SizedBox(height: 4.0.h),
+          SizedBox(
+            width: 128.0.w,
+            child: Center(
+              child: Text(
+                phones.name,
+                textAlign: TextAlign.center,
+                style: AppStyles.title,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 128.0.w,
+            child: Center(
+              child: Text(
+                phones.description,
+                textAlign: TextAlign.center,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style: AppStyles.subtitle,
+              ),
+            ),
+          ),
+          SizedBox(height: 4.0.h),
+          SizedBox(
+            width: 128.0.w,
+            child: Center(
+              child: FittedBox(
+                child: Text(
+                  '${phones.price} جنية',
+                  style: AppStyles.title.copyWith(
+                    color: AppColors.red,
+                    fontSize: 18.0.sp,
                   ),
-                )
-                .toList(),
+                ),
+              ),
+            ),
           ),
         ],
       ),

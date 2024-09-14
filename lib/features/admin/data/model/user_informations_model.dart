@@ -1,11 +1,15 @@
 import 'package:west_elbalad/features/admin/domain/entities/user_informations_entites.dart';
 
-
 class UserInformationsModel extends UserInformationsEntity {
-  UserInformationsModel({required super.name, required super.email, required super.uId});
-factory UserInformationsModel.fromMap(Map<String, dynamic> data, String documentId) {
+  UserInformationsModel({
+    required super.name,
+    required super.email,
+    required super.uId,
+  });
+  factory UserInformationsModel.fromMap(
+      Map<String, dynamic> data, String documentId) {
     return UserInformationsModel(
-      uId: documentId, 
+      uId: documentId,
       name: data['name'] ?? 'Unknown',
       email: data['email'] ?? 'Unknown',
     );
