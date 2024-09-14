@@ -6,7 +6,7 @@ import 'package:west_elbalad/core/constants/app_consts.dart';
 import '../../../../../core/functions/build_message_bar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:west_elbalad/features/profile/presentation/views/widgets/profile_view_body.dart';
-import 'package:west_elbalad/features/admin/presentation/views/widgets/edit_in_store/image_picker_bloc_builder.dart';
+import 'package:west_elbalad/features/admin/presentation/views/widgets/add_in_store/image_picker_bloc_builder.dart';
 
 
 
