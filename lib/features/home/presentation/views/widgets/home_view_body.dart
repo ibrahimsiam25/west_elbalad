@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/constants/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
@@ -28,7 +27,7 @@ class HomeViewBody extends StatelessWidget {
             //AppBar
             HomeAppbar(), //Banner
             //حط الاعلان هنا يعم ابراهيم
-      
+
             SizedBox(height: 16.0.h),
             BlocBuilder<FilterListCubit, int>(
               builder: (context, state) {

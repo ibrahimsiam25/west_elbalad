@@ -17,7 +17,6 @@ import 'package:west_elbalad/features/profile/presentation/manager/cubit/profile
 import 'package:west_elbalad/features/admin/presentation/manager/image_picker/image_picker_cubit.dart';
 import 'package:west_elbalad/features/admin/data/data_sources/user_informations_remote_data_source.dart';
 
-
 final getIt = GetIt.instance;
 void setupGetIt() {
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
@@ -32,40 +31,31 @@ void setupGetIt() {
   getIt.registerSingleton<AdminRepo>(
     AdminRepoImpl(
       databaseService: getIt.get<DatabaseService>(),
-      userInformationsLocalDataSource:UserInformationsLocalDataSourceImpl(),
-      userInformationsRemoteDataSource:UserInformationsRemoteDataSourceImpl(databaseService: getIt.get<DatabaseService>()),
+      userInformationsLocalDataSource: UserInformationsLocalDataSourceImpl(),
+      userInformationsRemoteDataSource: UserInformationsRemoteDataSourceImpl(
+          databaseService: getIt.get<DatabaseService>()),
       imagePickerService: getIt.get<ImagePickerService>(),
-
     ),
   );
-  getIt.registerFactory<ImagePickerCubit>(() => ImagePickerCubit(
-    getIt.get<AdminRepo>()
-  ));
-    getIt.registerFactory<AddInStoreCubit>(() =>AddInStoreCubit(
+  getIt.registerFactory<ImagePickerCubit>(
+      () => ImagePickerCubit(getIt.get<AdminRepo>()));
+  getIt.registerFactory<AddInStoreCubit>(() => AddInStoreCubit(
       adminRepo: getIt.get<AdminRepo>(),
-      imagePickerCubit:getIt.get<ImagePickerCubit>()
-    ) );
-    getIt.registerFactory<ProfileCubit>(() =>ProfileCubit(
+      imagePickerCubit: getIt.get<ImagePickerCubit>()));
+  getIt.registerFactory<ProfileCubit>(() => ProfileCubit(
       adminRepo: getIt.get<AdminRepo>(),
-      imagePickerCubit:getIt.get<ImagePickerCubit>()
-    ) );
-
+      imagePickerCubit: getIt.get<ImagePickerCubit>()));
 
   getIt.registerSingleton<HomeRepo>(
     HomeRepoImplimentation(
-
-      homeRemoteDataSource: HomeRemoteDataSourceImpl(databaseService: getIt.get<DatabaseService>()),
-
+      homeRemoteDataSource: HomeRemoteDataSourceImpl(
+          databaseService: getIt.get<DatabaseService>()),
     ),
   );
-
 
   final Stream<QuerySnapshot> phonesStream =
       FirebaseFirestore.instance.collection('phones').snapshots();
 
   // Register the Stream with GetIt
   getIt.registerSingleton<Stream<QuerySnapshot>>(phonesStream);
-
-
-
 }

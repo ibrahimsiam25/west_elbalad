@@ -1,17 +1,9 @@
-import 'package:hive/hive.dart';
-
 class PhoneEntites {
-
   final String id;
-
   final String type;
-
   final String name;
-
   final String description;
-
   final int price;
-
   final String imageUrl;
 
   PhoneEntites({
