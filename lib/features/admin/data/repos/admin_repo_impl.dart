@@ -19,50 +19,53 @@ class AdminRepoImpl extends AdminRepo {
   final ImagePickerService imagePickerService;
   final UserInformationsRemoteDataSource userInformationsRemoteDataSource;
   final UserInformationsLocalDataSource userInformationsLocalDataSource;
-  AdminRepoImpl({required this.userInformationsRemoteDataSource, 
+  AdminRepoImpl(
+      {required this.userInformationsRemoteDataSource,
       required this.userInformationsLocalDataSource,
-      required this.imagePickerService, required this.databaseService});
+      required this.imagePickerService,
+      required this.databaseService});
 
   @override
-Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers({bool isRefreshed = false}) async {
-  try {
-    List<UserInformationsEntity> usersList;
+  Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers(
+      {bool isRefreshed = false}) async {
+    try {
+      List<UserInformationsEntity> usersList;
 
-    if (isRefreshed) {
-      print("*****************Fetching data from remote data source due to refresh");
+      if (isRefreshed) {
+        print(
+            "*****************Fetching data from user remote data source due to refresh");
+        usersList = await userInformationsRemoteDataSource.fetchUsersData();
+        return right(usersList);
+      }
+
+      usersList = await userInformationsLocalDataSource.fetchUsersData();
+
+      if (usersList.isNotEmpty) {
+        print(
+            "*******************User information exists in local data source");
+        return right(usersList);
+      }
+
+      print(
+          "*********************User information does not exist in local data source, fetching from remote");
       usersList = await userInformationsRemoteDataSource.fetchUsersData();
       return right(usersList);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in fetchAllUsers: ${e.toString()}');
+      return left(
+        ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة أخرى.'),
+      );
     }
-
-    usersList = await userInformationsLocalDataSource.fetchUsersData();
-    
-    if (usersList.isNotEmpty) {
-      print("*******************User information exists in local data source");
-      return right(usersList);
-    }
-
-    print("*********************User information does not exist in local data source, fetching from remote");
-    usersList = await userInformationsRemoteDataSource.fetchUsersData();
-    return right(usersList);
-  } on CustomException catch (e) {
-    return left(ServerFailure(e.message));
-  } catch (e) {
-    log('Exception in fetchAllUsers: ${e.toString()}');
-    return left(
-      ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة أخرى.'),
-    );
   }
-}
-
 
   @override
   Future<void> uploadPhoneData(File image, Map<String, dynamic> data) async {
     String documentId = generateUniqueId();
-    String imageUrl = await databaseService.uploadImage(
-      image: image,
-      path: "phones/$documentId",
-    );
-   
+    String imageUrl =
+        await userInformationsRemoteDataSource.uploadImage(image, documentId);
+
     PhoneEntites phoneEntites = PhoneEntites(
       id: documentId,
       type: data["phoneType"],
@@ -71,10 +74,9 @@ Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers({bool isRefr
       imageUrl: imageUrl,
       price: int.parse(data["phonePrice"]),
     );
-    databaseService.addData(
-        documentId: documentId,
-        path: BackendEndpoint.addPhone,
-        data: PhoneModel.fromEntity(phoneEntites).toMap());
+
+    await userInformationsRemoteDataSource.addPhoneData(
+        PhoneModel.fromEntity(phoneEntites).toMap(), documentId);
   }
 
   @override
@@ -114,27 +116,16 @@ Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers({bool isRefr
   @override
   Future<Either<Failure, void>> deletePhoneData(String id) async {
     try {
-      await databaseService.deleteDocument(
-        documentId: id,
-        collectionName: BackendEndpoint.getPhone,
-      );
-     bool imageExists= await databaseService.checkIfImageExists("phones/$id" );
-     if(imageExists){
-       await databaseService.deleteImageFromStorage("phones/$id");
-     }
-     return right(null);
+      await userInformationsRemoteDataSource.deletePhoneData(id);
+      return right(null);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
-      } catch (e) {
-        return left(
-          ServerFailure(
-            'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
-          ),
-        );
-      }
+    } catch (e) {
+      return left(
+        ServerFailure(
+          'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        ),
+      );
     }
-    
-    
-    }
-
-  
+  }
+}
