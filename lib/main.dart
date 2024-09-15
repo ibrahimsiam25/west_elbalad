@@ -1,11 +1,12 @@
-import 'package:hive_flutter/adapters.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/service/get_it_service.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'core/service/custom_bloc_observer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'features/home/domian/entites/phone_entites.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
@@ -27,13 +28,16 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   await SharedPref.init();
 
+
+
   //Hive
   await Hive.initFlutter();
-  Hive.registerAdapter(
-    UserInformationsEntityAdapter(),
-  );
-  await Hive.openBox<UserInformationsEntity>(kUserInformationsHive);
+  
+  Hive.registerAdapter(UserInformationsEntityAdapter(),);
+  Hive.registerAdapter(PhoneEntitesAdapter());
 
+  await Hive.openBox<UserInformationsEntity>(kUserInformationsHive);
+  await Hive.openBox<PhoneEntites>(kPhoneDataHive);
   runApp(const MyApp());
 }
 

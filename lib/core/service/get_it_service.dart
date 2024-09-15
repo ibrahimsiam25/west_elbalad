@@ -7,13 +7,16 @@ import 'package:west_elbalad/core/service/firestore_service.dart';
 import 'package:west_elbalad/core/service/image_picker_serivce.dart';
 import 'package:west_elbalad/core/service/firebase_auth_service.dart';
 import 'package:west_elbalad/features/home/domian/repos/home_repo.dart';
+import '../../features/home/data/data_source/home_local_data_source.dart';
 import 'package:west_elbalad/features/admin/data/repos/admin_repo_impl.dart';
 import 'package:west_elbalad/features/home/data/repos/home_repo_Implimentation.dart';
 import '../../features/admin/data/data_sources/user_informations_local_data_source.dart';
 import '../../features/admin/presentation/manager/add_in_store/edit_in_store_cubit.dart';
+import 'package:west_elbalad/features/home/data/data_source/home_remote_data_source.dart';
 import 'package:west_elbalad/features/profile/presentation/manager/cubit/profile_cubit.dart';
 import 'package:west_elbalad/features/admin/presentation/manager/image_picker/image_picker_cubit.dart';
 import 'package:west_elbalad/features/admin/data/data_sources/user_informations_remote_data_source.dart';
+
 
 final getIt = GetIt.instance;
 void setupGetIt() {
@@ -49,6 +52,8 @@ void setupGetIt() {
 
   getIt.registerSingleton<HomeRepo>(
     HomeRepoImplimentation(
+      homeLocalDataSource:  HomeLocalDataSourceImpl() ,
+      homeRemoteDataSource: HomeRemoteDataSourceImpl(databaseService: getIt.get<DatabaseService>()),
       databaseService: getIt.get<DatabaseService>(),
     ),
   );

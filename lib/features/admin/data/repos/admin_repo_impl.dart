@@ -33,7 +33,7 @@ class AdminRepoImpl extends AdminRepo {
 
       if (isRefreshed) {
         print(
-            "*****************Fetching data from user remote data source due to refresh");
+            "*****************User ***********Fetching data from user remote data source due to refresh");
         usersList = await userInformationsRemoteDataSource.fetchUsersData();
         return right(usersList);
       }
@@ -42,12 +42,12 @@ class AdminRepoImpl extends AdminRepo {
 
       if (usersList.isNotEmpty) {
         print(
-            "*******************User information exists in local data source");
+            "*******************User********** information exists in local data source");
         return right(usersList);
       }
 
       print(
-          "*********************User information does not exist in local data source, fetching from remote");
+          "*********************User********** information does not exist in local data source, fetching from remote");
       usersList = await userInformationsRemoteDataSource.fetchUsersData();
       return right(usersList);
     } on CustomException catch (e) {
