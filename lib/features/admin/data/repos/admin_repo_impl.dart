@@ -50,7 +50,7 @@ class AdminRepoImpl extends AdminRepo {
       image: image,
       path: "phones/$documentId",
     );
-
+   
     PhoneEntites phoneEntites = PhoneEntites(
       id: documentId,
       type: data["phoneType"],
@@ -98,5 +98,31 @@ class AdminRepoImpl extends AdminRepo {
       );
     }
   }
-}
+
+  @override
+  Future<Either<Failure, void>> deletePhoneData(String id) async {
+    try {
+      await databaseService.deleteDocument(
+        documentId: id,
+        collectionName: BackendEndpoint.getPhone,
+      );
+     bool imageExists= await databaseService.checkIfImageExists("phones/$id" );
+     if(imageExists){
+       await databaseService.deleteImageFromStorage("phones/$id");
+     }
+     return right(null);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
+      } catch (e) {
+        return left(
+          ServerFailure(
+            'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+          ),
+        );
+      }
+    }
+    
+    
+    }
+
   

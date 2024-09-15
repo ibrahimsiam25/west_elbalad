@@ -1,6 +1,7 @@
 import 'add_in_store_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/widgets/custom_app_bar.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 import 'package:west_elbalad/core/constants/app_consts.dart';
@@ -8,6 +9,7 @@ import '../../../manager/add_in_store/edit_in_store_cubit.dart';
 import 'package:west_elbalad/core/functions/build_message_bar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:west_elbalad/features/admin/presentation/views/widgets/add_in_store/image_picker_bloc_builder.dart';
+
 
 
 
@@ -37,8 +39,10 @@ listener: (context, state) {
                 CustomAppBar(
                   title: "اضافة هاتف",
                 ),
-           imagePickerBlocBuilder(radius: kRadius48, width:150 , height: 200, defaultImage: AppAssets.avatar),
+              Spacer(flex: 1,),
+           imagePickerBlocBuilder(radius: kRadius48, width:150.w , height: 150.h, defaultImage: AppAssets.gallery),
                 AddInStoreViewBody(),
+                  Spacer(flex: 5,),
               ],
             ));
       },

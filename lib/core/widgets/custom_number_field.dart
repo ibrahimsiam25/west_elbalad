@@ -32,7 +32,7 @@ class CustomNumberField extends StatelessWidget {
         if (value == null || value.isEmpty) {
           return 'هذا الحقل مطلوب';
         }
-        final number = double.tryParse(value);
+        final number = int.tryParse(value);
         if (number == null) {
           return 'ادخل رقم صحيح';
         }

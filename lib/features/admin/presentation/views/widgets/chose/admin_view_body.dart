@@ -42,9 +42,9 @@ class AdminViewBody extends StatelessWidget {
               ),
                         CustomAdminViewCard(
                 onPressed: () {
-                  GoRouter.of(context).push(AppRouter.kEditInStoreView);
+                  GoRouter.of(context).push(AppRouter.kRemoveFromStoreView);
                 },
-                title: "التعديل في المتجر"
+                title: "حذف منتج ",
               ),
             ],
           ),

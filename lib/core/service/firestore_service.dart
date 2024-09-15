@@ -40,7 +40,7 @@ class FireStoreService implements DatabaseService {
     String collectionName) async {
   try {
 
-    final querySnapshot = await FirebaseFirestore.instance
+    final querySnapshot = await firestore
         .collection(collectionName)
         .get();
 
@@ -110,6 +110,87 @@ class FireStoreService implements DatabaseService {
       );
     }
   }
+  @override
+  Future<void>deleteDocument({required String collectionName,required String documentId}) async {
+  try {
+    // Delete the document from the specified collection
+    await firestore
+        .collection(collectionName)
+        .doc(documentId)
+        .delete();
+     print("Document deleted successfully from $collectionName. Document ID: $documentId");
+    log("Document with ID: $documentId successfully deleted from $collectionName.");
+  } on FirebaseException catch (e) {
+    // Handle Firestore-specific errors
+    log("Error deleting document: ${e.message}");
+    switch (e.code) {
+      case 'permission-denied':
+        throw CustomException(
+          message: 'ليس لديك صلاحية لحذف هذه البيانات.',
+        );
+      case 'not-found':
+        throw CustomException(
+          message: 'المستند غير موجود.',
+        );
+      default:
+        throw CustomException(
+          message: 'حدث خطأ أثناء حذف المستند.',
+        );
+    }
+  } catch (e) {
+    // Handle any other errors
+    log("Unexpected error: ${e.toString()}");
+    throw CustomException(
+      message: 'حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا.',
+    );
+  }
+}
+@override
+Future<void> deleteImageFromStorage(String imagePath) async {
+  try {
+    // Create a reference to the file to delete
+    Reference storageReference = FirebaseStorage.instance.ref().child(imagePath);
 
+    // Delete the file
+    await storageReference.delete();
+
+    print('File deleted successfully');
+  } on FirebaseException catch (e) {
+    // Handle Firebase-specific errors
+    print('Failed to delete file: ${e.message}');
+    throw CustomException(message: 'تعذر حذف الصورة: ${e.message}');
+  } catch (e) {
+    // Handle other potential errors
+    print('An unexpected error occurred: $e');
+    throw CustomException(message: 'حدث خطأ غير متوقع أثناء حذف الصورة.');
+  }
+}
+@override
+Future<bool> checkIfImageExists(String imagePath) async {
+  try {
+
+    Reference storageReference=storage.ref().child(imagePath);
+
+    // Try to fetch the download URL (or use storageReference.getMetadata() for metadata)
+    await storageReference.getDownloadURL();
+
+    // If successful, the image exists
+    return true;
+  } on FirebaseException catch (e) {
+    // Handle the case where the image does not exist
+    if (e.code == 'object-not-found') {
+      print('Image does not exist in Firebase Storage.');
+      return false;
+    } else {
+      // Handle other Firebase exceptions
+      print('FirebaseException: ${e.message}');
+      return false;
+    }
+  } catch (e) {
+    // Handle any other unexpected errors
+    print('An unexpected error occurred: $e');
+    return false;
+  }
+}
 
 }

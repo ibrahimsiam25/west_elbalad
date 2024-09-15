@@ -9,9 +9,13 @@ abstract class DatabaseService {
     required String path,
     required String docuementId,
   });
- Future<List<Map<String, dynamic>>> fetchAllDocuments(String collectionName);
+  Future<void> deleteDocument(
+      {required String collectionName, required String documentId});
+  Future<List<Map<String, dynamic>>> fetchAllDocuments(String collectionName);
 
   Future<bool> checkIfDataExists(
       {required String path, required String docuementId});
   Future<String> uploadImage({required File image, required String path});
+  Future<void> deleteImageFromStorage(String imagePath);
+  Future<bool> checkIfImageExists(String imagePath);
 }

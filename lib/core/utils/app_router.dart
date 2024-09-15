@@ -6,9 +6,9 @@ import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/auth/presentation/views/verification_view.dart';
 import '../../features/admin/presentation/views/add_in_store_view.dart';
-import '../../features/admin/presentation/views/edit_in_store_view.dart';
 import '../../features/auth/presentation/views/forget_password_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/admin/presentation/views/remove_from_store_view.dart';
 import '../../features/admin/presentation/views/users_informatins_view.dart';
 import 'package:west_elbalad/features/splash/presentation/views/splash_view.dart';
 import 'package:west_elbalad/features/profile/presentation/views/profile_view.dart';
@@ -27,12 +27,12 @@ abstract class AppRouter {
   static const kAdminView = '/adminView';
   static const kusersInformatinsView = '/usersInformatinsView';
   static const kAddInStoreView = '/AddInStoreView';
-  static const kEditInStoreView = '/EditInStoreView';
+  static const kRemoveFromStoreView = '/RemoveFromStoreView';
 
   static final router = GoRouter(
     routes: [
       GoRoute(
-        path: "/s",
+        path: "/",
         builder: (context, state) => SplashView(),
       ),
       GoRoute(
@@ -83,8 +83,8 @@ abstract class AppRouter {
           path: kAddInStoreView,
           builder: (context, state) => const AddInStoreView()),
       GoRoute(
-          path: "/",
-          builder: (context, state) => const EditInStoreView()),
+          path: kRemoveFromStoreView,
+          builder: (context, state) => const RemoveFromStoreView()),
     ],
   );
 }

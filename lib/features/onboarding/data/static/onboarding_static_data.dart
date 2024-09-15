@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/onboarding_model.dart';
+import 'package:west_elbalad/core/constants/app_colors.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 
 
@@ -8,7 +9,7 @@ List<OnboardingModel> onboardingList = [
     image: AppAssets.onboarding1,
     title: 'احدث الهواتف بين يديك',
     subtitle: 'استمتع بتشكيلة واسعة من أحدث الهواتف الذكية بأفضل الأسعار.',
-    backgroundColor: Color(0xFF00B44D),
+    backgroundColor: AppColors.primary,
     textColor: Colors.white, // Bright magenta
   ),
   OnboardingModel(

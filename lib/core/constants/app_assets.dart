@@ -1,4 +1,5 @@
 class AppAssets {
+  static const spalsh= 'assets/images/splash.gif';
   static const onboarding1 = 'assets/images/onboarding1.json';
   static const onboarding2 = 'assets/images/onboarding2.json';
   static const onboarding3 = 'assets/images/onboarding3.json';
@@ -16,4 +17,5 @@ class AppAssets {
   static const avatar = "assets/images/avatar.gif";
   static const successfull = "assets/images/successfull.gif";
   static const admin = "assets/images/admin.png";
+  static const gallery ="assets/images/gallery.png" ;
 }
