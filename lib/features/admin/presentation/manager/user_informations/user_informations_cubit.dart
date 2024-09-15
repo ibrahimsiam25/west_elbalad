@@ -9,11 +9,11 @@ class UserInformationsCubit extends Cubit<UserInformationsState> {
   
   UserInformationsCubit(this.adminRepo) : super(UserInformationsInitial());
   final AdminRepo adminRepo;
-  Future<void>fetchUserInformations()async{
+  Future<void>fetchUserInformations({bool isRefreshed = false})async{
 
     emit(UserInformationsLoading());
 
-    final result = await adminRepo.fetchAllUsers();
+    final result = await adminRepo.fetchAllUsers(isRefreshed: isRefreshed);
     result.fold(
       (failure) => emit(UserInformationsFailure(message: failure.message)),
       (userInformations) => emit(UserInformationsSuccess(userInformations: userInformations)),

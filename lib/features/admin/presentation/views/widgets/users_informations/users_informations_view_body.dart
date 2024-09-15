@@ -17,7 +17,7 @@ class UsersInformationsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        BlocProvider.of<UserInformationsCubit>(context).fetchUserInformations();
+        BlocProvider.of<UserInformationsCubit>(context).fetchUserInformations(isRefreshed:true);
       },
       color: AppColors.black,
       backgroundColor: Colors.white,
