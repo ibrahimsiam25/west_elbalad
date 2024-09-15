@@ -43,17 +43,20 @@ class SelectedPhones extends StatelessWidget {
               Icons.error,
             ),
           ),
-          SizedBox(height: 4.0.h),
+          SizedBox(height: 8.0.h),
           SizedBox(
             width: 128.0.w,
             child: Center(
               child: Text(
                 phones.name,
                 textAlign: TextAlign.center,
-                style: AppStyles.title,
+                style: AppStyles.title.copyWith(
+                  height: 1,
+                ),
               ),
             ),
           ),
+          SizedBox(height: 4.0.h),
           SizedBox(
             width: 128.0.w,
             child: Center(
@@ -62,7 +65,9 @@ class SelectedPhones extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
-                style: AppStyles.subtitle,
+                style: AppStyles.subtitle.copyWith(
+                  height: 1.3,
+                ),
               ),
             ),
           ),

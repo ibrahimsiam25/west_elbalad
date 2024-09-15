@@ -6,17 +6,16 @@ import 'package:west_elbalad/features/admin/domain/entities/user_informations_en
 part 'user_informations_state.dart';
 
 class UserInformationsCubit extends Cubit<UserInformationsState> {
-  
   UserInformationsCubit(this.adminRepo) : super(UserInformationsInitial());
   final AdminRepo adminRepo;
-  Future<void>fetchUserInformations({bool isRefreshed = false})async{
-
+  Future<void> fetchUserInformations({bool isRefreshed = false}) async {
     emit(UserInformationsLoading());
 
     final result = await adminRepo.fetchAllUsers(isRefreshed: isRefreshed);
     result.fold(
       (failure) => emit(UserInformationsFailure(message: failure.message)),
-      (userInformations) => emit(UserInformationsSuccess(userInformations: userInformations)),
+      (userInformations) =>
+          emit(UserInformationsSuccess(userInformations: userInformations)),
     );
   }
 }

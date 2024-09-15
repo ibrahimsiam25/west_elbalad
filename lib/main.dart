@@ -1,8 +1,8 @@
+import 'package:hive_flutter/adapters.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/service/get_it_service.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'core/service/custom_bloc_observer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,7 +13,6 @@ import 'package:west_elbalad/core/constants/app_consts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'features/admin/domain/entities/user_informations_entites.dart';
 import 'package:west_elbalad/core/service/shared_preferences_singleton.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,9 +28,11 @@ void main() async {
   await SharedPref.init();
 
   //Hive
-   await Hive.initFlutter();
- Hive.registerAdapter(UserInformationsEntityAdapter(),);
- await Hive.openBox<UserInformationsEntity>(kUserInformationsHive);
+  await Hive.initFlutter();
+  Hive.registerAdapter(
+    UserInformationsEntityAdapter(),
+  );
+  await Hive.openBox<UserInformationsEntity>(kUserInformationsHive);
 
   runApp(const MyApp());
 }

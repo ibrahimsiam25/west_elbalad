@@ -17,22 +17,22 @@ class CustomShowImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(kRadius88),
-      ),
-      height: height,
-      width: width,
-      child: image != null
-          ? Image.file(
+    return image != null
+        ? Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(kRadius88),
+            ),
+            height: height,
+            width: width,
+            child: Image.file(
               image!,
               fit: BoxFit.fill,
-            )
-          : Image.asset(
-              defaultImage,
-              fit: BoxFit.fill,
-            ),
-    );
+            ))
+        : Image.asset(
+            width: width,
+            height: height,
+            defaultImage,
+          );
   }
 }
