@@ -30,7 +30,7 @@ class _AddInStoreViewBodyState extends State<AddInStoreViewBody> {
         padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
         child: Column(
           children: [
-            SizedBox(height: 40.0),
+            SizedBox(height: 32.0),
             CustomTextFormField(
               onSaved: (value) {
                 phoneName = value!;

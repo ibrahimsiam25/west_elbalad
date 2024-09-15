@@ -40,7 +40,7 @@ class ProfileViewBodyBlocConsumer extends StatelessWidget {
                 height: 180,
                 defaultImage: AppAssets.avatar,
               ),
-              SizedBox(height: 16.0.h),
+              SizedBox(height: 32.0.h),
               ProfileViewBody(),
             ],
           ),
