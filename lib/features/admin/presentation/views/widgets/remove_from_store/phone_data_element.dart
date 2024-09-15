@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../core/constants/app_consts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,8 +9,6 @@ import 'package:west_elbalad/core/constants/app_colors.dart';
 import '../../../manager/remove_from_store/remove_from_store_cubit.dart';
 import '../../../../../../core/widgets/show_delete_confirmation_dialog.dart';
 import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
-
-
 
 class PhoneDataElement extends StatelessWidget {
   const PhoneDataElement({super.key, required this.phoneEntites});
@@ -26,10 +26,26 @@ class PhoneDataElement extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          CachedNetworkImage(
+            imageUrl: phoneEntites.imageUrl,
+            height: 128.0.h,
+            placeholder: (context, url) => Skeletonizer(
+              containersColor: AppColors.darkGrey,
+              child: Container(
+                width: 128.0.w,
+                height: 128.0.h,
+                color: AppColors.white,
+              ),
+            ),
+            errorWidget: (context, url, error) => Icon(
+              Icons.error,
+            ),
+          ),
+          SizedBox(height: 16.0.h),
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "نوع الهاتف:   ${phoneEntites.name}",
+              "اسم الشركة:    ${phoneEntites.type}".toUpperCase(),
               style: AppStyles.semiBold16,
             ),
           ),
@@ -37,7 +53,7 @@ class PhoneDataElement extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "اسم الشركة:    ${phoneEntites.type}",
+              "نوع الهاتف:   ${phoneEntites.name}",
               style: AppStyles.semiBold16,
             ),
           ),
@@ -58,25 +74,25 @@ class PhoneDataElement extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.0.h),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                minimumSize:
-                    Size(MediaQuery.of(context).size.width * 0.3, 40.h),
-                backgroundColor: AppColors.red,
-              ),
-              onPressed: () {
-                showDeleteConfirmationDialog(context, 'هل أنت متأكد من حذف ${phoneEntites.name}  ${phoneEntites.type} ؟',() {
-               BlocProvider.of<RemoveFromStoreCubit>(context)
-              .deletePhoneData(phoneEntites.id);
-                    
-                });
-              },
-              child: Text(
-                "حذف",
-                style: AppStyles.semiBold16.copyWith(color: AppColors.white),
-              ),
+          TextButton(
+            style: TextButton.styleFrom(
+              minimumSize: Size(MediaQuery.of(context).size.width * 0.3, 40.h),
+              backgroundColor: AppColors.red,
+              padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+            ),
+            onPressed: () {
+              showDeleteConfirmationDialog(
+                context,
+                'هل أنت متأكد من حذف ${phoneEntites.name}  ${phoneEntites.type} ؟',
+                () {
+                  BlocProvider.of<RemoveFromStoreCubit>(context)
+                      .deletePhoneData(phoneEntites.id);
+                },
+              );
+            },
+            child: Text(
+              "حذف المنتج",
+              style: AppStyles.semiBold16.copyWith(color: AppColors.white),
             ),
           ),
         ],
@@ -84,4 +100,3 @@ class PhoneDataElement extends StatelessWidget {
     );
   }
 }
-
