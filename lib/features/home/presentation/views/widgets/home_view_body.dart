@@ -10,7 +10,6 @@ import 'package:west_elbalad/features/home/presentation/views/widgets/selected_p
 import 'package:west_elbalad/features/home/presentation/manager/phones_filter/filter_cubit.dart';
 import 'package:west_elbalad/features/home/presentation/manager/phones_data/phones_data_cubit.dart';
 
-
 var selectedType = 'samsung';
 
 class HomeViewBody extends StatelessWidget {
@@ -26,17 +25,18 @@ class HomeViewBody extends StatelessWidget {
       create: (context) => FilterListCubit(),
       child: RefreshIndicator(
         onRefresh: () async {
-          BlocProvider.of<PhonesDataCubit>(context).fetchPhonesData(isRefreshed: true);
+          BlocProvider.of<PhonesDataCubit>(context)
+              .fetchPhonesData(isRefreshed: true);
         },
-         color: AppColors.black,
-      backgroundColor: AppColors.white,
+        color: AppColors.black,
+        backgroundColor: AppColors.white,
         child: SingleChildScrollView(
           child: Column(
             children: [
               //AppBar
               HomeAppbar(), //Banner
               //حط الاعلان هنا يعم ابراهيم
-              //لسة دا هيتظبط
+
               SizedBox(height: 16.0.h),
               BlocBuilder<FilterListCubit, int>(
                 builder: (context, state) {
@@ -45,8 +45,15 @@ class HomeViewBody extends StatelessWidget {
                     'oppo',
                     'realme',
                     'mi',
+                    'nokia',
                     ...phones.map((phone) => phone.type).toList()
                   ].toSet().toList();
+                  final selectedPhones = phones
+                      .where(
+                        (phone) => phone.type == orderedPhones[state],
+                      )
+                      .map((phone) => SelectedPhones(phones: phone))
+                      .toList();
                   return Column(
                     children: [
                       //Filters
@@ -58,20 +65,26 @@ class HomeViewBody extends StatelessWidget {
                       Wrap(
                         spacing: 16.0.w,
                         children: [
-                          ...phones
-                              .where(
-                                (phone) => phone.type == orderedPhones[state],
-                              )
-                              .map((phone) => SelectedPhones(phones: phone))
-                              .toList(),
-                          //For alighnment
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: kHorizontalPadding),
-                            child: SizedBox(
-                              width: 128.0.w,
+                          ...selectedPhones,
+                          //For alighnment and refresh
+                          if (selectedPhones.length == 1)
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: kHorizontalPadding),
+                              child: SizedBox(
+                                width: 128.0.w,
+                                height: 300.0.w,
+                              ),
                             ),
-                          )
+                          if (selectedPhones.length == 2)
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: kHorizontalPadding),
+                              child: SizedBox(
+                                width: 128.0.w,
+                                height: 300.0.w,
+                              ),
+                            )
                         ],
                       )
                     ],
