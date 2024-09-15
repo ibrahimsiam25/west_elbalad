@@ -28,16 +28,15 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   await SharedPref.init();
 
-
-
   //Hive
   await Hive.initFlutter();
-  
-  Hive.registerAdapter(UserInformationsEntityAdapter(),);
-  Hive.registerAdapter(PhoneEntitesAdapter());
+
+  Hive.registerAdapter(
+    UserInformationsEntityAdapter(),
+  );
 
   await Hive.openBox<UserInformationsEntity>(kUserInformationsHive);
-  await Hive.openBox<PhoneEntites>(kPhoneDataHive);
+
   runApp(const MyApp());
 }
 

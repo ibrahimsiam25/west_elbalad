@@ -12,7 +12,7 @@ const String kIsOnBoardingView = 'isOnBoardingView';
 const String kIsSigninView = 'isSigninView';
 const String kUserData = 'isUserData';
 const String kUserInformationsHive = 'UserInformationsHive';
-const String kPhoneDataHive = 'PhoneDataHive';
+
 
 List<String> governorates = [
   'القاهرة',

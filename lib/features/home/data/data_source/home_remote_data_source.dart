@@ -19,7 +19,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
        final List<PhoneEntites> phoneList = phonesData.map((data) {
         return PhoneModel.fromMap(data);
       }).toList();
-   saveData<PhoneEntites>(phoneList, kPhoneDataHive);
+
  return phoneList;
   }
 }

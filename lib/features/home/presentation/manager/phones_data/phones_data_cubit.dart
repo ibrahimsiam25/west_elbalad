@@ -15,19 +15,11 @@ class PhonesDataCubit extends Cubit<PhonesDataState> {
 
   final HomeRepo homeRepo;
  final Stream<QuerySnapshot> phonesStream;
-  Future<void> fetchPhonesData({bool isRefreshed = false}) async {
-    emit(PhonesDataLoading());
-    final result = await homeRepo.fetchPhonesData(isRefreshed: isRefreshed);
 
-    result.fold(
-      (failure) => emit(PhonesDataFailure(message: failure.message)),
-      (phones) => emit(PhonesDataSuccess(phonesList: phones)),
-    );
-  }
     Future<void> fetchPhonesStreamData(QuerySnapshot snapshot) async {
     emit(PhonesDataLoading());
      print("*****************************fetchPhonesStreamData**********************");
-    final result = await homeRepo.fetchPhonesData(isRefreshed: true);
+    final result = await homeRepo.fetchPhonesData();
 
     result.fold(
       (failure) => emit(PhonesDataFailure(message: failure.message)),
