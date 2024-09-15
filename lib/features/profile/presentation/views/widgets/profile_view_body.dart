@@ -9,56 +9,53 @@ class ProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 16.0.h),
-                //Name
-                CustomTextFormField(
-                  initialValue: 'ابراهيم فتحي ابراهيم ابراهيم',
-                  prefixIcon: Icon(
-                    Icons.person,
-                  ),
-                  textInputType: TextInputType.name,
+    return Center(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //Name
+              CustomTextFormField(
+                initialValue: 'ابراهيم فتحي ابراهيم ابراهيم',
+                prefixIcon: Icon(
+                  Icons.person,
                 ),
-                SizedBox(height: 8.0.h),
-                //Email
-                CustomTextFormField(
-                  initialValue: 'ibrahimfathi@gmail.com',
-                  prefixIcon: Icon(
-                    Icons.mail,
-                  ),
-                  textInputType: TextInputType.emailAddress,
+                textInputType: TextInputType.name,
+              ),
+              SizedBox(height: 8.0.h),
+              //Email
+              CustomTextFormField(
+                initialValue: 'ibrahimfathi@gmail.com',
+                prefixIcon: Icon(
+                  Icons.mail,
                 ),
-                SizedBox(height: 8.0.h),
-                //Phone
-                CustomTextFormField(
-                  initialValue: '01015757898',
-                  prefixIcon: Icon(
-                    Icons.phone,
-                  ),
-                  textInputType: TextInputType.number,
+                textInputType: TextInputType.emailAddress,
+              ),
+              SizedBox(height: 8.0.h),
+              //Phone
+              CustomTextFormField(
+                initialValue: '01015757898',
+                prefixIcon: Icon(
+                  Icons.phone,
                 ),
-                SizedBox(height: 8.0.h),
-                //Governorate
-                SelectGover(),
-                SizedBox(height: 8.0.h),
-                //Address
-                CustomTextFormField(
-                  hintText: 'العنوان',
-                  prefixIcon: Icon(
-                    Icons.location_city,
-                  ),
-                  textInputType: TextInputType.name,
+                textInputType: TextInputType.number,
+              ),
+              SizedBox(height: 8.0.h),
+              //Governorate
+              SelectGover(),
+              SizedBox(height: 8.0.h),
+              //Address
+              CustomTextFormField(
+                hintText: 'العنوان',
+                prefixIcon: Icon(
+                  Icons.location_city,
                 ),
-                SizedBox(height: 16.0.h),
-              ],
-            ),
+                textInputType: TextInputType.name,
+              ),
+              SizedBox(height: 16.0.h),
+            ],
           ),
         ),
       ),
