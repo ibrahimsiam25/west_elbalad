@@ -68,9 +68,9 @@ class AdminRepoImpl extends AdminRepo {
 
     PhoneEntites phoneEntites = PhoneEntites(
       id: documentId,
-      type:data["phoneName"].toUpperCase(),
-      name: data["phoneType"],
-      description: data["phoneDescription"],
+      type:data["phoneType"].toLowerCase(),
+      name: data["phoneName"].toLowerCase(),
+      description: data["phoneDescription"].toLowerCase(),
       imageUrl: imageUrl,
       price: int.parse(data["phonePrice"]),
     );

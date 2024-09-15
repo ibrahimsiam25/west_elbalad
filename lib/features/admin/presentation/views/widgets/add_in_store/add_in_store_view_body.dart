@@ -33,7 +33,7 @@ class _AddInStoreViewBodyState extends State<AddInStoreViewBody> {
             SizedBox(height: 32.0),
             CustomTextFormField(
               onSaved: (value) {
-                phoneName = value!;
+                  phoneType = value!;
               },
               hintText: "اسم الشركة",
               textInputType: TextInputType.text,
@@ -41,7 +41,7 @@ class _AddInStoreViewBodyState extends State<AddInStoreViewBody> {
             SizedBox(height: 16.0),
             CustomTextFormField(
               onSaved: (value) {
-                phoneType = value!;
+            phoneName = value!;
               },
               hintText: "نوع الهاتف",
               textInputType: TextInputType.text,
