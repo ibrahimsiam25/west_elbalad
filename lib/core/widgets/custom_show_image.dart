@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:west_elbalad/core/constants/app_consts.dart';
 
 class CustomShowImage extends StatelessWidget {
   final File? image;
@@ -18,17 +17,11 @@ class CustomShowImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return image != null
-        ? Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(kRadius88),
-            ),
-            height: height,
+        ? Image.file(
+            image!,
             width: width,
-            child: Image.file(
-              image!,
-              fit: BoxFit.fill,
-            ))
+            height: height,
+          )
         : Image.asset(
             width: width,
             height: height,
