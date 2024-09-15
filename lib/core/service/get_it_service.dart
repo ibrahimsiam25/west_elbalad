@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../features/auth/domain/repos/auth_repo.dart';
 import '../../features/admin/domain/repos/admin_repo.dart';
 import '../../features/auth/data/repos/auth_repo_impl.dart';
@@ -57,4 +58,14 @@ void setupGetIt() {
 
     ),
   );
+
+
+  final Stream<QuerySnapshot> phonesStream =
+      FirebaseFirestore.instance.collection('phones').snapshots();
+
+  // Register the Stream with GetIt
+  getIt.registerSingleton<Stream<QuerySnapshot>>(phonesStream);
+
+
+
 }

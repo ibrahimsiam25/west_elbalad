@@ -26,7 +26,7 @@ class HomeViewBody extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: () async {
           BlocProvider.of<PhonesDataCubit>(context)
-              .fetchPhonesData(isRefreshed: true);
+              .fetchPhonesData();
         },
         color: AppColors.black,
         backgroundColor: AppColors.white,

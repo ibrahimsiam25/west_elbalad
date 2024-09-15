@@ -16,7 +16,7 @@ class RemoveFromStoreView extends StatelessWidget {
       body: BlocProvider(
         create: (context) => RemoveFromStoreCubit(getIt<AdminRepo>(),
         getIt<HomeRepo>(),
-        )..fetchPhonesData(isRefreshed: true),
+        )..fetchPhonesData(),
         child: RemoveFromStoreViewBodyBlocConsumer(),
       ),
     );

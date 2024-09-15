@@ -13,7 +13,7 @@ class RemoveFromStoreCubit extends Cubit<RemoveFromStoreState> {
   final HomeRepo homeRepo ;
   Future<void> fetchPhonesData({bool isRefreshed = false}) async {
     emit(RemoveFromStoreLoading());
-    final result = await homeRepo.fetchPhonesData(isRefreshed: isRefreshed);
+    final result = await homeRepo.fetchPhonesData();
 
     result.fold(
       (failure) => emit(RemoveFromStoreFailure(message: failure.message)),
@@ -23,12 +23,14 @@ class RemoveFromStoreCubit extends Cubit<RemoveFromStoreState> {
 
   Future<void> deletePhoneData(String id) async {
     final result = await adminRepo.deletePhoneData(id);
-    result.fold(
-      (failure) => emit(RemoveFromStoreFailure(message: failure.message)),
-      (Null) {
-        emit(removePhoneSuccess());
-        fetchPhonesData(  isRefreshed: true);
-      },
-    );
+   result.fold(
+    (failure) {
+      // Handle the failure case
+      emit(RemoveFromStoreFailure(message: failure.message));
+    },
+    (_) {
+      // No need to handle success, do nothing here
+    },
+  );
   }
 }

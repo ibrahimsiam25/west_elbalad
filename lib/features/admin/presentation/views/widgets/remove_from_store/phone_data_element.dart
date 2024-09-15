@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -6,6 +5,7 @@ import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../core/constants/app_consts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../manager/remove_from_store/remove_from_store_cubit.dart';
 import '../../../../../../core/widgets/show_delete_confirmation_dialog.dart';
 import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
@@ -87,6 +87,7 @@ class PhoneDataElement extends StatelessWidget {
                 () {
                   BlocProvider.of<RemoveFromStoreCubit>(context)
                       .deletePhoneData(phoneEntites.id);
+                      Navigator.pop(context);
                 },
               );
             },
