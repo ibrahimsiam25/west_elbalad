@@ -31,8 +31,13 @@ class HomeViewBody extends StatelessWidget {
             SizedBox(height: 16.0.h),
             BlocBuilder<FilterListCubit, int>(
               builder: (context, state) {
-                final uniquePhoneTypes =
-                    phones.map((phone) => phone.type).toSet().toList();
+                final orderedPhones = [
+                  'samsung',
+                  'oppo',
+                  'realme',
+                  'mi',
+                  ...phones.map((phone) => phone.type).toList()
+                ].toSet().toList();
                 return Column(
                   children: [
                     //Filters
@@ -46,7 +51,7 @@ class HomeViewBody extends StatelessWidget {
                       children: [
                         ...phones
                             .where(
-                              (phone) => phone.type == uniquePhoneTypes[state],
+                              (phone) => phone.type == orderedPhones[state],
                             )
                             .map((phone) => SelectedPhones(phones: phone))
                             .toList(),

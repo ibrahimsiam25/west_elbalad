@@ -21,19 +21,23 @@ class Filters extends StatelessWidget {
       child: Center(
         child: BlocBuilder<FilterListCubit, int>(
           builder: (context, state) {
-            // Assuming phones is a List<PhoneEntites>
-            final uniquePhoneTypes =
-                phones.map((phone) => phone.type).toSet().toList();
+            final orderedPhones = [
+              'samsung',
+              'oppo',
+              'realme',
+              'mi',
+              'nokia',
+              ...phones.map((phone) => phone.type).toList()
+            ].toSet().toList();
 
             return ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: uniquePhoneTypes.length,
+              itemCount: orderedPhones.length,
               itemBuilder: (context, index) {
-                final phoneType = uniquePhoneTypes[index];
+                final phoneType = orderedPhones[index];
                 return Padding(
                   padding: EdgeInsets.only(
-                      left:
-                          index == uniquePhoneTypes.length - 1 ? 16.0.w : 4.0.w,
+                      left: index == orderedPhones.length - 1 ? 16.0.w : 4.0.w,
                       right: index == 0 ? 16.0.w : 0),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(kRadius24),
