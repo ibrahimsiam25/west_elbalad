@@ -20,9 +20,9 @@ class SidingText extends StatelessWidget {
           position: slidingAnimation,
           child: Text(
             "FOR MOBILE SERVICE",
-            style: AppStyles.title.copyWith(
+            style: AppStyles.subtitle.copyWith(
               color: AppColors.green,
-              fontSize: 16.0.sp,
+              fontSize: 14.0.sp,
               letterSpacing: 4.0.w,
             ),
           ),

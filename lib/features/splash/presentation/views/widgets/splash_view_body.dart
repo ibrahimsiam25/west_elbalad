@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/constants/app_consts.dart';
 import 'package:west_elbalad/core/utils/app_router.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:west_elbalad/core/constants/app_assets.dart';
 import '../../../../../core/service/shared_preferences_singleton.dart';
 import 'package:west_elbalad/features/splash/presentation/views/widgets/sliding_text.dart';
@@ -66,7 +66,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image.asset(AppAssets.spalsh),
-        SizedBox(height: 24.0.h),
+        SizedBox(height: 4.0.h),
         SidingText(slidingAnimation: slidingAnimation),
       ],
     );
