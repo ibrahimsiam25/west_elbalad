@@ -6,6 +6,7 @@ double kRadius16 = 16.0.r;
 double kRadius24 = 24.0.r;
 double kRadius32 = 32.0.r;
 double kRadius48 = 48.0.r;
+double kRadius88 = 88.0.r;
 String appFontCairo = 'Cairo';
 const String kIsOnBoardingView = 'isOnBoardingView';
 const String kIsSigninView = 'isSigninView';
