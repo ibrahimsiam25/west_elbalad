@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:west_elbalad/core/utils/backend_endpoints.dart';
 import 'package:west_elbalad/features/home/domian/repos/home_repo.dart';
 import 'package:west_elbalad/features/home/domian/entites/phone_entites.dart';
 
