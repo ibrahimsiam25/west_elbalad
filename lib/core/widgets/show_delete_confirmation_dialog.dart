@@ -11,6 +11,7 @@ void showDeleteConfirmationDialog(
 ) {
   AwesomeDialog(
     context: context,
+    dialogBackgroundColor: AppColors.white,
     dialogType: DialogType.warning,
     width: MediaQuery.of(context).size.width * 0.90,
     buttonsBorderRadius: BorderRadius.all(Radius.circular(8.0.r)),
