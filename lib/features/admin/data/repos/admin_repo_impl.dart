@@ -8,14 +8,13 @@ import 'package:west_elbalad/core/errors/failure.dart';
 import '../../../home/domian/entites/phone_entites.dart';
 import '../../../../core/functions/generate_unique_id.dart';
 import '../../../../core/service/image_picker_serivce.dart';
-import 'package:west_elbalad/core/utils/backend_endpoints.dart';
 import 'package:west_elbalad/features/admin/domain/repos/admin_repo.dart';
 import 'package:west_elbalad/features/admin/domain/entities/user_informations_entites.dart';
 import 'package:west_elbalad/features/admin/data/data_sources/user_informations_local_data_source.dart';
 import 'package:west_elbalad/features/admin/data/data_sources/user_informations_remote_data_source.dart';
 
 class AdminRepoImpl extends AdminRepo {
-  final DatabaseService databaseService;
+
   final ImagePickerService imagePickerService;
   final UserInformationsRemoteDataSource userInformationsRemoteDataSource;
   final UserInformationsLocalDataSource userInformationsLocalDataSource;
@@ -23,7 +22,7 @@ class AdminRepoImpl extends AdminRepo {
       {required this.userInformationsRemoteDataSource,
       required this.userInformationsLocalDataSource,
       required this.imagePickerService,
-      required this.databaseService});
+      });
 
   @override
   Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers(
@@ -89,29 +88,29 @@ class AdminRepoImpl extends AdminRepo {
     return imagePickerService.uploadImageFromGallery();
   }
 
-  @override
-  Future<Either<Failure, List<PhoneEntites>>> fetchPhonesData() async {
-    try {
-      final List<Map<String, dynamic>> phonesData =
-          await databaseService.fetchAllDocuments(BackendEndpoint.getPhone);
-      final List<PhoneEntites> phoneList = phonesData.map((data) {
-        return PhoneModel.fromMap(data);
-      }).toList();
+  // @override
+  // Future<Either<Failure, List<PhoneEntites>>> fetchPhonesData() async {
+  //   try {
+  //     final List<Map<String, dynamic>> phonesData =
+  //         await databaseService.fetchAllDocuments(BackendEndpoint.getPhone);
+  //     final List<PhoneEntites> phoneList = phonesData.map((data) {
+  //       return PhoneModel.fromMap(data);
+  //     }).toList();
 
-      return right(phoneList);
-    } on CustomException catch (e) {
-      return left(ServerFailure(e.message));
-    } catch (e) {
-      log(
-        'Exception in AuthRepoImpl.fetchAllPhones: ${e.toString()}',
-      );
-      return left(
-        ServerFailure(
-          'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
-        ),
-      );
-    }
-  }
+  //     return right(phoneList);
+  //   } on CustomException catch (e) {
+  //     return left(ServerFailure(e.message));
+  //   } catch (e) {
+  //     log(
+  //       'Exception in AuthRepoImpl.fetchAllPhones: ${e.toString()}',
+  //     );
+  //     return left(
+  //       ServerFailure(
+  //         'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+  //       ),
+  //     );
+  //   }
+  // }
 
   @override
   Future<Either<Failure, void>> deletePhoneData(String id) async {
