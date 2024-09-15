@@ -7,7 +7,7 @@ import 'package:west_elbalad/features/admin/domain/entities/user_informations_en
 abstract class AdminRepo {
   Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers(
       {bool isRefreshed = false});
- // Future<Either<Failure, List<PhoneEntites>>> fetchPhonesData();
+ Future<Either<Failure, List<PhoneEntites>>> fetchPhonesData();
   Future<Either<Failure, void>> deletePhoneData(String id);
   Future<void> uploadPhoneData(File image, Map<String, dynamic> data);
   Future<File?> openImagePickerFromCamera();

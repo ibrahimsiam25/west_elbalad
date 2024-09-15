@@ -32,6 +32,7 @@ void setupGetIt() {
   );
   getIt.registerSingleton<AdminRepo>(
     AdminRepoImpl(
+      databaseService: getIt.get<DatabaseService>(),
       userInformationsLocalDataSource:UserInformationsLocalDataSourceImpl(),
       userInformationsRemoteDataSource:UserInformationsRemoteDataSourceImpl(databaseService: getIt.get<DatabaseService>()),
       imagePickerService: getIt.get<ImagePickerService>(),

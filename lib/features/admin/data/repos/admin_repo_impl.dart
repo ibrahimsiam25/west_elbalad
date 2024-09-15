@@ -2,7 +2,9 @@ import 'dart:io';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import '../../../../core/errors/excptions.dart';
+import '../../../../core/service/data_service.dart';
 import '../../../home/data/model/phones_model.dart';
+import '../../../../core/utils/backend_endpoints.dart';
 import 'package:west_elbalad/core/errors/failure.dart';
 import '../../../home/domian/entites/phone_entites.dart';
 import '../../../../core/functions/generate_unique_id.dart';
@@ -13,12 +15,12 @@ import 'package:west_elbalad/features/admin/data/data_sources/user_informations_
 import 'package:west_elbalad/features/admin/data/data_sources/user_informations_remote_data_source.dart';
 
 class AdminRepoImpl extends AdminRepo {
-
+  final DatabaseService databaseService;
   final ImagePickerService imagePickerService;
   final UserInformationsRemoteDataSource userInformationsRemoteDataSource;
   final UserInformationsLocalDataSource userInformationsLocalDataSource;
-  AdminRepoImpl(
-      {required this.userInformationsRemoteDataSource,
+  AdminRepoImpl({required this.databaseService, 
+      required this.userInformationsRemoteDataSource,
       required this.userInformationsLocalDataSource,
       required this.imagePickerService,
       });
@@ -87,7 +89,29 @@ class AdminRepoImpl extends AdminRepo {
     return imagePickerService.uploadImageFromGallery();
   }
 
-
+  @override
+  Future<Either<Failure, List<PhoneEntites>>> fetchPhonesData() async {
+    try {
+      final List<Map<String, dynamic>> phonesData =
+          await databaseService.fetchAllDocuments(BackendEndpoint.getPhone);
+      final List<PhoneEntites> phoneList = phonesData.map((data) {
+        return PhoneModel.fromMap(data);
+      }).toList();
+print("******************fetchPhonesData AdminRepoImpl**********************");
+      return right(phoneList);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log(
+        'Exception in AuthRepoImpl.fetchAllPhones: ${e.toString()}',
+      );
+      return left(
+        ServerFailure(
+          'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        ),
+      );
+    }
+  }
 
   @override
   Future<Either<Failure, void>> deletePhoneData(String id) async {

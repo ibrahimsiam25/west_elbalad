@@ -14,6 +14,7 @@ class RemoveFromStoreViewBody extends StatelessWidget {
         CustomAppBar(
           title: "الحذف من المتجر",
         ),
+        
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(

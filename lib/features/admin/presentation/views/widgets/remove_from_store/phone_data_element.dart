@@ -87,7 +87,7 @@ class PhoneDataElement extends StatelessWidget {
                 () {
                   BlocProvider.of<RemoveFromStoreCubit>(context)
                       .deletePhoneData(phoneEntites.id);
-                      Navigator.pop(context);
+
                 },
               );
             },

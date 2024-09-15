@@ -7,30 +7,28 @@ import 'package:west_elbalad/features/admin/domain/repos/admin_repo.dart';
 part 'remove_from_store_state.dart';
 
 class RemoveFromStoreCubit extends Cubit<RemoveFromStoreState> {
-  RemoveFromStoreCubit(this.adminRepo, this.homeRepo) : super(RemoveFromStoreInitial());
+  RemoveFromStoreCubit(this.adminRepo) : super(RemoveFromStoreInitial());
 
   final AdminRepo adminRepo;
-  final HomeRepo homeRepo ;
-  Future<void> fetchPhonesData({bool isRefreshed = false}) async {
+  
+  Future<void> fetchPhonesData() async {
     emit(RemoveFromStoreLoading());
-    final result = await homeRepo.fetchPhonesData();
+    final result = await adminRepo.fetchPhonesData();
 
     result.fold(
       (failure) => emit(RemoveFromStoreFailure(message: failure.message)),
       (phones) => emit(RemoveFromStoreSuccess(phonesList: phones)),
     );
   }
-
   Future<void> deletePhoneData(String id) async {
     final result = await adminRepo.deletePhoneData(id);
-   result.fold(
-    (failure) {
-      // Handle the failure case
-      emit(RemoveFromStoreFailure(message: failure.message));
-    },
-    (_) {
-      // No need to handle success, do nothing here
-    },
-  );
+    result.fold(
+      (failure) => emit(RemoveFromStoreFailure(message: failure.message)),
+      (Null) {
+         fetchPhonesData();
+        emit(removePhoneSuccess());
+       
+      },
+    );
   }
 }
