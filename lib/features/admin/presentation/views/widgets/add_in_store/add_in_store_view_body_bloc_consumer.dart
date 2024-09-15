@@ -27,20 +27,22 @@ class AddInStoreViewBodyBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         return ModalProgressHUD(
             inAsyncCall: state is AddInStoreLoading ? true : false,
-            child: Column(
-              children: [
-                CustomAppBar(
-                  title: "اضافة هاتف",
-                ),
-                SizedBox(height: 40.0.h),
-                imagePickerBlocBuilder(
-                    radius: kRadius48,
-                    width: 150.w,
-                    height: 150.h,
-                    defaultImage: AppAssets.gallery),
-                AddInStoreViewBody(),
-                SizedBox(height: 16.0.h),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  CustomAppBar(
+                    title: "اضافة هاتف",
+                  ),
+                  SizedBox(height: 40.0.h),
+                  imagePickerBlocBuilder(
+                      radius: kRadius48,
+                      width: 150.w,
+                      height: 150.h,
+                      defaultImage: AppAssets.gallery),
+                  AddInStoreViewBody(),
+                  SizedBox(height: 16.0.h),
+                ],
+              ),
             ));
       },
     );
