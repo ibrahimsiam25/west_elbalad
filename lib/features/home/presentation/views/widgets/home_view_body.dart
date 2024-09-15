@@ -36,6 +36,7 @@ class HomeViewBody extends StatelessWidget {
                   'oppo',
                   'realme',
                   'mi',
+                  'nokia',
                   ...phones.map((phone) => phone.type).toList()
                 ].toSet().toList();
                 return Column(
