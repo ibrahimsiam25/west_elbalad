@@ -30,11 +30,11 @@ class UserDataElement extends StatelessWidget {
               color: AppColors.black,
             ),
           ),
-          SizedBox(height: 8.0.h),
+          SizedBox(height: 4.0.h),
           Text(
             user.email,
-            style: AppStyles.subtitle.copyWith(
-              color: AppColors.black,
+            style: AppStyles.semiBold16.copyWith(
+              color: AppColors.green,
             ),
           ),
         ],

@@ -8,7 +8,6 @@ import 'package:west_elbalad/features/admin/domain/entities/user_informations_en
 import 'package:west_elbalad/features/admin/presentation/manager/user_informations/user_informations_cubit.dart';
 import 'package:west_elbalad/features/admin/presentation/views/widgets/users_informations/user_data_element.dart';
 
-
 class UsersInformationsViewBody extends StatelessWidget {
   const UsersInformationsViewBody(
       {super.key, required this.usersInformationList});
@@ -17,7 +16,8 @@ class UsersInformationsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        BlocProvider.of<UserInformationsCubit>(context).fetchUserInformations(isRefreshed:true);
+        BlocProvider.of<UserInformationsCubit>(context)
+            .fetchUserInformations(isRefreshed: true);
       },
       color: AppColors.black,
       backgroundColor: Colors.white,
@@ -25,7 +25,6 @@ class UsersInformationsViewBody extends StatelessWidget {
         children: [
           CustomAppBar(
             title: 'عرض المستخدمين',
-        
           ),
           Expanded(
             child: ListView.builder(
@@ -43,4 +42,3 @@ class UsersInformationsViewBody extends StatelessWidget {
     );
   }
 }
-

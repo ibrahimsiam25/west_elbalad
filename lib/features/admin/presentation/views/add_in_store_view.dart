@@ -15,7 +15,7 @@ class AddInStoreView extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<AddInStoreCubit>(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (context) => getIt<ImagePickerCubit>(),
         ),
       ],
