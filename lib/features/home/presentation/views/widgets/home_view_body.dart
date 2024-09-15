@@ -8,8 +8,6 @@ import 'package:west_elbalad/features/home/presentation/views/widgets/home_appba
 import 'package:west_elbalad/features/home/presentation/views/widgets/selected_phones.dart';
 import 'package:west_elbalad/features/home/presentation/manager/phones_filter/filter_cubit.dart';
 
-var selectedType = 'samsung';
-
 class HomeViewBody extends StatelessWidget {
   final List<PhoneEntites> phones;
   const HomeViewBody({
@@ -32,6 +30,7 @@ class HomeViewBody extends StatelessWidget {
             BlocBuilder<FilterListCubit, int>(
               builder: (context, state) {
                 final orderedPhones = [
+                  'all',
                   'samsung',
                   'oppo',
                   'realme',
@@ -55,19 +54,24 @@ class HomeViewBody extends StatelessWidget {
                     //Selected phones
                     Wrap(
                       spacing: 16.0.w,
-                      children: [
-                        ...selectedPhones,
-                        //For alighnment and refresh
-                        if (selectedPhones.length == 1)
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: kHorizontalPadding),
-                            child: SizedBox(
-                              width: 128.0.w,
-                              height: 300.0.w,
-                            ),
-                          ),
-                      ],
+                      children: orderedPhones[state] == 'all'
+                          ? [
+                              ...phones.map(
+                                  (phone) => SelectedPhones(phones: phone)),
+                            ]
+                          : [
+                              ...selectedPhones,
+                              //For alighnment and refresh
+                              if (selectedPhones.length == 1)
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: kHorizontalPadding),
+                                  child: SizedBox(
+                                    width: 128.0.w,
+                                    height: 300.0.w,
+                                  ),
+                                ),
+                            ],
                     )
                   ],
                 );

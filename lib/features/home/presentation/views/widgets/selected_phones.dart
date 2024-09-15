@@ -63,7 +63,7 @@ class SelectedPhones extends StatelessWidget {
               child: Text(
                 phones.description,
                 textAlign: TextAlign.center,
-                maxLines: 4,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: AppStyles.subtitle.copyWith(
                   height: 1.3,
