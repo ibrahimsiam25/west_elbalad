@@ -7,3 +7,8 @@ Future<Box<T>> openBox<T>(String boxName) async {
     return Hive.box<T>(boxName);
   }
 }
+
+void saveData<T>(List<T> data,String boxName) {
+     var box = Hive.box<T>(boxName);
+    box.addAll(data);
+  }

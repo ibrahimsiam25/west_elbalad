@@ -10,38 +10,50 @@ import '../../../../core/functions/generate_unique_id.dart';
 import '../../../../core/service/image_picker_serivce.dart';
 import 'package:west_elbalad/core/utils/backend_endpoints.dart';
 import 'package:west_elbalad/features/admin/domain/repos/admin_repo.dart';
-import 'package:west_elbalad/features/admin/data/model/user_informations_model.dart';
 import 'package:west_elbalad/features/admin/domain/entities/user_informations_entites.dart';
+import 'package:west_elbalad/features/admin/data/data_sources/user_informations_local_data_source.dart';
+import 'package:west_elbalad/features/admin/data/data_sources/user_informations_remote_data_source.dart';
 
 class AdminRepoImpl extends AdminRepo {
   final DatabaseService databaseService;
   final ImagePickerService imagePickerService;
-
-  AdminRepoImpl(
-      {required this.imagePickerService, required this.databaseService});
+  final UserInformationsRemoteDataSource userInformationsRemoteDataSource;
+  final UserInformationsLocalDataSource userInformationsLocalDataSource;
+  AdminRepoImpl({required this.userInformationsRemoteDataSource, 
+      required this.userInformationsLocalDataSource,
+      required this.imagePickerService, required this.databaseService});
 
   @override
-  Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers() async {
-    try {
-      final List<Map<String, dynamic>> usersData =
-          await databaseService.fetchAllDocuments(BackendEndpoint.addUserData);
+Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers({bool isRefreshed = false}) async {
+  try {
+    List<UserInformationsEntity> usersList;
 
-      final List<UserInformationsEntity> usersList = usersData.map((data) {
-        return UserInformationsModel.fromMap(data);
-      }).toList();
-
+    if (isRefreshed) {
+      print("*****************Fetching data from remote data source due to refresh");
+      usersList = await userInformationsRemoteDataSource.fetchUsersData();
       return right(usersList);
-    } on CustomException catch (e) {
-      return left(ServerFailure(e.message));
-    } catch (e) {
-      log('Exception in AuthRepoImpl.fetchAllUsers: ${e.toString()}');
-      return left(
-        ServerFailure(
-          'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
-        ),
-      );
     }
+
+    usersList = await userInformationsLocalDataSource.fetchUsersData();
+    
+    if (usersList.isNotEmpty) {
+      print("*******************User information exists in local data source");
+      return right(usersList);
+    }
+
+    print("*********************User information does not exist in local data source, fetching from remote");
+    usersList = await userInformationsRemoteDataSource.fetchUsersData();
+    return right(usersList);
+  } on CustomException catch (e) {
+    return left(ServerFailure(e.message));
+  } catch (e) {
+    log('Exception in fetchAllUsers: ${e.toString()}');
+    return left(
+      ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة أخرى.'),
+    );
   }
+}
+
 
   @override
   Future<void> uploadPhoneData(File image, Map<String, dynamic> data) async {
