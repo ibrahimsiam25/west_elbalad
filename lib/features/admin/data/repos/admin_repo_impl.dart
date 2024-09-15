@@ -33,7 +33,7 @@ class AdminRepoImpl extends AdminRepo {
 
       if (isRefreshed) {
         print(
-            "*****************Fetching data from remote data source due to refresh");
+            "*****************Fetching data from user remote data source due to refresh");
         usersList = await userInformationsRemoteDataSource.fetchUsersData();
         return right(usersList);
       }
@@ -63,10 +63,8 @@ class AdminRepoImpl extends AdminRepo {
   @override
   Future<void> uploadPhoneData(File image, Map<String, dynamic> data) async {
     String documentId = generateUniqueId();
-    String imageUrl = await databaseService.uploadImage(
-      image: image,
-      path: "phones/$documentId",
-    );
+    String imageUrl =
+        await userInformationsRemoteDataSource.uploadImage(image, documentId);
 
     PhoneEntites phoneEntites = PhoneEntites(
       id: documentId,
@@ -76,10 +74,9 @@ class AdminRepoImpl extends AdminRepo {
       imageUrl: imageUrl,
       price: int.parse(data["phonePrice"]),
     );
-    databaseService.addData(
-        documentId: documentId,
-        path: BackendEndpoint.addPhone,
-        data: PhoneModel.fromEntity(phoneEntites).toMap());
+
+    await userInformationsRemoteDataSource.addPhoneData(
+        PhoneModel.fromEntity(phoneEntites).toMap(), documentId);
   }
 
   @override
@@ -119,14 +116,7 @@ class AdminRepoImpl extends AdminRepo {
   @override
   Future<Either<Failure, void>> deletePhoneData(String id) async {
     try {
-      await databaseService.deleteDocument(
-        documentId: id,
-        collectionName: BackendEndpoint.getPhone,
-      );
-      bool imageExists = await databaseService.checkIfImageExists("phones/$id");
-      if (imageExists) {
-        await databaseService.deleteImageFromStorage("phones/$id");
-      }
+      await userInformationsRemoteDataSource.deletePhoneData(id);
       return right(null);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
