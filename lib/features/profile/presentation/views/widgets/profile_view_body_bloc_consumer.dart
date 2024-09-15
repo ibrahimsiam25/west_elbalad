@@ -27,22 +27,24 @@ class ProfileViewBodyBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: state is ProfileLoading ? true : false,
-          child: Column(
-            children: [
-              CustomAppBar(
-                title: 'الملف الشخصي',
-                backButton: false,
-              ),
-              SizedBox(height: 40.0.h),
-              imagePickerBlocBuilder(
-                radius: kRadius48,
-                width: 180,
-                height: 180,
-                defaultImage: AppAssets.avatar,
-              ),
-              SizedBox(height: 32.0.h),
-              ProfileViewBody(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                CustomAppBar(
+                  title: 'الملف الشخصي',
+                  backButton: false,
+                ),
+                SizedBox(height: 40.0.h),
+                imagePickerBlocBuilder(
+                  radius: kRadius48,
+                  width: 180,
+                  height: 180,
+                  defaultImage: AppAssets.avatar,
+                ),
+                SizedBox(height: 32.0.h),
+                ProfileViewBody(),
+              ],
+            ),
           ),
         );
       },
