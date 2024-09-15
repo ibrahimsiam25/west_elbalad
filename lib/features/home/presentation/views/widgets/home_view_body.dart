@@ -67,7 +67,7 @@ class HomeViewBody extends StatelessWidget {
                         children: [
                           ...selectedPhones,
                           //For alighnment and refresh
-                          if (selectedPhones.length == 1)
+                          if (selectedPhones.length < 3)
                             Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: kHorizontalPadding),
@@ -76,7 +76,7 @@ class HomeViewBody extends StatelessWidget {
                                 height: 300.0.w,
                               ),
                             ),
-                          if (selectedPhones.length == 2)
+                          if (selectedPhones.length < 3)
                             Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: kHorizontalPadding),
