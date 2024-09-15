@@ -19,41 +19,46 @@ class AdminRepoImpl extends AdminRepo {
   final ImagePickerService imagePickerService;
   final UserInformationsRemoteDataSource userInformationsRemoteDataSource;
   final UserInformationsLocalDataSource userInformationsLocalDataSource;
-  AdminRepoImpl({required this.userInformationsRemoteDataSource, 
+  AdminRepoImpl(
+      {required this.userInformationsRemoteDataSource,
       required this.userInformationsLocalDataSource,
-      required this.imagePickerService, required this.databaseService});
+      required this.imagePickerService,
+      required this.databaseService});
 
   @override
-Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers({bool isRefreshed = false}) async {
-  try {
-    List<UserInformationsEntity> usersList;
+  Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers(
+      {bool isRefreshed = false}) async {
+    try {
+      List<UserInformationsEntity> usersList;
 
-    if (isRefreshed) {
-      print("*****************Fetching data from remote data source due to refresh");
+      if (isRefreshed) {
+        print(
+            "*****************Fetching data from remote data source due to refresh");
+        usersList = await userInformationsRemoteDataSource.fetchUsersData();
+        return right(usersList);
+      }
+
+      usersList = await userInformationsLocalDataSource.fetchUsersData();
+
+      if (usersList.isNotEmpty) {
+        print(
+            "*******************User information exists in local data source");
+        return right(usersList);
+      }
+
+      print(
+          "*********************User information does not exist in local data source, fetching from remote");
       usersList = await userInformationsRemoteDataSource.fetchUsersData();
       return right(usersList);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
+    } catch (e) {
+      log('Exception in fetchAllUsers: ${e.toString()}');
+      return left(
+        ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة أخرى.'),
+      );
     }
-
-    usersList = await userInformationsLocalDataSource.fetchUsersData();
-    
-    if (usersList.isNotEmpty) {
-      print("*******************User information exists in local data source");
-      return right(usersList);
-    }
-
-    print("*********************User information does not exist in local data source, fetching from remote");
-    usersList = await userInformationsRemoteDataSource.fetchUsersData();
-    return right(usersList);
-  } on CustomException catch (e) {
-    return left(ServerFailure(e.message));
-  } catch (e) {
-    log('Exception in fetchAllUsers: ${e.toString()}');
-    return left(
-      ServerFailure('حدث خطأ ما. الرجاء المحاولة مرة أخرى.'),
-    );
   }
-}
-
 
   @override
   Future<void> uploadPhoneData(File image, Map<String, dynamic> data) async {
@@ -62,7 +67,7 @@ Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers({bool isRefr
       image: image,
       path: "phones/$documentId",
     );
-   
+
     PhoneEntites phoneEntites = PhoneEntites(
       id: documentId,
       type: data["phoneType"],
@@ -118,23 +123,19 @@ Future<Either<Failure, List<UserInformationsEntity>>> fetchAllUsers({bool isRefr
         documentId: id,
         collectionName: BackendEndpoint.getPhone,
       );
-     bool imageExists= await databaseService.checkIfImageExists("phones/$id" );
-     if(imageExists){
-       await databaseService.deleteImageFromStorage("phones/$id");
-     }
-     return right(null);
+      bool imageExists = await databaseService.checkIfImageExists("phones/$id");
+      if (imageExists) {
+        await databaseService.deleteImageFromStorage("phones/$id");
+      }
+      return right(null);
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
-      } catch (e) {
-        return left(
-          ServerFailure(
-            'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
-          ),
-        );
-      }
+    } catch (e) {
+      return left(
+        ServerFailure(
+          'حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        ),
+      );
     }
-    
-    
-    }
-
-  
+  }
+}
