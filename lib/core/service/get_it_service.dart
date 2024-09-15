@@ -34,7 +34,7 @@ void setupGetIt() {
       userInformationsLocalDataSource:UserInformationsLocalDataSourceImpl(),
       userInformationsRemoteDataSource:UserInformationsRemoteDataSourceImpl(databaseService: getIt.get<DatabaseService>()),
       imagePickerService: getIt.get<ImagePickerService>(),
-      databaseService: getIt.get<DatabaseService>(),
+
     ),
   );
   getIt.registerFactory<ImagePickerCubit>(() => ImagePickerCubit(
@@ -54,7 +54,7 @@ void setupGetIt() {
     HomeRepoImplimentation(
       homeLocalDataSource:  HomeLocalDataSourceImpl() ,
       homeRemoteDataSource: HomeRemoteDataSourceImpl(databaseService: getIt.get<DatabaseService>()),
-      databaseService: getIt.get<DatabaseService>(),
+
     ),
   );
 }
